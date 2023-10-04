@@ -5,7 +5,7 @@
 :root {
   // ? PRIMARY COLORS
   --primary-yellow: 248, 174, 1; // #f8ae01
-  --primary-purple: 123, 0, 255;
+  --primary-purple: 123, 0, 255; // #7b00ff
 
   // ? SECONDARY COLORS
   --indigo-light: #330099;
@@ -93,4 +93,11 @@ p {
 
 .small {
   font-size: var(--font-size-xs);
+}
+
+button[disabled] {
+
+  &:hover {
+    cursor: not-allowed;
+  }
 }
