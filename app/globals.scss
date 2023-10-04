@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  // ? PRIMARY COLORS
+  --primary-yellow: 248, 174, 1; // #f8ae01
+  --primary-purple: 123, 0, 255; // #7b00ff
+
+  // ? SECONDARY COLORS
+  --indigo-light: #330099;
+  --indigo-medium: #2B0071;
+  --indigo-dark: #1F0954;
+
+  // ? GREEN / RED
+  --success: #3CA94E;
+  --error: #FF302E;
+
+  // ? GREY SHADES
+  --black: 15, 15, 15;
+  --grey-dark: #555555;
+  --grey-medium: #ACACAC;
+  --grey-light: #DCDCDC;
+  --white: 242, 242, 242;
+
+  // ? FONT SIZES
+  --font-size-xxl: 7.5rem;
+  --font-size-xl: 6rem;
+  --font-size-lg: 5rem;
+  --font-size-md: 3rem;
+  --font-size-sm: 2.5rem;
+  --font-size-xs: 2rem;
+  --font-size-xxs: 1.75rem;
+
+  // ? APP HEIGHT FOR SMARTPHONE VIEW
+  // TODO: FIX BELOW ONCE THE NAVBAR IS SETUP
+  // --app-height: 100%; // * SETUP IN Navbar TO MAKE SURE THE HEIGHT IS CORRECT ON EVERY KINDS OF DEVICES
+}
+
+// ! ============================== GENERAL RULES ============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  letter-spacing: -1px;
+  font-family: "ZCOOL KuaiLe", sans-serif !important;
+
+}
+
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh !important;
+  min-height: var(--app-height) !important;
+  min-height: -webkit-fill-available !important;
+  scroll-behavior: smooth;
+  background-color: rgb(var(--white-color)) !important;
+}
+
+
+// ! ============================== TYPOGRAPHY ============================== */
+h1 {
+  font-size: var(--font-size-xxl);
+  font-weight: bold;
+}
+
+h2 {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+}
+
+h3 {
+  font-size: var(--font-size-lg);
+}
+
+h4 {
+  font-size: var(--font-size-md);
+}
+
+p {
+  font-size: var(--font-size-sm);
+  text-align: justify;
+}
+
+.tooltip {
+  font-size: var(--font-size-sm);
+}
+
+.small {
+  font-size: var(--font-size-xs);
+}
+
+button[disabled] {
+
+  &:hover {
+    cursor: not-allowed;
+  }
+}
