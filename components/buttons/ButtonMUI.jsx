@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 const ButtonMUI = ({ color, backgroundColor, width, height, borderRadius, text, type, disabled }) => {
   return (
     <Button
-      style={disabled ? { cursor: "not-allowed" } : { cursor: "pointer" }}
       sx={{
         width: width,
         height: height,
