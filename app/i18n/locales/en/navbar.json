@@ -1,0 +1,17 @@
+{
+  "loggedIn": {
+    "transactions": "Transactions",
+    "orders": "Orders",
+    "products": "Products",
+    "account": "Account",
+    "vault": "Vault",
+    "adminDashboard": "Admin"
+  },
+
+  "loggedOut": {
+    "ourService": "Our Services",
+    "products": "Products",
+    "aboutUs": "About Us",
+    "login": "Login"
+  }
+}

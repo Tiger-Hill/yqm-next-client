@@ -1,5 +1,7 @@
 import './globals.scss'
 import { Inter, ZCOOL_KuaiLe } from 'next/font/google'
+import Providers from "@/lib/redux/provider";
+
 
 import Polynav from '@/components/navbar/Polynav'
 
@@ -15,9 +17,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={zCool.className}>
-        <Polynav />
+        <Providers>
+          <Polynav />
 
-        {children}
+          {children}
+
+        </Providers>
       </body>
     </html>
   );
