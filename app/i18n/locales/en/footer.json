@@ -1,0 +1,18 @@
+{
+  "loggedOut": {
+    "ourService": "Our Services",
+    "products": "Products",
+    "aboutUs": "About Us",
+    "login": "Login"
+  },
+
+  "loggedIn": {
+    "transactions": "Transactions",
+    "orders": "Orders",
+    "products": "Products",
+    "account": "Account",
+    "vault": "Vault"
+  },
+
+  "languageSwitcher": "Switch from <1>{{lng}}</1> to: "
+}

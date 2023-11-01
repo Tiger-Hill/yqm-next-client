@@ -1,0 +1,17 @@
+{
+  "loggedIn": {
+    "transactions": "交易",
+    "orders": "命令",
+    "products": "产品",
+    "account": "帐户",
+    "vault": "拱顶",
+    "adminDashboard": "行政"
+  },
+
+  "loggedOut": {
+    "ourService": "我们的服务",
+    "products": "产品",
+    "aboutUs": "关于我们",
+    "login": "登录"
+  }
+}
