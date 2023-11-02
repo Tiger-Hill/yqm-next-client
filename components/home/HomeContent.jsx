@@ -5,13 +5,13 @@ import classes from "./HomeContent.module.scss";
 import HomeHeader from "./HomeHeader";
 import ProductList from "@/components/products/ProductList";
 
-const HomeContent = () => {
+const HomeContent = ({ lng }) => {
   return (
     <div className={classes["home-container"]}>
-      <HomeHeader />
+      <HomeHeader lng={lng} />
 
-      <ProductList type={"productToWish"}/>
-      <ProductList type={"productToOrder"}/>
+      <ProductList type={"productToWish"} lng={lng} />
+      <ProductList type={"productToOrder"} lng={lng} />
     </div>
   );
 };

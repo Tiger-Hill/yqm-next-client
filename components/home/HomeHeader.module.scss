@@ -33,6 +33,7 @@
       font-size: var(--font-size-sm);
       width: fit-content;
       line-height: 0.95;
+      // height: fit-content;
       background-image: linear-gradient(to right, rgb(var(--primary-purple)), rgb(var(--primary-yellow)));
       -webkit-background-clip: text; /* For webkit-based browsers */
       color: transparent;

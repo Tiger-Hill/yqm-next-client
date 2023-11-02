@@ -1,7 +1,7 @@
 import Image from "next/image"
 import classes from "./HomeHeader.module.scss"
 
-const HomeHeader = () => {
+const HomeHeader = ({ lng }) => {
   return (
     <header className={classes["home-header"]}>
       <Image
