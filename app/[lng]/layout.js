@@ -3,7 +3,7 @@ import { Inter, ZCOOL_KuaiLe } from 'next/font/google'
 import Providers from "@/lib/redux/provider";
 
 
-import Polynav from '@/components/navbar/Polynav'
+import Polynav from '@/components/navbars/Polynav'
 
 // const inter = Inter({ subsets: ['latin'] })
 const zCool = ZCOOL_KuaiLe({ subsets: ["latin"], weight: ["400"] });
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={zCool.className}>
         <Providers>
-          {/* <Polynav /> */}
+          <Polynav />
 
           {children}
 

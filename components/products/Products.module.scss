@@ -29,6 +29,16 @@
       font-size: var(--font-size-sm);
     }
   }
+
+  .products-to-wish .links {
+    color: rgb(var(--primary-purple));
+    font-weight: bold;
+  }
+
+  .products-to-order .links {
+    color: rgb(var(--primary-yellow));
+    font-weight: bold;
+  }
 }
 
 .products-to-wish {
