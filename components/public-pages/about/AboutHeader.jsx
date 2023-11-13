@@ -8,8 +8,8 @@ const About = ({ lng }) => {
   return (
     <header className={classes["public-page-header"]}>
       <Image
-        src="/IMGS/about.jpg"
-        alt="A man looking towards a mountain. We can see a city in between bathed in sunset light."
+        src="/IMGS/wishes.jpg"
+        alt="A dandelion beeing blown away, as when someone makes a wish."
         width={4000}
         height={4000}
       />

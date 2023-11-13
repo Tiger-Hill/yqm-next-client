@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 const InputMui = ({
   required,
   id,
+  width,
   name,
   type,
   multiline,
@@ -28,7 +29,7 @@ const InputMui = ({
     <TextField
       sx={{
         marginTop: "2rem",
-        width: "100%",
+        width: width || "100%",
         minWidth: "none !important",
 
         "& .MuiInputLabel-root": {

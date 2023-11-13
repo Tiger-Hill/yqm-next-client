@@ -117,8 +117,7 @@ const AboutContent = () => {
           initial={variantsRight.hidden}
           animate={isFourthBlockInView ? variantsRight.visible : variantsRight.hidden}
         >
-          YQM is based in Singapore, a global financial hub that is home to
-          people from all over the world. We are located at:
+          YQM is based in Singapore, a global financial hub. We are located at:
           <br />
           60 Paya Lebar Road #07-54 Paya Lebar Square Singapore 409051
         </motion.p>

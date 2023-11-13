@@ -90,7 +90,8 @@ const NavbarLoggedOut = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNa
 
       {screenWidth >= 800 && (
         <div className={classes["link-containers"]}>
-          <Link href={`/${lng}/services`}>{t("loggedOut.ourService")}</Link>
+          {/* <Link href={`/${lng}/services`}>{t("loggedOut.ourService")}</Link> */}
+          <Link href={`/${lng}/wishes`}>{t("loggedOut.wishes")}</Link>
           <Link href={`/${lng}/products`}>{t("loggedOut.products")}</Link>
           <Link href={`/${lng}/about`}>{t("loggedOut.aboutUs")}</Link>
           <Link href={`/${lng}/login`} className={classes["auth-link"]}>
