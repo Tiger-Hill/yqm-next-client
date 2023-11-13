@@ -9,7 +9,7 @@ import ProductToWish from "./ProductToWish";
 import ProductToOrder from "./ProductToOrder";
 import ButtonMui from "@/components/forms/ButtonMui";
 
-import SwitchAccessShortcutAddIcon from "@mui/icons-material/SwitchAccessShortcutAdd";
+import AddIcon from "@mui/icons-material/Add";
 
 import classes from "./Products.module.scss";
 
@@ -47,7 +47,7 @@ const ProductList = ({ type, lng }) => {
               disabledColor="white"
               type="button"
               disabled={false}
-              text={<><SwitchAccessShortcutAddIcon />   New Wish</>}
+              text={<><AddIcon />   New Wish</>}
               onClickHandler={() => alert("OPEN ADD WISH MODAL")}
             />
           </div>

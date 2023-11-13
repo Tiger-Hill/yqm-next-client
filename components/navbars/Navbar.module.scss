@@ -1,0 +1,122 @@
+// .polynav {
+//   position: fixed;
+//   z-index: 1000000;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   padding: 1.6rem 3.2rem;
+// }
+
+.navbar-content {
+  background-color: rgba(255,255,255, 0);
+  border-bottom: 3px solid rgba(var(--primary-yellow), 0);
+
+  position: fixed;
+  z-index: 1000000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.6rem 3.2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.2s;
+
+  img {
+    margin-right: auto;
+    filter: drop-shadow(0 0 10px rgba(var(--black), 0.5));
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  a {
+    color: rgb(var(--white)) !important;
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-left: 1.6rem;
+    transition: all 0.2s;
+    text-shadow: 0 0 10px rgba(var(--black), 0.75) !important;
+
+
+    &:hover {
+      color: rgb(var(--primary-yellow)) !important;
+    }
+
+    &.auth-link {
+      margin-left: 6.4rem;
+    }
+  }
+
+  .cart-icon {
+    margin-left: 2.2rem;
+    color: white;
+    font-size: 3rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+}
+
+.with-background {
+  background-color: rgba(255,255,255, 1);
+  border-bottom: 3px solid rgba(var(--primary-yellow), 1) !important;
+
+  transition: 0.2s;
+
+  a {
+    color: rgb(var(--black)) !important;
+    text-shadow: 0 0 0 transparent !important;
+
+    &:hover {
+      color: rgb(var(--primary-yellow)) !important;
+    }
+  }
+
+  .cart-icon {
+    margin-left: 2.2rem;
+    color: black;
+    font-size: 3rem;
+    // filter: drop-shadow(0 0 10px rgba(var(--black), 0.85)) !important;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.link-containers {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+// ! ======== THIS IS ONLY VISIBLE ON SCREEN SIZES SMALLER THAN 768px ========
+  // ! THIS IS THE BUTTON THAT TOGGLES THE NAVBAR MENU ON SMARTPHONES
+  .navbar-toggle {
+    transform: translateY(2px);
+
+    // @media (max-width: $smartphone) {
+    //   transform: translateY(4px) !important;
+    // }
+
+    .toggle-button {
+      border: none !important;
+      background-color: transparent !important;
+      filter: drop-shadow(0 0 10px rgba(var(--black), 0.85));
+    }
+
+    svg {
+      // @media (max-width: $smartphone) {
+      //   width: 3.5rem;
+      //   height: 3.5rem;
+      // }
+    }
+  }
