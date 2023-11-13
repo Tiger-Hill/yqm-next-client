@@ -1,0 +1,160 @@
+.products-section {
+  margin: 5rem 0;
+  position: relative;
+  z-index: 5;
+  transform: translateY(-13rem);
+
+  .product-section-title {
+    color: white;
+    position: absolute;
+    top: -5rem;
+    // left: -5rem;
+    font-size: var(--font-size-md);
+    border-radius: 50%;
+  }
+
+  .links {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    color: rgb(var(--primary-purple));
+
+    a {
+      font-size: var(--font-size-xs);
+    }
+
+    svg {
+      font-size: var(--font-size-sm);
+    }
+  }
+}
+
+.products-to-wish {
+  width: 335px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+
+  .product-to-wish {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 1rem;
+
+    width: 100%;
+
+    padding: 1rem 1.5rem;
+    box-shadow: 0 0 15px 3px rgba(var(--primary-purple), 0.5);
+    cursor: pointer;
+    transition: all ease 0.25s;
+
+    &:hover {
+      box-shadow: 0 0 15px 3px rgba(var(--primary-purple), 0.8);
+    }
+
+    .img {
+      width: 100%;
+    }
+
+    .wish-details {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+
+      h4 {
+        font-size: var(--font-size-xs);
+        font-weight: bold;
+      }
+
+      p {
+        font-size: var(--font-size-xxs);
+
+        .number-of-wishes {
+          font-weight: bold;
+          color: rgb(var(--primary-purple));
+        }
+      }
+
+      .actions {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ! =======================================
+// ! =======================================
+// ! =======================================
+.products-to-order {
+  width: 335px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+
+  .product-to-order {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 1rem;
+
+    width: 100%;
+
+    padding: 1rem 1.5rem;
+    box-shadow: 0 0 15px 3px rgba(var(--primary-yellow), 0.5);
+    cursor: pointer;
+    transition: all ease 0.25s;
+
+    &:hover {
+      box-shadow: 0 0 15px 3px rgba(var(--primary-yellow), 0.8);
+    }
+
+    .img {
+      width: 100%;
+    }
+
+    .product-to-order-details {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+
+      h4 {
+        font-size: var(--font-size-xs);
+        font-weight: bold;
+      }
+
+      p {
+        font-size: var(--font-size-xs);
+        text-align: left;
+
+        .number-of-wishes {
+          font-weight: bold;
+          color: rgb(var(--primary-purple));
+        }
+      }
+
+      .actions {
+        width: 100%;
+      }
+    }
+  }
+}

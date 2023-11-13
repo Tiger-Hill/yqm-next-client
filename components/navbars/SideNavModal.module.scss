@@ -1,0 +1,46 @@
+// @import '@/styles/variables.scss';
+
+.side-nav {
+  position: fixed;
+  z-index: 1000000000;
+  top: calc(var(--navbar-height) + 1rem );
+
+  border-radius: 5rem ;
+
+  background-color: white;
+  width: 95%;
+  height: fit-content;
+  padding: 2rem;
+  right: 2rem;
+  left: 2rem;
+
+  border-bottom: 3px solid rgb(var(--primary-yellow));
+
+  box-shadow: 0px 0px 20px rgb(0 0 0 / 15%);
+
+  li {
+    font-weight: 600;
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 3rem;
+    margin-top: 1rem;
+  }
+
+  .logout-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+
+  }
+
+  // button {
+  //   display: block;
+  //   margin: 1rem auto 0;
+  //   padding: 0.1rem 2rem;
+  // }
+}
+
+.active {
+  color: rgb(var(--primary-yellow));
+}
