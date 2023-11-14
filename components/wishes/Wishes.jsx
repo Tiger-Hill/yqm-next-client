@@ -15,28 +15,35 @@ import classes from "./Wishes.module.scss";
 const Wishes = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { productsToWish } = useSelector(state => state.rootReducer.product);
+  const { productsToWish, maxNumberOfForWishingProducts } = useSelector(
+    state => state.rootReducer.product
+  );
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20); // 10 / 30 / 50
-  const [maxNumberOfPages, setMaxNumberOfPages] = useState(0); // Math.ceil(totalNumberOfFoundProducts / limit)
+  // const [maxNumberOfPages, setMaxNumberOfPages] = useState(0); // Math.ceil(totalNumberOfFoundProducts / limit)
 
   useEffect(() => {
-    dispatch(getForWishingProducts({ page: page, limit: limit }));
+    dispatch(getForWishingProducts(1));
   }, [])
 
-  console.log(maxNumberOfPages);
+  // console.log(maxNumberOfPages);
 
-  useEffect(() => {
-    if (!productsToWish) return;
-    setMaxNumberOfPages(prevState => Math.ceil(1 / limit));
-  }, [productsToWish]);
+  // useEffect(() => {
+  //   if (!productsToWish) return;
+
+  //   // ! Replace one with value coming from db here
+  //   setMaxNumberOfPages(prevState => Math.ceil(1 / limit));
+  // }, [productsToWish]);
 
   // ? This is the handler executed when user changes pages using the pagination component
   const changePageHandler = (e, value) => {
     setPage(value);
-    dispatch(getForWishingProducts({ page: value, limit: limit }));
-  }
+  };
+
+  useEffect(() => {
+    dispatch(getForWishingProducts(page));
+  }, [page])
 
   return (
     <section>
@@ -79,18 +86,7 @@ const Wishes = () => {
         <article>
           <div className={classes["wishes-grid-container"]}>
             {/* {productsToWish.map(product => ( */}
-            {[
-              ...productsToWish,
-              ...productsToWish,
-              ...productsToWish,
-              ...productsToWish,
-              ...productsToWish,
-              ...productsToWish,
-              ...productsToWish,
-              ...productsToWish,
-              ...productsToWish,
-              ...productsToWish,
-            ].map(product => (
+            {productsToWish.map(product => (
               <div className={classes["wish-card"]} key={product.slug}>
                 <Image
                   src={`${process.env.NEXT_PUBLIC_API_URL}${product.image}`}
@@ -105,7 +101,7 @@ const Wishes = () => {
           </div>
 
           <Pagination
-            count={maxNumberOfPages}
+            count={Math.ceil(maxNumberOfForWishingProducts / limit)}
             page={page}
             shape="rounded"
             onChange={(event, value) => changePageHandler(event, value)}
