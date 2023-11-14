@@ -110,8 +110,8 @@ const Products = () => {
                   <Image
                     src={`${process.env.NEXT_PUBLIC_API_URL}${product.image}`}
                     alt={product.productName}
-                    width={200}
-                    height={200}
+                    width={250}
+                    height={250}
                   />
                   <h4>{product.productName}</h4>
                   <p>{product.description}</p>
