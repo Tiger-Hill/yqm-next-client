@@ -18,11 +18,25 @@ const Wishes = () => {
   const { productsToWish } = useSelector(state => state.rootReducer.product);
 
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10); // 10 / 30 / 50
+  const [limit, setLimit] = useState(20); // 10 / 30 / 50
+  const [maxNumberOfPages, setMaxNumberOfPages] = useState(0); // Math.ceil(totalNumberOfFoundProducts / limit)
 
   useEffect(() => {
     dispatch(getForWishingProducts({ page: page, limit: limit }));
   }, [])
+
+  console.log(maxNumberOfPages);
+
+  useEffect(() => {
+    if (!productsToWish) return;
+    setMaxNumberOfPages(prevState => Math.ceil(1 / limit));
+  }, [productsToWish]);
+
+  // ? This is the handler executed when user changes pages using the pagination component
+  const changePageHandler = (e, value) => {
+    setPage(value);
+    dispatch(getForWishingProducts({ page: value, limit: limit }));
+  }
 
   return (
     <section>
@@ -41,13 +55,13 @@ const Wishes = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: "auto" }}
           >
-            Consult all the Wishes!
+            Wishes
           </motion.h1>
 
           <InputMui
             required
             id="outlined-required searchInput"
-            width={"50%"}
+            width={"150%"}
             name="searchInput"
             type="searchInput"
             label="Search For Wishes"
@@ -61,35 +75,60 @@ const Wishes = () => {
         </div>
       </header>
 
-      <article>
-        <div className={classes["wishes-grid-container"]}>
-          {/* {productsToWish.map(product => ( */}
-          {[
-            ...productsToWish,
-            ...productsToWish,
-            ...productsToWish,
-            ...productsToWish,
+      {productsToWish && (
+        <article>
+          <div className={classes["wishes-grid-container"]}>
+            {/* {productsToWish.map(product => ( */}
+            {[
+              ...productsToWish,
+              ...productsToWish,
+              ...productsToWish,
+              ...productsToWish,
+              ...productsToWish,
+              ...productsToWish,
+              ...productsToWish,
+              ...productsToWish,
+              ...productsToWish,
+              ...productsToWish,
+            ].map(product => (
+              <div className={classes["wish-card"]} key={product.slug}>
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${product.image}`}
+                  alt={product.productName}
+                  width={100}
+                  height={100}
+                />
+                <h4>{product.productName}</h4>
+                <p>{product.description}</p>
+              </div>
+            ))}
+          </div>
 
-            ...productsToWish,
-          ].map(product => (
-            <div className={classes["wish-card"]} key={product.slug}>
-              <h1>{product.productName}</h1>
-              <p>{product.description}</p>
-            </div>
-          ))}
-        </div>
+          <Pagination
+            count={maxNumberOfPages}
+            page={page}
+            shape="rounded"
+            onChange={(event, value) => changePageHandler(event, value)}
+            sx={{
+              margin: "2rem auto",
 
-        <Pagination
-          count={10}
-          page={page}
-          shape="rounded"
-          onChange={(event, value) => {
-            console.log(value);
-            // setPage(value);
-            // dispatch(getForWishingProducts({ page: value, limit: limit }));
-          }}
-        />
-      </article>
+              "& .MuiPagination-ul": {
+                justifyContent: "center",
+              },
+
+              "& .MuiPaginationItem-root": {
+                color: "black",
+                // fontWeight: "bold",
+                fontSize: "1.7rem",
+              },
+
+              "& .MuiSvgIcon-root": {
+                fontSize: "2.5rem",
+              },
+            }}
+          />
+        </article>
+      )}
     </section>
   );
 }
