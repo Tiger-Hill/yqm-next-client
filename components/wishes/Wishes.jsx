@@ -15,35 +15,52 @@ import classes from "./Wishes.module.scss";
 const Wishes = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { productsToWish, maxNumberOfForWishingProducts } = useSelector(
-    state => state.rootReducer.product
-  );
+  const { productsToWish, maxNumberOfForWishingProducts } = useSelector(state => state.rootReducer.product);
 
+  // * Pagination states
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20); // 10 / 30 / 50
-  // const [maxNumberOfPages, setMaxNumberOfPages] = useState(0); // Math.ceil(totalNumberOfFoundProducts / limit)
 
+  // * Fetches products for the first page, when rendering the page
   useEffect(() => {
     dispatch(getForWishingProducts(1));
   }, [])
 
-  // console.log(maxNumberOfPages);
-
-  // useEffect(() => {
-  //   if (!productsToWish) return;
-
-  //   // ! Replace one with value coming from db here
-  //   setMaxNumberOfPages(prevState => Math.ceil(1 / limit));
-  // }, [productsToWish]);
-
-  // ? This is the handler executed when user changes pages using the pagination component
+  // * Handler executed when user changes pages using the pagination component
   const changePageHandler = (e, value) => {
     setPage(value);
   };
 
+  // * Fetches products for a given page
   useEffect(() => {
-    dispatch(getForWishingProducts(page));
+    dispatch(getForWishingProducts(page, searchInputValue));
+    window && window.scrollTo({ top: 0, behavior: "smooth", });
   }, [page])
+
+  // ! Search input handler
+  const [searchInputValue, setSearchInputValue] = useState("");
+
+  const searchInputHandler = (e) => {
+    if (!e.target.value) {
+      setSearchInputValue("");
+    } else {
+      setSearchInputValue(e.target.value);
+    }
+  }
+
+  useEffect(() => {
+    // * We send the request to the server only if the user has typed something
+    // * We delay the request by 300ms to avoid sending too many requests
+    const sendFilteredRequest = setTimeout(() => {
+      //? We use page 1 to make sure we get on page 1 for the filtered results
+      setPage(1);
+      dispatch(getForWishingProducts(page, searchInputValue));
+    }, 300);
+
+    // * Debouncing here after 300 ms.
+    // * Request gets cancelled if searchInputValue changes before 300ms
+    return () => clearTimeout(sendFilteredRequest);
+  }, [searchInputValue])
 
   return (
     <section>
@@ -66,14 +83,14 @@ const Wishes = () => {
           </motion.h1>
 
           <InputMui
-            required
+            // required
             id="outlined-required searchInput"
             width={"150%"}
             name="searchInput"
             type="searchInput"
-            label="Search For Wishes"
+            label="Search for wishes"
             // helperText={formik.errors.email && formik.errors.email}
-            onChangeHandler={() => alert("FILTERING THE WISHES")}
+            onChangeHandler={(e) => searchInputHandler(e)}
             // onBlurHandler={formik.handleBlur}
             // error={!!formik.touched.email && !!formik.errors.email}
             // valid={!!formik.touched.email && !formik.errors.email}
@@ -85,14 +102,13 @@ const Wishes = () => {
       {productsToWish && (
         <article>
           <div className={classes["wishes-grid-container"]}>
-            {/* {productsToWish.map(product => ( */}
-            {productsToWish.map(product => (
+            {productsToWish && productsToWish.map(product => (
               <div className={classes["wish-card"]} key={product.slug}>
                 <Image
                   src={`${process.env.NEXT_PUBLIC_API_URL}${product.image}`}
                   alt={product.productName}
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
                 />
                 <h4>{product.productName}</h4>
                 <p>{product.description}</p>
@@ -114,7 +130,7 @@ const Wishes = () => {
 
               "& .MuiPaginationItem-root": {
                 color: "black",
-                // fontWeight: "bold",
+                fontWeight: "bold",
                 fontSize: "1.7rem",
               },
 

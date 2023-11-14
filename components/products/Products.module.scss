@@ -1,170 +1,90 @@
-.products-section {
-  margin: 5rem 0;
+.public-page-header {
+  width: 100%;
+  height: 40vh;
   position: relative;
-  z-index: 5;
-  transform: translateY(-13rem);
 
-  .product-section-title {
-    color: white;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+    filter: brightness(0.5);
+  }
+
+  .header-content {
     position: absolute;
-    top: -5rem;
-    // left: -5rem;
-    font-size: var(--font-size-md);
-    border-radius: 50%;
-  }
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-  .links {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
     gap: 1rem;
-    color: rgb(var(--primary-purple));
 
-    a {
-      font-size: var(--font-size-xs);
+    h1 {
+      font-size: var(--font-size-xxl);
+      font-weight: bold;
+      width: fit-content;
+      color: rgb(var(--primary-yellow));
+      // background-image: linear-gradient(to right, rgb(var(--primary-yellow)), rgb(var(--primary-yellow)));
+      // -webkit-background-clip: text; /* For webkit-based browsers */
+      // color: transparent;
+      text-shadow: 0 3px 3px rgba(255, 255, 255, 0.5)
     }
 
-    svg {
-      font-size: var(--font-size-sm);
-    }
-  }
-
-  .products-to-wish .links {
-    color: rgb(var(--primary-purple));
-    font-weight: bold;
-  }
-
-  .products-to-order .links {
-    color: rgb(var(--primary-yellow));
-    font-weight: bold;
   }
 }
 
-.products-to-wish {
-  width: 335px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
+.products-grid-container {
+  width: 80%;
+  margin: 3rem auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
 
-  .product-to-wish {
-    background-color: white;
+  .product-card {
+    // background-color: red;
+    // width: auto;
+    // height: 300px;
+    cursor: pointer;
+    padding: 1rem;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
-    border-radius: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    overflow: hidden;
 
-    width: 100%;
-
-    padding: 1rem 1.5rem;
-    box-shadow: 0 0 15px 3px rgba(var(--primary-purple), 0.5);
-    cursor: pointer;
-    transition: all ease 0.25s;
-
-    &:hover {
-      box-shadow: 0 0 15px 3px rgba(var(--primary-purple), 0.8);
-    }
-
-    .img {
-      width: 100%;
-    }
-
-    .wish-details {
+    img {
+      // ! Remove this to keep it smaller
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      // border: 2px solid rgb(var(--primary-yellow));
+      box-shadow: 0 0 10px 3px rgb(var(--primary-yellow), 0.75);
+    }
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-
-      h4 {
-        font-size: var(--font-size-xs);
-        font-weight: bold;
-      }
-
-      p {
-        font-size: var(--font-size-xxs);
-
-        .number-of-wishes {
-          font-weight: bold;
-          color: rgb(var(--primary-purple));
-        }
-      }
-
-      .actions {
-        width: 100%;
-      }
+    h4 {
+      font-size: 1.7rem;
+      white-space: nowrap;
+      font-weight: bold;
     }
   }
-}
 
-// ! =======================================
-// ! =======================================
-// ! =======================================
-.products-to-order {
-  width: 335px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  gap: 2rem;
-
-  .product-to-order {
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    border-radius: 1rem;
-
-    width: 100%;
-
-    padding: 1rem 1.5rem;
-    box-shadow: 0 0 15px 3px rgba(var(--primary-yellow), 0.5);
-    cursor: pointer;
-    transition: all ease 0.25s;
-
-    &:hover {
-      box-shadow: 0 0 15px 3px rgba(var(--primary-yellow), 0.8);
-    }
-
-    .img {
-      width: 100%;
-    }
-
-    .product-to-order-details {
-      width: 100%;
-      height: 100%;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-
-      h4 {
-        font-size: var(--font-size-xs);
-        font-weight: bold;
-      }
-
-      p {
-        font-size: var(--font-size-xs);
-        text-align: left;
-
-        .number-of-wishes {
-          font-weight: bold;
-          color: rgb(var(--primary-purple));
-        }
-      }
-
-      .actions {
-        width: 100%;
-      }
-    }
+  nav ul {
+    background: red !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
   }
 }
