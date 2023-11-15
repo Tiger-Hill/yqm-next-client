@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getForOrderingProducts } from "@/lib/redux/slices/productSlice";
 import { motion } from "framer-motion";
 
+import ProductCard from "./ProductCard";
 import Pagination from "@mui/material/Pagination";
 
 import Image from "next/image";
 import InputMui from "../forms/InputMui";
-import classes from "./PRoducts.module.scss";
+import classes from "./Products.module.scss";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -105,17 +106,8 @@ const Products = () => {
         <article>
           <div className={classes["products-grid-container"]}>
             {productsToOrder &&
-              productsToOrder.map(product => (
-                <div className={classes["product-card"]} key={product.slug}>
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${product.image}`}
-                    alt={product.productName}
-                    width={250}
-                    height={250}
-                  />
-                  <h4>{product.productName}</h4>
-                  <p>{product.description}</p>
-                </div>
+              productsToOrder.map((product, i) => (
+                <ProductCard key={i} product={product} index={i} />
               ))}
           </div>
 

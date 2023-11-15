@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getForWishingProducts } from "@/lib/redux/slices/productSlice";
 import { motion } from "framer-motion";
 
+import WishCard from "./WishCard";
 import Pagination from "@mui/material/Pagination";
 
 import Image from "next/image";
@@ -83,18 +84,12 @@ const Wishes = () => {
           </motion.h1>
 
           <InputMui
-            // required
             id="outlined-required searchInput"
             width={"150%"}
             name="searchInput"
             type="searchInput"
             label="Search for wishes"
-            // helperText={formik.errors.email && formik.errors.email}
             onChangeHandler={(e) => searchInputHandler(e)}
-            // onBlurHandler={formik.handleBlur}
-            // error={!!formik.touched.email && !!formik.errors.email}
-            // valid={!!formik.touched.email && !formik.errors.email}
-            // // defaultValue="email"
           />
         </div>
       </header>
@@ -102,17 +97,8 @@ const Wishes = () => {
       {productsToWish && (
         <article>
           <div className={classes["wishes-grid-container"]}>
-            {productsToWish && productsToWish.map(product => (
-              <div className={classes["wish-card"]} key={product.slug}>
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_API_URL}${product.image}`}
-                  alt={product.productName}
-                  width={200}
-                  height={200}
-                />
-                <h4>{product.productName}</h4>
-                <p>{product.description}</p>
-              </div>
+            {productsToWish && productsToWish.map((product, i) => (
+              <WishCard key={i} product={product} index={i} />
             ))}
           </div>
 

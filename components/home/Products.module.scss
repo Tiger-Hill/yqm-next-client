@@ -23,6 +23,12 @@
 
     a {
       font-size: var(--font-size-xs);
+      text-decoration: underline;
+      transition: all ease 0.25s;
+
+      &:hover {
+        transform: translateX(10px);
+      }
     }
 
     svg {

@@ -63,7 +63,7 @@ const ProductList = ({ type, lng }) => {
           ))}
 
           <div className={classes["links"]}>
-            <Link href={`/${lng}/orders`}>See all past orders...</Link>
+            <Link href={`/${lng}/orders`}>See all products available to order...</Link>
             {/* <ButtonMui
               width="fit-content"
               height="2.5rem"
