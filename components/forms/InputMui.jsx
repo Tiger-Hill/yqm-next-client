@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 const InputMui = ({
   required,
   id,
+  width,
   name,
   type,
   multiline,
@@ -17,7 +18,7 @@ const InputMui = ({
   disabled,
   quantityInput,
   min, max,
-  isHeaderCard
+  // isHeaderCard
 }) => {
   const quantityInputStyle = quantityInput ?
     { width: "100px", marginTop: "0", "& .MuiInputBase-input": { padding: "2rem 1rem", fontSize: "1.5rem" }}
@@ -28,23 +29,27 @@ const InputMui = ({
     <TextField
       sx={{
         marginTop: "2rem",
-        width: "100%",
+        width: width || "100%",
         minWidth: "none !important",
 
         "& .MuiInputLabel-root": {
           fontSize: "1.7rem",
-          backgroundColor: isHeaderCard ? "rgb(215,215,215)" : "white",
+          borderRadius: "50rem",
+          padding: "0.2rem 1rem",
+          backgroundColor: "white",
+          // backgroundColor: isHeaderCard ? "rgb(215,215,215)" : "white",
         },
 
         "& .MuiFormHelperText-root": {
           fontSize: "1.7rem",
           marginTop: "1rem",
-          backgroundColor: "white",
         },
 
         "& .MuiInputBase-input": {
           fontSize: "1.7rem",
           padding: "2.5rem",
+          backgroundColor: "white",
+          borderRadius: "4px !important",
         },
 
         ...quantityInputStyle,

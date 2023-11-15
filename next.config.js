@@ -12,6 +12,7 @@ const nextConfig = {
     domains: [
       "",
       "localhost",
+      "www.3bgsupply.com",
       // "sesame-nextjs-client-9ef12e543138.herokuapp.com",
       // "sesame-rails-api-e1c881a0dd6f.herokuapp.com",
       // "sesame.sg",

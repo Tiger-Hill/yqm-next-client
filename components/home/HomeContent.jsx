@@ -3,7 +3,7 @@ import ButtonMUI from "../buttons/ButtonMUI";
 import classes from "./HomeContent.module.scss";
 
 import HomeHeader from "./HomeHeader";
-import ProductList from "@/components/products/ProductList";
+import ProductList from "@/components/home/ProductList";
 
 const HomeContent = ({ lng }) => {
   return (

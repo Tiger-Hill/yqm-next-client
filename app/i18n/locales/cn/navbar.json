@@ -10,6 +10,7 @@
 
   "loggedOut": {
     "ourService": "我们的服务",
+    "wishes": "愿望",
     "products": "产品",
     "aboutUs": "关于我们",
     "login": "登录"

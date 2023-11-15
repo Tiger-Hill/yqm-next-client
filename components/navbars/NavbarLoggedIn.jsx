@@ -74,23 +74,24 @@ const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNav
 
   return (
     <nav className={navbarClasses}>
-      {scrolled ? (
+      <div className={classes["app-logo"]}>
         <Image
           onClick={goHomeHandler}
-          src="/LOGO/SESAME-black.svg"
-          alt="Black Sesame logo"
+          src="/LOGOS/YQM-logo.svg"
+          alt="YQM colored logo"
           width={100}
           height={70}
         />
-      ) : (
-        <Image
-          onClick={goHomeHandler}
-          src="/LOGO/SESAME-white.svg"
-          alt="White Sesame logo"
-          width={100}
-          height={70}
-        />
-      )}
+
+        <div
+          className={`${classes.slogan} ${
+            scrolled ? classes["slogan-black"] : classes["slogan-white"]
+          } `}
+        >
+          <h2>Buy Together</h2>
+          <h3>Save 100 million together</h3>
+        </div>
+      </div>
 
       {screenWidth >= 1100 && (
         <div className={classes["link-containers"]}>
@@ -101,9 +102,11 @@ const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNav
           </Link>
           <Link href={`/${lng}/vault`}>{t("loggedIn.vault")}</Link>
           <Link href={`/${lng}/account`}>{t("loggedIn.account")}</Link>
-          {userType === "Admin" &&
-            <Link href={`/${lng}/admin_dashboard`}>{t("loggedIn.adminDashboard")}</Link>
-          }
+          {userType === "Admin" && (
+            <Link href={`/${lng}/admin_dashboard`}>
+              {t("loggedIn.adminDashboard")}
+            </Link>
+          )}
 
           <ButtonMui
             width="fit-content"

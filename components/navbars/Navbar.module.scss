@@ -1,22 +1,13 @@
-// .polynav {
-//   position: fixed;
-//   z-index: 1000000;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   padding: 1.6rem 3.2rem;
-// }
-
 .navbar-content {
   background-color: rgba(255,255,255, 0);
-  border-bottom: 3px solid rgba(var(--primary-yellow), 0);
+  // border-bottom: 3px solid rgba(var(--primary-yellow), 0);
 
   position: fixed;
   z-index: 1000000;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1.6rem 3.2rem;
+  padding: 0.5rem 3.2rem;
 
   display: flex;
   justify-content: center;
@@ -24,23 +15,54 @@
 
   transition: 0.2s;
 
-  img {
+  .app-logo {
     margin-right: auto;
-    filter: drop-shadow(0 0 10px rgba(var(--black), 0.5));
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    gap: 2rem;
+    cursor: pointer;
 
-    &:hover {
-      cursor: pointer;
+    img {
+      filter: drop-shadow(0 0 10px rgba(var(--black), 0.5));
+    }
+
+    .slogan {
+      color: rgb(var(--white));
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      text-shadow: 0 0 10px rgba(var(--black), 0.75);
+
+      h2 {
+        font-size: var(--font-size-xs);
+        white-space: nowrap;
+      }
+      h3 {
+        font-size: var(--font-size-xxs);
+        white-space: nowrap;
+      }
+
+      &.slogan-black {
+        color: rgb(var(--black));
+        text-shadow: 0 0 10px rgba(var(--white), 0.75);
+      }
+
+      &.slogan-white {
+        color: rgb(var(--white));
+        text-shadow: 0 0 10px rgba(var(--black), 0.75);
+      }
     }
   }
 
   a {
     color: rgb(var(--white)) !important;
     text-decoration: none;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xs);
     font-weight: 600;
     margin-left: 1.6rem;
     transition: all 0.2s;
     text-shadow: 0 0 10px rgba(var(--black), 0.75) !important;
+    white-space: nowrap;
 
 
     &:hover {
@@ -48,12 +70,12 @@
     }
 
     &.auth-link {
-      margin-left: 6.4rem;
+      // margin-left: 6.4rem;
     }
   }
 
-  .cart-icon {
-    margin-left: 2.2rem;
+  .auth-link svg, .cart-icon {
+    margin-left: 1.5rem;
     color: white;
     font-size: 3rem;
 
@@ -66,7 +88,7 @@
 
 .with-background {
   background-color: rgba(255,255,255, 1);
-  border-bottom: 3px solid rgba(var(--primary-yellow), 1) !important;
+  // border-bottom: 3px solid linear-gradient(to right, rgba(var(--primary-purple), 0.33), rgba(var(--primary-yellow), 0.33));
 
   transition: 0.2s;
 
@@ -79,8 +101,8 @@
     }
   }
 
-  .cart-icon {
-    margin-left: 2.2rem;
+  .auth-link svg, .cart-icon {
+    margin-left: 1.5rem;
     color: black;
     font-size: 3rem;
     // filter: drop-shadow(0 0 10px rgba(var(--black), 0.85)) !important;

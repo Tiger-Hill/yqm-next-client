@@ -38,6 +38,9 @@ const SelectMui = ({
         "& .MuiInputLabel-root": {
           fontSize: "1.7rem",
           backgroundColor: "white",
+          borderRadius: "50rem",
+          padding: "0.2rem 1rem",
+          backgroundColor: "white",
         },
 
         "& .MuiFormHelperText-root": {
@@ -49,6 +52,8 @@ const SelectMui = ({
         "& .MuiInputBase-input": {
           fontSize: "1.7rem",
           padding: "1.7819rem",
+          backgroundColor: "white",
+          borderRadius: "4px",
         },
       }}
     >
@@ -73,7 +78,6 @@ const SelectMui = ({
             },
           },
         }}
-
         value={value}
         required={required}
         labelId={labelId}

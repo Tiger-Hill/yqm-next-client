@@ -10,6 +10,7 @@ import Link from "next/link";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuToggle from "./MenuToggle";
 
 const NavbarLoggedOut = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNavOpen }) => {
@@ -69,44 +70,56 @@ const NavbarLoggedOut = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNa
 
   return (
     <nav className={navbarClasses}>
-      {scrolled ? (
+      <div className={classes["app-logo"]} onClick={goHomeHandler}>
         <Image
-          onClick={goHomeHandler}
-          src="/LOGO/SESAME-black.svg"
-          alt="Black Sesame logo"
+          src="/LOGOS/YQM-logo.svg"
+          alt="YQM colored logo"
           width={100}
-          height={"70"}
+          height={70}
         />
-      ) : (
-        <Image
-          onClick={goHomeHandler}
-          src="/LOGO/SESAME-white.svg"
-          alt="White Sesame logo"
-          width={100}
-          height={"70"}
-        />
-      )}
 
-      {screenWidth >= 800 &&
+        <div
+          className={`${classes.slogan} ${
+            scrolled ? classes["slogan-black"] : classes["slogan-white"]
+          } `}
+        >
+          <h2>Buy Together</h2>
+          <h3>Save 100 million together</h3>
+        </div>
+      </div>
+
+      {screenWidth >= 800 && (
         <div className={classes["link-containers"]}>
-          <Link href={`/${lng}/services`}>{t("loggedOut.ourService")}</Link>
+          {/* <Link href={`/${lng}/services`}>{t("loggedOut.ourService")}</Link> */}
+          <Link href={`/${lng}/wishes`}>{t("loggedOut.wishes")}</Link>
           <Link href={`/${lng}/products`}>{t("loggedOut.products")}</Link>
           <Link href={`/${lng}/about`}>{t("loggedOut.aboutUs")}</Link>
           <Link href={`/${lng}/login`} className={classes["auth-link"]}>
-            {t("loggedOut.login")}
+            <AccountCircleIcon />
+            {/* {t("loggedOut.login")} */}
           </Link>
         </div>
-      }
+      )}
 
-      {screenWidth < 800 &&
-        <div className={classes["navbar-toggle"]} data-testid="side-nav-toggler">
-          <MenuToggle isScrolled={scrolled} openSideNav={openSideNav} closeSideNav={closeSideNav} isOpen={isSideNavOpen} />
+      {screenWidth < 800 && (
+        <div
+          className={classes["navbar-toggle"]}
+          data-testid="side-nav-toggler"
+        >
+          <MenuToggle
+            isScrolled={scrolled}
+            openSideNav={openSideNav}
+            closeSideNav={closeSideNav}
+            isOpen={isSideNavOpen}
+          />
         </div>
-      }
+      )}
 
-      {isClient &&
+      {isClient && (
         <Badge
-          badgeContent={basket.reduce((acc, product) => { return acc + product.quantity}, 0)}
+          badgeContent={basket.reduce((acc, product) => {
+            return acc + product.quantity;
+          }, 0)}
           color="primary"
           sx={{
             "& .MuiBadge-badge": {
@@ -114,8 +127,8 @@ const NavbarLoggedOut = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNa
               fontSize: "1.5rem",
               fontWeight: "bold",
               color: "#f8ae01",
-              border: `2px solid ${scrolled ? "black" : "white"}`
-            }
+              border: `2px solid ${scrolled ? "black" : "white"}`,
+            },
           }}
         >
           <ShoppingCartIcon
@@ -123,7 +136,7 @@ const NavbarLoggedOut = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNa
             onClick={goToBasketHandler}
           />
         </Badge>
-      }
+      )}
     </nav>
   );
 };
