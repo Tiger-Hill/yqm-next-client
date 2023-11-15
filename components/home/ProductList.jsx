@@ -30,7 +30,7 @@ const ProductList = ({ type, lng }) => {
         <div className={classes["products-to-wish"]}>
           {/* <h2>You want</h2> */}
           <h2 className={classes["product-section-title"]}>Trending user wishes</h2>
-          {[...productsToWish, ...productsToWish].slice(0, 4).map((product, index) => (
+          {productsToWish.slice(0, 4).map((product, index) => (
             <ProductToWish key={index} product={product} />
           ))}
 
@@ -58,7 +58,7 @@ const ProductList = ({ type, lng }) => {
       {type === "productToOrder" && productsToOrder && (
         <div className={classes["products-to-order"]}>
           <h2 className={classes["product-section-title"]}>Available for order</h2>
-          {productsToOrder.map((product, index) => (
+          {productsToOrder.slice(0, 4).map((product, index) => (
             <ProductToOrder key={index} product={product} />
           ))}
 

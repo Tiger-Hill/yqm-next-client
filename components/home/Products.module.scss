@@ -85,6 +85,7 @@
       h4 {
         font-size: var(--font-size-xs);
         font-weight: bold;
+        min-height: 6rem;
       }
 
       p {
@@ -150,10 +151,11 @@
       h4 {
         font-size: var(--font-size-xs);
         font-weight: bold;
+        min-height: 6rem;
       }
 
       p {
-        font-size: var(--font-size-xs);
+        font-size: var(--font-size-xxs);
         text-align: left;
 
         .number-of-wishes {
