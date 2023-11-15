@@ -1,6 +1,6 @@
 import Wishes from "@/components/wishes/Wishes"
 
-const page = ({ params: { lng } }) => {
+const page = ({ params: { lng} }) => {
   return <Wishes lng={lng} />
 }
 

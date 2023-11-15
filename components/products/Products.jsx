@@ -13,7 +13,7 @@ import Image from "next/image";
 import InputMui from "../forms/InputMui";
 import classes from "./Products.module.scss";
 
-const Products = () => {
+const Products = ({ lng }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { productsToOrder, maxNumberOfForOrderingProducts } = useSelector(state => state.rootReducer.product);
@@ -86,18 +86,12 @@ const Products = () => {
           </motion.h1>
 
           <InputMui
-            // required
             id="outlined-required searchInput"
             width={"150%"}
             name="searchInput"
             type="searchInput"
             label="Search for products"
-            // helperText={formik.errors.email && formik.errors.email}
             onChangeHandler={e => searchInputHandler(e)}
-            // onBlurHandler={formik.handleBlur}
-            // error={!!formik.touched.email && !!formik.errors.email}
-            // valid={!!formik.touched.email && !formik.errors.email}
-            // // defaultValue="email"
           />
         </div>
       </header>
@@ -107,7 +101,7 @@ const Products = () => {
           <div className={classes["products-grid-container"]}>
             {productsToOrder &&
               productsToOrder.map((product, i) => (
-                <ProductCard key={i} product={product} index={i} />
+                <ProductCard key={i} product={product} index={i} lng={lng} />
               ))}
           </div>
 

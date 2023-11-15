@@ -1,13 +1,12 @@
 import Image from "next/image";
 import classes from "./Products.module.scss";
 
-const ProductCard = ({ product, index }) => {
-  console.log(product);
+const ProductCard = ({ product, index, lng }) => {
 
   return (
     <div className={classes["product-card"]} key={product.slug}>
       <Image
-        src={`${process.env.NEXT_PUBLIC_API_URL}${product.image}`}
+        src={`${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`}
         alt={product.productName}
         width={200}
         height={200}

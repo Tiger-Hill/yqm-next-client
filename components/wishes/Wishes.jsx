@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getForWishingProducts } from "@/lib/redux/slices/productSlice";
+import { getForWishingProducts, clearProductToShow } from "@/lib/redux/slices/productSlice";
 import { motion } from "framer-motion";
 
 import WishCard from "./WishCard";
@@ -13,7 +13,7 @@ import Image from "next/image";
 import InputMui from "../forms/InputMui";
 import classes from "./Wishes.module.scss";
 
-const Wishes = () => {
+const Wishes = ({ lng }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { productsToWish, maxNumberOfForWishingProducts } = useSelector(state => state.rootReducer.product);
@@ -63,6 +63,11 @@ const Wishes = () => {
     return () => clearTimeout(sendFilteredRequest);
   }, [searchInputValue])
 
+  // ! We make sure the productToShow is cleared when we land on this page
+  useEffect(() => {
+     dispatch(clearProductToShow())
+  }, [])
+
   return (
     <section>
       <header className={classes["public-page-header"]}>
@@ -98,7 +103,7 @@ const Wishes = () => {
         <article>
           <div className={classes["wishes-grid-container"]}>
             {productsToWish && productsToWish.map((product, i) => (
-              <WishCard key={i} product={product} index={i} />
+              <WishCard key={i} product={product} index={i} lng={lng} />
             ))}
           </div>
 

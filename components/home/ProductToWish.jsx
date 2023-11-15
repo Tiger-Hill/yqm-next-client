@@ -14,7 +14,7 @@ const ProductToWish = ({ product }) => {
     >
       {/* <div className={classes["product-details"]}> */}
         <Image
-          src={`${process.env.NEXT_PUBLIC_API_URL}${product.image}`}
+          src={`${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`}
           alt={product.productName}
           width={100}
           height={100}
