@@ -96,11 +96,12 @@ const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNav
       {screenWidth >= 1100 && (
         <div className={classes["link-containers"]}>
           <Link href={`/${lng}/products`}>{t("loggedIn.products")}</Link>
+          <Link href={`/${lng}/wishes`}>{t("loggedIn.wishes")}</Link>
           <Link href={`/${lng}/orders`}>{t("loggedIn.orders")}</Link>
-          <Link href={`/${lng}/transactions`}>
+          {/* <Link href={`/${lng}/transactions`}>
             {t("loggedIn.transactions")}
-          </Link>
-          <Link href={`/${lng}/vault`}>{t("loggedIn.vault")}</Link>
+          </Link> */}
+          {/* <Link href={`/${lng}/vault`}>{t("loggedIn.vault")}</Link> */}
           <Link href={`/${lng}/account`}>{t("loggedIn.account")}</Link>
           {userType === "Admin" && (
             <Link href={`/${lng}/admin_dashboard`}>
@@ -113,7 +114,7 @@ const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNav
             height="3rem"
             // marginTop="2rem"
             fontSize="1.7rem"
-            backgroundColor="#ACACAC"
+            backgroundColor="#FF302E"
             color="white"
             // disabledBakcgroundColor="#DCDCDC"
             // disabledColor="white"
