@@ -1,9 +1,7 @@
-import React from 'react'
+import ProductShow from "@/components/products/show/ProductShow";
 
-const ProductsShowPage = () => {
-  return (
-    <div>ProductsShowPage</div>
-  )
-}
+const ProductShowPage = ({ params: { lng, slug } }) => {
+  return <ProductShow lng={lng} productSlug={slug} />;
+};
 
-export default ProductsShowPage
+export default ProductShowPage;

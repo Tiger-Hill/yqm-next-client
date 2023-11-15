@@ -13,15 +13,15 @@ import PinIcon from "@mui/icons-material/Pin";
 import MonetizationOnRoundedIcon from '@mui/icons-material/MonetizationOnRounded';
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
-import classes from "./WishShow.module.scss";
+import classes from "./ProductShow.module.scss";
 
-const WishShow = ({ lng, wishSlug }) => {
+const ProductShow = ({ lng, productSlug }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { productToShow } = useSelector(state => state.rootReducer.product);
 
   useEffect(() => {
-    dispatch(getProduct(wishSlug));
+    dispatch(getProduct(productSlug));
   }, []);
 
   // ! SET BIG IMAGE HANDLER
@@ -31,7 +31,7 @@ const WishShow = ({ lng, wishSlug }) => {
   };
 
   return (
-    <section className={classes["wish-show-container"]}>
+    <section className={classes["product-show-container"]}>
       {productToShow && (
         <>
           {/* // ! IMAGES */}
@@ -53,7 +53,7 @@ const WishShow = ({ lng, wishSlug }) => {
                 />
               </motion.div>
 
-              {productToShow.images[1] &&
+              {productToShow.images[1] && (
                 <motion.div
                   initial={{ opacity: 0, x: -25 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -69,9 +69,8 @@ const WishShow = ({ lng, wishSlug }) => {
                     key={productToShow.images[1]}
                   />
                 </motion.div>
-              }
-
-              {productToShow.images[2] &&
+              )}
+              {productToShow.images[2] && (
                 <motion.div
                   initial={{ opacity: 0, x: -25 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -87,9 +86,9 @@ const WishShow = ({ lng, wishSlug }) => {
                     key={productToShow.images[2]}
                   />
                 </motion.div>
-              }
+              )}
 
-              {productToShow.images[3] &&
+              {productToShow.images[3] && (
                 <motion.div
                   initial={{ opacity: 0, x: -25 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -105,7 +104,7 @@ const WishShow = ({ lng, wishSlug }) => {
                     key={productToShow.images[3]}
                   />
                 </motion.div>
-              }
+              )}
             </div>
 
             <motion.div
@@ -167,13 +166,13 @@ const WishShow = ({ lng, wishSlug }) => {
               height="5rem"
               marginTop="0rem"
               fontSize="1.7rem"
-              backgroundColor="#7b00ff"
+              backgroundColor="#f8ae01"
               color="white"
               disabledBakcgroundColor="#DCDCDC"
               disabledColor="white"
               type="submit"
               disabled={false}
-              text="Wish for this product"
+              text="Order now!"
               onClickHandler={() => {}}
             />
             {/* </div> */}
@@ -184,4 +183,4 @@ const WishShow = ({ lng, wishSlug }) => {
   );
 };
 
-export default WishShow;
+export default ProductShow;

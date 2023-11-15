@@ -1,6 +1,7 @@
-.wish-show-container {
+.product-show-container {
   min-height: 66rem; // ? (height of the Image bigger component)
   margin-top: calc(var(--navbar-height) + 8rem);
+  margin-bottom: calc(var(--navbar-height));
   padding: 2rem;
 
   display: flex;
@@ -26,12 +27,12 @@
         transition: all 0.3s ease;
 
         &.selected {
-          box-shadow: 0 0 10px 1px rgb(var(--primary-purple), 0.75);
+          box-shadow: 0 0 10px 1px rgb(var(--primary-yellow), 0.75);
         }
 
         &:hover {
           cursor: pointer;
-          box-shadow: 0 0 10px 1px rgb(var(--primary-purple), 0.75);
+          box-shadow: 0 0 10px 1px rgb(var(--primary-yellow), 0.75);
         }
       }
     }
@@ -73,7 +74,7 @@
 
         svg {
           font-size: 3rem;
-          color: rgb(var(--primary-purple));
+          color: rgb(var(--primary-yellow));
         }
 
         p {
@@ -86,7 +87,7 @@
     hr {
       width: 100%;
       height: 2px;
-      background-color: rgb(var(--primary-purple));
+      background-color: rgb(var(--primary-yellow));
       border: none;
       margin: 2rem 0;
     }
