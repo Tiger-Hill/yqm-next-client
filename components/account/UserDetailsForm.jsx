@@ -463,6 +463,7 @@ const UserDetailsForm = ({ lng, userDetails, passportFileInfo }) => {
         color="white"
         type="submit"
         text="Save my details"
+        disabled={false}
         onClickHandler={() => {}}
       />
     </motion.form>

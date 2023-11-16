@@ -8,6 +8,7 @@ import { updatePasswordWhileLoggedIn } from "@/lib/redux/slices/passwordSlice";
 import { AnimatePresence, motion } from "framer-motion";
 import classes from "./ChangePasswordForm.module.scss";
 
+import Image from "next/image";
 import InputMui from "@/components/forms/InputMui";
 import ButtonMui from "@/components/forms/ButtonMui";
 
@@ -62,7 +63,22 @@ const ChangePasswordForm = ({ lng }) => {
 
   return (
     <section className={classes["form-container"]}>
-      <h1>Change your password</h1>
+      <motion.div
+        className={classes["auth-logo"]}
+        transition={{ duration: 0.25 }}
+        initial={{ opacity: 0, height: "auto" }}
+        animate={{ opacity: 1, height: "auto" }}
+        exit={{ opacity: 0, height: "auto" }}
+      >
+        <Image
+          src="/LOGOS/YQM-logo.svg"
+          alt="YQM colored logo"
+          width={150}
+          height={105}
+        />
+
+        <h1>Change your password</h1>
+      </motion.div>
 
       <motion.form
         className={`${classes["formik-form"]}`}
@@ -80,11 +96,17 @@ const ChangePasswordForm = ({ lng }) => {
           name="currentPassword"
           type="password"
           label="Current password"
-          helperText={formik.errors.currentPassword && formik.errors.currentPassword}
+          helperText={
+            formik.errors.currentPassword && formik.errors.currentPassword
+          }
           onChangeHandler={formik.handleChange}
           onBlurHandler={formik.handleBlur}
-          error={!!formik.touched.currentPassword && !!formik.errors.currentPassword}
-          valid={!!formik.touched.currentPassword && !formik.errors.currentPassword}
+          error={
+            !!formik.touched.currentPassword && !!formik.errors.currentPassword
+          }
+          valid={
+            !!formik.touched.currentPassword && !formik.errors.currentPassword
+          }
           // defaultValue="currentPassword"
         />
 
@@ -94,7 +116,7 @@ const ChangePasswordForm = ({ lng }) => {
           name="password"
           type="password"
           label="New Password"
-          helperText={formik.errors.password && formik.errors.password }
+          helperText={formik.errors.password && formik.errors.password}
           onChangeHandler={formik.handleChange}
           onBlurHandler={formik.handleBlur}
           error={!!formik.touched.password && !!formik.errors.password}
@@ -108,11 +130,20 @@ const ChangePasswordForm = ({ lng }) => {
           name="passwordConfirmation"
           type="password"
           label="Confirm New Password"
-          helperText={formik.errors.passwordConfirmation && formik.errors.passwordConfirmation }
+          helperText={
+            formik.errors.passwordConfirmation &&
+            formik.errors.passwordConfirmation
+          }
           onChangeHandler={formik.handleChange}
           onBlurHandler={formik.handleBlur}
-          error={!!formik.touched.passwordConfirmation && !!formik.errors.passwordConfirmation}
-          valid={!!formik.touched.passwordConfirmation && !formik.errors.passwordConfirmation}
+          error={
+            !!formik.touched.passwordConfirmation &&
+            !!formik.errors.passwordConfirmation
+          }
+          valid={
+            !!formik.touched.passwordConfirmation &&
+            !formik.errors.passwordConfirmation
+          }
           // defaultValue="passwordConfirmation"
         />
 
@@ -126,14 +157,20 @@ const ChangePasswordForm = ({ lng }) => {
           disabledBakcgroundColor="#DCDCDC"
           disabledColor="white"
           type="submit"
-          disabled={formik.errors.currentPassword || formik.errors.password || formik.errors.passwordConfirmation}
+          disabled={
+            !!formik.errors.currentPassword ||
+            !!!formik.values.currentPassword ||
+            !!formik.errors.password ||
+            !!!formik.values.password ||
+            !!formik.errors.passwordConfirmation ||
+            !!!formik.values.passwordConfirmation
+          }
           text="Change password"
           onClickHandler={() => {}}
         />
-
       </motion.form>
     </section>
-  )
+  );
 }
 
 export default ChangePasswordForm
