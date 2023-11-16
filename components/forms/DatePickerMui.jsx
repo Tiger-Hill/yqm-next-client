@@ -30,6 +30,8 @@ const DatePickerMui = ({
 
     minWidth: "100%",
     paddingTop: "none !important",
+    backgroundColor: "white",
+    borderRadius: "4px !important",
 
     "& .MuiFormControl-root": {
       backgroundColor: "red",
@@ -37,27 +39,27 @@ const DatePickerMui = ({
 
     "& .MuiInputLabel-root": {
       fontSize: "1.7rem",
+      borderRadius: "50rem",
+      padding: "0.2rem 1rem",
       backgroundColor: "white",
     },
 
     "& .MuiFormHelperText-root": {
       fontSize: "1.7rem",
       marginTop: "1rem",
-      backgroundColor: "white",
     },
 
     "& .MuiInputBase-input": {
       fontSize: "1.7rem",
       padding: "1.7819rem",
-      height: "5rem",
+      fontSize: "1.7rem",
+      padding: "2.5rem",
     },
 
     "& .MuiSvgIcon-root": {
       width: "2rem",
       height: "2rem",
     },
-
-
   };
 
   console.log(value);

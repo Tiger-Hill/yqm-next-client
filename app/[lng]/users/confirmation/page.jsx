@@ -1,15 +1,7 @@
-import PageTemplate from "@/components/UI/PageTemplate"
-import Confirmation from "@/components/users/confirmation/Confirmation";
-import success from "@/public/SVGS/success.svg";
+import Confirmation from "@/components/auth/users/confirmation/Confirmation";
 
 const ConfirmationPage = ({ params: { lng } }) => {
-  return (
-    <PageTemplate pageImg={success} pageImgAlt={"A certificate for confirmation success"} >
-
-    <Confirmation lng={lng} />
-
-    </PageTemplate>
-  );
+  return <Confirmation lng={lng} />
 }
 
 export default ConfirmationPage

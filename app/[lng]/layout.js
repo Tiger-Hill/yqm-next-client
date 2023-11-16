@@ -4,6 +4,7 @@ import Providers from "@/lib/redux/provider";
 
 
 import Polynav from '@/components/navbars/Polynav'
+import FlashModal from '@/components/flashes/FlashesModal';
 
 // const inter = Inter({ subsets: ['latin'] })
 const zCool = ZCOOL_KuaiLe({ subsets: ["latin"], weight: ["400"] });
@@ -20,8 +21,10 @@ export default function RootLayout({ children, params: { lng } }) {
       <body className={yaldevi.className}>
         <Providers>
           <Polynav lng={lng} />
-
           {children}
+          {/* // ? FOOTER HERE */}
+          <FlashModal />
+
         </Providers>
       </body>
     </html>

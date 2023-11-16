@@ -46,7 +46,8 @@ const SelectMui = ({
         "& .MuiFormHelperText-root": {
           fontSize: "1.7rem",
           marginTop: "1rem",
-          backgroundColor: "white",
+          backgroundColor: "transparent",
+          color: "#FF302E",
         },
 
         "& .MuiInputBase-input": {

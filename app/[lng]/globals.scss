@@ -103,3 +103,54 @@ button[disabled] {
     cursor: not-allowed;
   }
 }
+
+
+// ! DATE PICKER STYLE
+.MuiPickersCalendarHeader-label, .MuiDayCalendar-header, .MuiButtonBase-root-MuiPickersDay-root {
+  font-size: 2rem !important;
+
+  .MuiSvgIcon-root {
+    font-size: 2rem !important;
+  }
+}
+
+// * DAY INITIALS
+span.MuiTypography-root.MuiTypography-caption.MuiDayCalendar-weekDayLabel.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel {
+  font-size: 1.5rem;
+}
+
+// * DAY NUMBER
+button.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root {
+  font-size: 1.5rem;
+}
+
+// * TODAY DATE
+button.MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.MuiPickersDay-today.css-jgls56-MuiButtonBase-root-MuiPickersDay-root {
+  font-size: 1.5rem;
+}
+
+// * Year option
+button.MuiPickersYear-yearButton.css-innj4t-MuiPickersYear-yearButton {
+  font-size: 1.5rem;
+}
+
+// * next / previous buttons
+svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit.css-1vooibu-MuiSvgIcon-root {
+  font-size: 2rem;
+}
+
+// * Form text helper for the date picker input
+p.MuiFormHelperText-root.MuiFormHelperText-sizeMedium.MuiFormHelperText-contained.css-1wc848c-MuiFormHelperText-root {
+  background: transparent !important;
+  color: var(--error) !important;
+  margin-left: 14px;
+}
+
+
+.file-message-error {
+  color: var(--error) !important;
+}
+
+.file-message-success {
+  color: var(--success) !important;
+}

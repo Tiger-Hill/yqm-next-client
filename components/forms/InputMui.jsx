@@ -43,6 +43,8 @@ const InputMui = ({
         "& .MuiFormHelperText-root": {
           fontSize: "1.7rem",
           marginTop: "1rem",
+          color: "#FF302E",
+          backgroundColor: "transparent",
         },
 
         "& .MuiInputBase-input": {

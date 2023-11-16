@@ -1,0 +1,30 @@
+.wish-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 440px;
+
+  // box-shadow: 0 0 10px 1px rgb(var(--primary-purple), 0.75);
+
+  &___image {
+    object-fit: cover;
+  }
+
+  &__content {
+    width: 337px;
+    padding: 0.5rem;
+
+    h2 {
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: rgb(var(--primary-purple));
+    }
+
+    p {
+      text-align: left;
+      font-size: var(--font-size-xs);
+    }
+  }
+}

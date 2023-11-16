@@ -2,9 +2,10 @@
   "loggedIn": {
     "transactions": "Transactions",
     "orders": "Orders",
-    "products": "Products",
+    "allProducts": "All Products",
+    "allWishes": "All Wishes",
+    "wishList": "Wish list",
     "account": "Account",
-    "vault": "Vault",
     "adminDashboard": "Admin"
   },
 
