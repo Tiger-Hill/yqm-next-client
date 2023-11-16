@@ -43,7 +43,7 @@ const Account = ({ lng }) => {
           height={4000}
         />
 
-        <h1>User details</h1>
+        <h1>Account</h1>
       </header>
 
       <section className={classes["account-section"]}>
