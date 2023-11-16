@@ -2,8 +2,9 @@
   "loggedIn": {
     "transactions": "交易",
     "orders": "命令",
-    "products": "产品",
-    "wishes": "愿望",
+    "allProducts": "所有产品",
+    "allWishes": "一切愿望",
+    "wishList": "愿望清单",
     "account": "帐户",
     "vault": "拱顶",
     "adminDashboard": "行政"

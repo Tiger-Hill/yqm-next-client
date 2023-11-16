@@ -1,0 +1,94 @@
+@import '@/styles/variables';
+
+.flash-container {
+  bottom: 4.5rem;
+  left: 50%;
+  position: fixed;
+  z-index: 90000000;
+  margin-left: auto;
+  color: rgb(var(--white));
+  width: fit-content;
+  max-width: 40rem;
+
+  padding: 0.5rem 1.5rem 0.5rem 1rem;
+  border-radius: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  @media (max-width: $tablet-landscape) {
+    max-width: 60rem;
+  }
+
+  @media (max-width: $tablet-portrait) {
+    max-width: initial;
+    width: fit-content;
+    min-width: 90%;
+  }
+
+  @media (max-width: $smartphone) {
+    max-width: initial;
+    min-width: 90%;
+    width: fit-content;
+  }
+
+  p {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    text-align: left !important;
+    color: rgb(var(--white));
+
+    @media (max-width: 800px) {
+      font-size: var(--font-size-xxs);
+    }
+
+    @media (max-width: 500px) {
+      font-size: 1.7rem !important;
+    }
+
+    // @media (max-width: $tablet-landscape) {
+    //   font-size: var(--font-large) !important;
+    // }
+
+    // @media (max-width: $tablet-portrait) {
+    //   font-size: var(--font-large) !important;
+    // }
+
+    // @media (max-width: $smartphone) {
+    //   font-size: var(--font-very-large) !important;
+    // }
+  }
+
+  svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: white;
+
+    @media (max-width: $tablet-landscape) {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    @media (max-width: $tablet-portrait) {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    @media (max-width: $smartphone) {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: inset 0 0 1rem rgba(255, 255, 255, 0.5);
+  }
+}
+
+.flash-success { background-color: var(--success); }
+.flash-danger  { background-color: var(--error); }
+.flash-info    { background-color: rgb(var(--primary-yellow)); }

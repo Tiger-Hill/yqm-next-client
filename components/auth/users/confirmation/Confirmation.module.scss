@@ -1,0 +1,27 @@
+.confirmation-message-container {
+  max-width: 800px;
+  width: 100%;
+  height: calc(100vh - var(--navbar-height));
+
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+
+  h1 {
+    line-height: 1;
+    font-size: var(--font-size-lg);
+  }
+
+  h2 {
+    font-size: var(--font-size-md);
+    line-height: 1;
+  }
+
+  p {
+    font-size: var(--font-size-xs);
+    line-height: 1.5;
+  }
+}

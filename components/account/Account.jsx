@@ -28,10 +28,10 @@ const Account = ({ lng }) => {
     router.push(`/${lng}/change-password`);
   };
 
-  console.log(passportFileInfo);
-  console.log(
-    `${process.env.NEXT_PUBLIC_API_URL}${passportFileInfo?.originalFile}`
-  );
+  // console.log(passportFileInfo);
+  // console.log(
+  //   `${process.env.NEXT_PUBLIC_API_URL}${passportFileInfo?.originalFile}`
+  // );
 
   return (
     <div className={classes["account-container"]}>
