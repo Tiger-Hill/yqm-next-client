@@ -4,8 +4,11 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { getProduct } from "@/lib/redux/slices/productSlice";
+import { getAllUserWishes } from "@/lib/redux/slices/wishSlice";
 import { motion } from "framer-motion";
 
+import NewWishModal from "@/components/wishes/new/NewWishModal";
+import EditWishModal from "@/components/wishes/edit/EditWishModal";
 import Image from "next/image";
 import ButtonMui from "@/components/forms/ButtonMui";
 
@@ -19,16 +22,42 @@ const WishShow = ({ lng, wishSlug }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { productToShow } = useSelector(state => state.rootReducer.product);
+  const { isLoggedIn } = useSelector(state => state.rootReducer.auth);
+  const { userWishes } = useSelector(state => state.rootReducer.wish);
 
+  // ! We get all the data
   useEffect(() => {
     dispatch(getProduct(wishSlug));
+    dispatch(getAllUserWishes());
   }, []);
+
+  // ! We determine if the user already wished for this product
+  const [userWish, setUserWish] = useState(null);
+  useEffect(() => {
+    if (!productToShow || !userWishes) return;
+
+    setUserWish(userWishes.find(
+      wish => wish.product.slug === productToShow.slug
+    ));
+
+  }, [productToShow, userWishes])
 
   // ! SET BIG IMAGE HANDLER
   const [selectedImage, setSelectedImage] = useState(0);
-  const setBigImageHandler = imageIndex => {
-    setSelectedImage(imageIndex);
-  };
+  const setBigImageHandler = imageIndex => setSelectedImage(imageIndex);
+
+  // ! WHEN THE USER IS NOT LOGGED IN
+  const redirectToLoginPageHandler = () => router.push(`/${lng}/login`);
+
+  // ! OPEN/CLOSE NEW WISH MODAL HANDLER
+  const [showNewWishModal, setShowNewWishModal] = useState(false);
+  const openNewWishModalHandler = () => setShowNewWishModal(true);
+  const closeNewWishModalHandler = () => setShowNewWishModal(false);
+
+  // ! OPEN/CLOSE EDIT WISH MODAL HANDLER
+  const [showEditWishModal, setShowEditWishModal] = useState(false);
+  const openEditWishModalHandler = () => setShowEditWishModal(true);
+  const closeEditWishModalHandler = () => setShowEditWishModal(false);
 
   return (
     <section className={classes["wish-show-container"]}>
@@ -53,7 +82,7 @@ const WishShow = ({ lng, wishSlug }) => {
                 />
               </motion.div>
 
-              {productToShow.images[1] &&
+              {productToShow.images[1] && (
                 <motion.div
                   initial={{ opacity: 0, x: -25 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -69,9 +98,9 @@ const WishShow = ({ lng, wishSlug }) => {
                     key={productToShow.images[1]}
                   />
                 </motion.div>
-              }
+              )}
 
-              {productToShow.images[2] &&
+              {productToShow.images[2] && (
                 <motion.div
                   initial={{ opacity: 0, x: -25 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -87,9 +116,9 @@ const WishShow = ({ lng, wishSlug }) => {
                     key={productToShow.images[2]}
                   />
                 </motion.div>
-              }
+              )}
 
-              {productToShow.images[3] &&
+              {productToShow.images[3] && (
                 <motion.div
                   initial={{ opacity: 0, x: -25 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -105,7 +134,7 @@ const WishShow = ({ lng, wishSlug }) => {
                     key={productToShow.images[3]}
                   />
                 </motion.div>
-              }
+              )}
             </div>
 
             <motion.div
@@ -157,26 +186,86 @@ const WishShow = ({ lng, wishSlug }) => {
                   {productToShow.totalQuantityWishedFor}
                 </p>
               </div>
+
+              {userWish && (
+                <p className={classes["user-wish-already-exists"]}>
+                  You already wished this product to be orderable!
+                </p>
+              )}
             </div>
 
             <hr />
 
-            {/* <div className={classes["action"]}> */}
-            <ButtonMui
-              width="100%"
-              height="5rem"
-              marginTop="0rem"
-              fontSize="1.7rem"
-              backgroundColor="#7b00ff"
-              color="white"
-              disabledBakcgroundColor="#DCDCDC"
-              disabledColor="white"
-              type="submit"
-              disabled={false}
-              text="Wish for this product"
-              onClickHandler={() => {}}
-            />
-            {/* </div> */}
+            {!isLoggedIn && (
+              <ButtonMui
+                width="100%"
+                height="5rem"
+                marginTop="0rem"
+                fontSize="1.7rem"
+                backgroundColor="#3CA94E"
+                color="white"
+                disabledBakcgroundColor="#DCDCDC"
+                disabledColor="white"
+                type="button"
+                disabled={false}
+                text="Login to make a wish"
+                onClickHandler={() => redirectToLoginPageHandler()}
+              />
+            )}
+
+            {isLoggedIn && !userWish && (
+              <ButtonMui
+                width="100%"
+                height="5rem"
+                marginTop="0rem"
+                fontSize="1.7rem"
+                backgroundColor="#7b00ff"
+                color="white"
+                disabledBakcgroundColor="#DCDCDC"
+                disabledColor="white"
+                type="button"
+                disabled={false}
+                text="Wish for this product"
+                onClickHandler={() => openNewWishModalHandler()}
+              />
+            )}
+
+            {/* // ! NEW WISH MODAL */}
+            {showNewWishModal && (
+              <NewWishModal
+                closeModal={closeNewWishModalHandler}
+                lng={lng}
+                product={productToShow}
+                // basket={productToShow}
+              />
+            )}
+
+            {isLoggedIn && userWish && (
+              <ButtonMui
+                width="100%"
+                height="5rem"
+                marginTop="0rem"
+                fontSize="1.7rem"
+                backgroundColor="#7b00ff"
+                color="white"
+                disabledBakcgroundColor="#DCDCDC"
+                disabledColor="white"
+                type="button"
+                disabled={false}
+                text="Edit my wish"
+                onClickHandler={() => openEditWishModalHandler()}
+              />
+            )}
+            {/* // ! NEW WISH MODAL */}
+            {showEditWishModal && (
+              <EditWishModal
+                closeModal={closeEditWishModalHandler}
+                lng={lng}
+                product={productToShow}
+                userWish={userWish}
+                // basket={productToShow}
+              />
+            )}
           </motion.div>
         </>
       )}

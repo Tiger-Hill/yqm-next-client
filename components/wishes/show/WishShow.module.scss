@@ -79,6 +79,13 @@
         p {
           font-size: var(--font-size-xs);
         }
+
+      }
+
+      p.user-wish-already-exists {
+        color: var(--success);
+        font-size: var(--font-size-xs);
+        font-weight: bold;
       }
     }
 

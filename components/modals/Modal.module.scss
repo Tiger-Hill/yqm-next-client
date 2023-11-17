@@ -1,0 +1,160 @@
+// ! BACKDROP ELEMENT
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2000;
+  background-color: rgba(var(--black), 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  z-index: 500000;
+  position: relative;
+  width: 100%;
+  height: 80%;
+  max-width: 500px;
+  margin: 1.5rem;
+  padding: 2rem;
+  background-color: white !important;
+  border-radius: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+
+  h2 {
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    text-align: center;
+    color: rgb(var(--primary-purple));
+  }
+
+  h4 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.close-icon {
+  position: sticky;
+  top: 0rem;
+  left: calc(100%);
+
+  font-size: 3rem !important;
+  transform: translateX(30%);
+
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    transition: all 0.25s ease-in-out;
+    transform: translateX(30%);
+    // transform: scale(1.5);
+    color: rgb(var(--primary-yellow));
+  }
+}
+
+.existing-img {
+  margin: 2rem auto;
+}
+
+
+// ! CONFIRMATION MODAL
+.confirmation-content {
+  z-index: 500000;
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  max-width: 500px;
+  padding: 2rem;
+  background-color: white !important;
+  border-radius: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  padding: 0 5rem 5rem 5rem; // * (size of close icon (3rem) + gap (2rem))
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .close-icon {
+    top: 3rem;
+  }
+
+  h4 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .object-reference {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .success-text {
+    font-weight: bold;
+    color: var(--success);
+  }
+
+  .error-text {
+    font-weight: bold;
+    color: var(--error);
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+
+  .accept-icon, .deny-icon {
+      width: 4rem;
+      height: 4rem;
+      cursor: pointer;
+      border-radius: 100%;
+      box-shadow: 3px 3px 3px -1px rgba(10, 99, 169, 0.32), -3px -3px 3px -1px rgba(255, 255, 255, 0.70);
+      transition: all 0.5s ease;
+
+      &:hover {
+      box-shadow: 1px 1px 1px -1px rgba(10, 99, 169, 0.32), -1px -1px 1px -1px rgba(255, 255, 255, 0.70);
+      }
+    }
+
+    .accept-icon {
+      color: var(--success);
+    }
+
+    .deny-icon {
+      color: var(--error);
+    }
+}
