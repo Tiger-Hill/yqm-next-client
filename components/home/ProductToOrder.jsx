@@ -1,13 +1,18 @@
+import { useRouter } from "next/navigation";
+
 import Image from "next/image";
 import ButtonMui from "@/components/forms/ButtonMui";
 import classes from "./Products.module.scss";
 
-const ProductToOrder = ({ product }) => {
+const ProductToOrder = ({ product, lng }) => {
+  const router = useRouter();
+
+  const goToShowPageHandler = () => {
+    router.push(`/${lng}/products/${product.slug}`);
+  }
+
   return (
-    <div
-      className={classes["product-to-order"]}
-      onClick={() => alert("OPEN ADD ORDER MODAL")}
-    >
+    <div className={classes["product-to-order"]}>
       {/* <div className={classes["product-details"]}> */}
       <Image
         src={`${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`}
@@ -16,7 +21,6 @@ const ProductToOrder = ({ product }) => {
         height={100}
       />
       {/* </div> */}
-
       <div className={classes["product-to-order-details"]}>
         {/* <p>
           Wished{" "}
@@ -26,7 +30,10 @@ const ProductToOrder = ({ product }) => {
           times
         </p> */}
         <h4>{product.productName}</h4>
-        <p>Now available for order</p>
+        <p className={classes["price"]}>SGD {Number(product.latestPrice).toFixed(2)}</p>
+        {/* <p className={classes["price"]}>
+          SGD {Number(product.latestPrice).toFixed(2)}
+        </p> */}
 
         <div className={classes["actions"]}>
           <ButtonMui
@@ -41,7 +48,7 @@ const ProductToOrder = ({ product }) => {
             type="button"
             disabled={false}
             text="Order"
-            onClickHandler={() => alert("OPEN ADD WISH MODAL")}
+            onClickHandler={goToShowPageHandler}
           />
         </div>
       </div>

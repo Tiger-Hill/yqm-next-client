@@ -143,7 +143,7 @@ const WishShow = ({ lng, wishSlug }) => {
               transition={{ duration: 0.25, delay: 0.5 * 0.1 }}
             >
               <Image
-                className={classes["main_image"]}
+                className={classes["main-image"]}
                 src={`${process.env.NEXT_PUBLIC_API_URL}${productToShow.images[selectedImage]}`}
                 alt={productToShow.productName}
                 width={660}
@@ -188,7 +188,7 @@ const WishShow = ({ lng, wishSlug }) => {
               </div>
 
               {userWish && (
-                <p className={classes["user-wish-already-exists"]}>
+                <p className={classes["is-user-wish-msg"]}>
                   You already wished this product to be orderable!
                 </p>
               )}

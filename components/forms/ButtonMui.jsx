@@ -23,7 +23,8 @@ const ButtonMui = ({
   text,
   onClickHandler,
   onChangeHandler,
-  isFileButton
+  isFileButton,
+  multiple
 }) => {
 
   // ! This is used to style ab invisible input element when "isFileButton" prop is true
@@ -48,6 +49,7 @@ const ButtonMui = ({
         maxWidth: maxWidth,
         height: height,
         marginTop: marginTop,
+        // display: display || "inline",
         // margin: centered ? "0 auto" : "0",
         padding: "1rem 2rem",
         fontSize: fontSize,
@@ -76,7 +78,7 @@ const ButtonMui = ({
       // size={size}
     >
       {text}
-      {isFileButton && <VisuallyHiddenInput type="file" />}
+      {isFileButton && <VisuallyHiddenInput type="file" multiple={multiple || false} />}
     </Button>
   );
 };

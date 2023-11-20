@@ -17,7 +17,8 @@ const InputMui = ({
   valid,
   disabled,
   quantityInput,
-  min, max,
+  marginTop,
+  min, max
   // isHeaderCard
 }) => {
   const quantityInputStyle = quantityInput ?
@@ -28,7 +29,7 @@ const InputMui = ({
   return (
     <TextField
       sx={{
-        marginTop: "2rem",
+        marginTop: marginTop || "2rem",
         width: width || "100%",
         minWidth: "none !important",
 
