@@ -15,7 +15,7 @@ const HomeHeader = ({ lng }) => {
       <div className={classes["home-header-content"]}>
         <h1>YQM</h1>
         <h2>Buy together, Save 100 million together</h2>
-        <p>YQM is a platform that allows you to wish for products only available in China. Once the demand is high enough, we'll make it possible to order these products.</p>
+        {/* <p>YQM is a platform that allows you to wish for products only available in China. Once the demand is high enough, we'll make it possible to order these products.</p> */}
         </div>
     </header>
   );
