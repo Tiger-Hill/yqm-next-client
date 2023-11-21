@@ -1,0 +1,60 @@
+.order-row {
+  padding: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  * {
+    font-size: 1.7rem;
+    font-weight: 500;
+  }
+}
+
+.mid-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  // margin-top: 1rem;
+  padding: 1rem;
+
+  .order-product {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    font-size: 1.7rem;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    .accept-icon, .deny-icon {
+      width: 3rem;
+      height: 3rem;
+      cursor: pointer;
+      border-radius: 100%;
+      box-shadow: 3px 3px 3px -1px rgba(10, 99, 169, 0.32), -3px -3px 3px -1px rgba(255, 255, 255, 0.70);
+      transition: all 0.25s ease;
+
+      &:hover {
+        box-shadow: 2px 2px 2px -1px rgba(10, 99, 169, 0.32), -2px -2px 2px -1px rgba(255, 255, 255, 0.70);
+      }
+    }
+
+    .accept-icon {
+      color: var(--success);
+    }
+
+    .deny-icon {
+      color: var(--error);
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.all-orders-table * {
+  font-size: 2rem;
+
+  // tr {
+  //   width: max-content;
+  // }
+
+  th, td {
+    text-align: center;
+    padding: 0 2rem !important;
+
+    // width: 25%;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    .accept-icon, .deny-icon {
+      width: 3rem; height: 3rem;
+      cursor: pointer;
+    }
+
+    .accept-icon {
+      color: var(--success);
+    }
+
+    .deny-icon {
+      color: var(--error);
+    }
+  }
+}
