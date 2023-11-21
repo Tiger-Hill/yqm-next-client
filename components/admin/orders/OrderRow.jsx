@@ -36,7 +36,7 @@ const OrderRow = ({ order, rowIndex }) => {
                 const { orderProduct } = obj;
                 return (
                   acc +
-                  orderProduct.orderPrice * orderProduct.changeInNumberOfUnits
+                  orderProduct.orderPrice * orderProduct.orderQuantity
                 );
               }, 0)
               .toFixed(2)}

@@ -23,6 +23,7 @@
     color: white;
     padding: 0.1rem 1rem;
     border-radius: 5rem;
+    white-space: nowrap;
 
     &.available {
       background-color: var(--success);
