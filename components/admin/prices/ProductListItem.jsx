@@ -16,7 +16,7 @@ const ProductListItem = ({ product, setPriceTable }) => {
       onClick={() => setPriceTable(product.slug)}
     >
       <Image
-        src={`${process.env.NEXT_PUBLIC_API_URL}/${product.image}`}
+        src={`${process.env.NEXT_PUBLIC_API_URL}/${product.images[0]}`}
         alt={`Picture of the product ${product.productName}`}
         width={30}
         height={30}

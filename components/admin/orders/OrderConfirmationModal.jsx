@@ -38,10 +38,10 @@ const ConfirmationContent = ({ closeOrderConfirmationModal, order }) => {
           onClick={closeOrderConfirmationModal}
         />
         <Image
-          src="/SVGS/forgot-password.svg"
+          src="/SVGS/question-mark.svg"
           alt="question mark icon for 'are you sure?'"
-          width={200}
-          height={200}
+          width={100}
+          height={100}
         />
         <h4>
           Are you sure you want to mark this order as{" "}
@@ -92,13 +92,14 @@ const CancellationContent = ({ closeOrderConfirmationModal, order }) => {
           onClick={closeOrderConfirmationModal}
         />
         <Image
-          src="/SVGS/forgot-password.svg"
+          src="/SVGS/question-mark.svg"
           alt="question mark icon for 'are you sure?'"
-          width={200}
-          height={200}
+          width={100}
+          height={100}
         />
         <h4>
-          Are you sure you want to mark this order as <span className={modalClasses["error-text"]}>cancelled</span>?
+          Are you sure you want to mark this order as{" "}
+          <span className={modalClasses["error-text"]}>cancelled</span>?
           <br />
           <span className={modalClasses["object-reference"]}>
             (Ref: {order.slug})
