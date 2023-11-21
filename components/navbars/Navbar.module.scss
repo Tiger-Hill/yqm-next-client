@@ -33,6 +33,10 @@
       font-weight: 600;
       text-shadow: 0 0 10px rgba(var(--black), 0.75);
 
+      @media (max-width: 700px) {
+        display: none;
+      }
+
       h2 {
         font-size: var(--font-size-xs);
         white-space: nowrap;

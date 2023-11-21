@@ -24,6 +24,9 @@
 
       img {
         transition: all 0.3s ease;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
 
         &.selected {
           box-shadow: 0 0 10px 1px rgb(var(--primary-purple), 0.75);
@@ -35,6 +38,12 @@
         }
       }
     }
+  }
+
+  .main-image {
+    width: 660px;
+    height: 660px;
+    object-fit: cover;
   }
 
   .product-details {
@@ -79,6 +88,13 @@
         p {
           font-size: var(--font-size-xs);
         }
+
+      }
+
+      p.is-user-wish-msg {
+        color: var(--success);
+        font-size: var(--font-size-xs);
+        font-weight: bold;
       }
     }
 

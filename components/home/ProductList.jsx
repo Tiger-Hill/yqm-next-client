@@ -18,6 +18,7 @@ const ProductList = ({ type, lng }) => {
     const { productsToWish, productsToOrder } = useSelector(state => state.rootReducer.product);
 
     console.log("productsToOrder", productsToOrder);
+    console.log("productsToWish", productsToWish);
     useEffect(() => {
       dispatch(getForWishingProducts(1)); // 1 = page 1
       dispatch(getForOrderingProducts(1)); // 1 = page 1
@@ -31,12 +32,12 @@ const ProductList = ({ type, lng }) => {
           {/* <h2>You want</h2> */}
           <h2 className={classes["product-section-title"]}>Trending user wishes</h2>
           {productsToWish.slice(0, 4).map((product, index) => (
-            <ProductToWish key={index} product={product} />
+            <ProductToWish key={index} product={product} lng={lng} />
           ))}
 
           <div className={classes["links"]}>
             <Link href={`/${lng}/wishes`}>See all wishes...</Link>
-            <ButtonMui
+            {/* <ButtonMui
               width="fit-content"
               height="2.5rem"
               marginTop="0rem"
@@ -49,7 +50,7 @@ const ProductList = ({ type, lng }) => {
               disabled={false}
               text={<><AddIcon />   New Wish</>}
               onClickHandler={() => alert("OPEN ADD WISH MODAL")}
-            />
+            /> */}
           </div>
         </div>
       )}
@@ -59,7 +60,7 @@ const ProductList = ({ type, lng }) => {
         <div className={classes["products-to-order"]}>
           <h2 className={classes["product-section-title"]}>Available for order</h2>
           {productsToOrder.slice(0, 4).map((product, index) => (
-            <ProductToOrder key={index} product={product} />
+            <ProductToOrder key={index} product={product} lng={lng} />
           ))}
 
           <div className={classes["links"]}>

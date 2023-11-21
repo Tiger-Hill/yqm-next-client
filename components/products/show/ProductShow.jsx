@@ -2,13 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
+import { getAllUserWishes } from "@/lib/redux/slices/wishSlice";
+import { addToBasket } from "@/lib/redux/slices/basketSlice";
 import { getProduct } from "@/lib/redux/slices/productSlice";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 import Image from "next/image";
 import ButtonMui from "@/components/forms/ButtonMui";
 
+import InputMui from "@/components/forms/InputMui";
 import PinIcon from "@mui/icons-material/Pin";
 import MonetizationOnRoundedIcon from '@mui/icons-material/MonetizationOnRounded';
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
@@ -19,15 +22,41 @@ const ProductShow = ({ lng, productSlug }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { productToShow } = useSelector(state => state.rootReducer.product);
+  const { userWishes } = useSelector(state => state.rootReducer.wish);
 
   useEffect(() => {
     dispatch(getProduct(productSlug));
+    dispatch(getAllUserWishes());
   }, []);
 
   // ! SET BIG IMAGE HANDLER
   const [selectedImage, setSelectedImage] = useState(0);
   const setBigImageHandler = imageIndex => {
     setSelectedImage(imageIndex);
+  };
+
+  // ! We determine if the user initially wished for this product to be available
+  const [userWish, setUserWish] = useState(null);
+  useEffect(() => {
+    if (!productToShow || !userWishes) return;
+
+    setUserWish(userWishes.find(
+      wish => wish.product.slug === productToShow.slug
+    ));
+
+  }, [productToShow, userWishes])
+
+  // ! Change product quantity handler
+  const [quantity, setQuantity] = useState(1);
+  const changeQuantityHandler = e => {
+    setQuantity(e.target.value);
+  };
+
+  console.log(typeof(quantity))
+
+  // ! Add to basket handler
+  const addToBasketHandler = () => {
+    dispatch(addToBasket({ product: productToShow, quantity: Number(quantity) }));
   };
 
   return (
@@ -113,7 +142,7 @@ const ProductShow = ({ lng, productSlug }) => {
               transition={{ duration: 0.25, delay: 0.5 * 0.1 }}
             >
               <Image
-                className={classes["main_image"]}
+                className={classes["main-image"]}
                 src={`${process.env.NEXT_PUBLIC_API_URL}${productToShow.images[selectedImage]}`}
                 alt={productToShow.productName}
                 width={660}
@@ -132,31 +161,70 @@ const ProductShow = ({ lng, productSlug }) => {
           >
             <div className={classes["description-section"]}>
               <h2>{productToShow.productName}</h2>
+
+              {productToShow.productStatus === "in stock" && (
+                <p
+                  className={`${classes["product-status"]} ${classes["in-stock"]}`}
+                >
+                  {productToShow.productStatus}
+                </p>
+              )}
+
+              {productToShow.productStatus === "out of stock" && (
+                <p
+                  className={`${classes["product-status"]} ${classes["out-of-stock"]}`}
+                >
+                  {productToShow.productStatus}
+                </p>
+              )}
+
               <p className={classes["description"]}>
                 {productToShow.productDescription}
               </p>
 
-              <div className={classes["icon-details-set"]}>
+              {/* <div className={classes["icon-details-set"]}>
                 <PinIcon />
                 <p>Wished by x{productToShow.numberOfWishers} users</p>
-              </div>
+              </div> */}
 
               <div className={classes["icon-details-set"]}>
                 <MonetizationOnRoundedIcon />
-                <p>
-                  Initial price: ${Number(productToShow.latestPrice).toFixed(2)}{" "}
-                  (subject to change)
-                </p>
+                <p>SGD {Number(productToShow.latestPrice).toFixed(2)} </p>
+                <InputMui
+                  required
+                  marginTop="0rem"
+                  id="outlined-required quantity"
+                  name="quantity"
+                  type="number"
+                  min="1"
+                  max={Infinity}
+                  label="Quantity"
+                  width={"30%"}
+                  // helperText={"Quantity"}
+                  onChangeHandler={e => changeQuantityHandler(e)}
+                  // onBlurHandler={formik.handleBlur}
+                  // error={!!formik.touched.wishPrice && !!formik.errors.wishPrice}
+                  // valid={!!formik.touched.wishPrice && !formik.errors.wishPrice}
+                  disabled={false}
+                  defaultValue={1}
+                />
               </div>
 
-              <div className={classes["icon-details-set"]}>
+              {/* <div className={classes["icon-details-set"]}>
                 <TrendingUpIcon />
                 <p>
                   Total number of unit wished:{" "}
                   {productToShow.totalQuantityWishedFor}
                 </p>
-              </div>
+              </div> */}
             </div>
+
+            {userWish && (
+              <p className={classes["is-user-wish-msg"]}>
+                You initially wished for this product to be available for orders
+                the {new Date(userWish.createdAt).toLocaleDateString()}
+              </p>
+            )}
 
             <hr />
 
@@ -172,8 +240,8 @@ const ProductShow = ({ lng, productSlug }) => {
               disabledColor="white"
               type="submit"
               disabled={false}
-              text="Order now!"
-              onClickHandler={() => {}}
+              text="Add to basket"
+              onClickHandler={addToBasketHandler}
             />
             {/* </div> */}
           </motion.div>

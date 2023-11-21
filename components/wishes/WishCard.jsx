@@ -29,7 +29,6 @@ const WishCard = ({ product, index, lng }) => {
         height={200}
       />
       <h4>{product.productName}</h4>
-      <p>{product.description}</p>
     </motion.div>
   );
 };

@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 
 import WishCard from "./WishCard";
 import Pagination from "@mui/material/Pagination";
+import AddIcon from "@mui/icons-material/Add";
 
 import Image from "next/image";
 import InputMui from "../forms/InputMui";
@@ -17,6 +18,7 @@ const Wishes = ({ lng }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { productsToWish, maxNumberOfForWishingProducts } = useSelector(state => state.rootReducer.product);
+  const { isLoggedIn } = useSelector(state => state.rootReducer.auth);
 
   // * Pagination states
   const [page, setPage] = useState(1);
@@ -68,6 +70,16 @@ const Wishes = ({ lng }) => {
      dispatch(clearProductToShow())
   }, [])
 
+  // ! Redirects to the new product page
+  const redirectToNewProductPage = () => {
+    router.push(`/${lng}/products/new`);
+  };
+
+  // ! Redirects to the login page
+  const redirectToLoginPage = () => {
+    router.push(`/${lng}/login`);
+  };
+
   return (
     <section>
       <header className={classes["public-page-header"]}>
@@ -94,7 +106,7 @@ const Wishes = ({ lng }) => {
             name="searchInput"
             type="searchInput"
             label="Search for wishes"
-            onChangeHandler={(e) => searchInputHandler(e)}
+            onChangeHandler={e => searchInputHandler(e)}
           />
         </div>
       </header>
@@ -102,9 +114,20 @@ const Wishes = ({ lng }) => {
       {productsToWish && (
         <article>
           <div className={classes["wishes-grid-container"]}>
-            {productsToWish && productsToWish.map((product, i) => (
-              <WishCard key={i} product={product} index={i} lng={lng} />
-            ))}
+            <div
+              className={`${classes["wish-card"]} ${classes["create-new-product-card"]}`}
+              onClick={() => isLoggedIn ? redirectToNewProductPage() : redirectToLoginPage()}
+            >
+              <div className={classes["create-new-product-icon"]}>
+                <AddIcon />
+              </div>
+              <h4>Make a new wishable product!</h4>
+            </div>
+
+            {productsToWish &&
+              productsToWish.map((product, i) => (
+                <WishCard key={i} product={product} index={i} lng={lng} />
+              ))}
           </div>
 
           <Pagination

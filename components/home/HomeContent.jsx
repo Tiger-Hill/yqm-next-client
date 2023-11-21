@@ -1,9 +1,6 @@
-import { TrendingUpSharp } from "@mui/icons-material";
-import ButtonMUI from "../buttons/ButtonMUI";
-import classes from "./HomeContent.module.scss";
-
 import HomeHeader from "./HomeHeader";
 import ProductList from "@/components/home/ProductList";
+import classes from "./HomeContent.module.scss";
 
 const HomeContent = ({ lng }) => {
   return (

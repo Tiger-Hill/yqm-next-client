@@ -170,6 +170,11 @@
         }
       }
 
+      .price {
+        color: rgb(var(--primary-yellow));
+        font-weight: bold;
+      }
+
       .actions {
         width: 100%;
       }

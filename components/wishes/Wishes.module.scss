@@ -51,10 +51,9 @@
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
 
+
+
   .wish-card {
-    // background-color: red;
-    // width: auto;
-    // height: 300px;
     cursor: pointer;
     padding: 1rem;
 
@@ -66,10 +65,39 @@
     text-align: center;
     overflow: hidden;
 
-    img {
-      // ! Remove this to keep it smaller
+    &.create-new-product-card {
+      transition: all ease 0.25s;
+
+      &:hover {
+        transition: all ease 0.25s;
+
+        .create-new-product-icon svg {
+          transform: scale(1.25);
+        }
+      }
+    }
+
+    .create-new-product-icon {
+      background-color: rgb(var(--primary-purple));
       width: 100%;
       height: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        font-size: 15rem;
+        color: white;
+      }
+    }
+
+    img {
+      // ! Remove this to keep it smaller
+      // width: 100%;
+      // height: 100%;
+      width: 200px;
+      height: 200px;
       object-fit: cover;
       box-shadow: 0 0 10px 1px rgb(var(--primary-purple), 0.75);
     }

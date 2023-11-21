@@ -1,0 +1,106 @@
+.basket-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  padding: 5rem 2rem;
+  min-height: calc(100vh - var(--navbar-height));
+
+  img {
+    margin-top: 5rem;
+    filter: drop-shadow(0px 0px 20px rgb(255 255 255 / 0.75));
+  }
+}
+
+.basket-cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  width: 100%;
+}
+
+.cart-sumup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 5rem;
+
+  max-width: 400px;
+  width: 100%;
+
+  div {
+    width: 100%;
+  }
+
+  p {
+    font-weight: bold;
+  }
+
+  .cart-total {
+    font-weight: 800;
+    color: rgb(var(--primary-yellow));
+    margin: 0 1rem;
+
+    &.total-exceeds-limit {
+      color: var(--error);
+    }
+  }
+
+  .total-exceeds-limit-message {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--error);
+    text-align: center;
+  }
+}
+
+
+
+// ! STRIPE BUTTON
+.stripe-button {
+  width: 100%;
+  max-width: 400px;
+  height: 4.5rem;
+  margin: 0 auto;
+
+  // background-color: rgb(84,105,212);
+  color: white;
+  background-color: rgb(var(--primary-yellow));
+  border: 2px solid rgb(var(--primary-yellow));
+  border-radius: 5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: -0.5rem;
+  min-height: 35px !important;
+  max-height: 55px !important;
+  // min-width: 200px;
+
+
+  @media (max-width: 355px) {
+    height: 3.5rem;
+  }
+
+  img {
+    margin: 0;
+    padding: 0;
+  }
+
+  &:hover {
+    filter: brightness(0.95);
+    // transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 10px 0 rgba(84,105,212, 0.25);
+  }
+}
