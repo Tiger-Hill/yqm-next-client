@@ -81,6 +81,7 @@ const NewPriceForm = ({ product, showNewPriceModalHandler }) => {
       transition={{ duration: 0.25 }}
     >
       <motion.div
+        style={{ height: "fit-content" }}
         className={modalClasses.content}
         onClick={e => e.stopPropagation()}
         initial={{ y: 150 }}
@@ -93,10 +94,10 @@ const NewPriceForm = ({ product, showNewPriceModalHandler }) => {
           onClick={() => showNewPriceModalHandler("close")}
         />
         <Image
-          src="/SVGS/add-price.svg"
+          src={`${process.env.NEXT_PUBLIC_API_URL}/${product.images[0]}`}
           alt="plus icon for 'add a product'"
-          width={200}
-          height={200}
+          width={100}
+          height={100}
         />
         <h4>
           Add a new price for
