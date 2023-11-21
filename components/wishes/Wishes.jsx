@@ -18,6 +18,7 @@ const Wishes = ({ lng }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { productsToWish, maxNumberOfForWishingProducts } = useSelector(state => state.rootReducer.product);
+  const { isLoggedIn } = useSelector(state => state.rootReducer.auth);
 
   // * Pagination states
   const [page, setPage] = useState(1);
@@ -69,6 +70,16 @@ const Wishes = ({ lng }) => {
      dispatch(clearProductToShow())
   }, [])
 
+  // ! Redirects to the new product page
+  const redirectToNewProductPage = () => {
+    router.push(`/${lng}/products/new`);
+  };
+
+  // ! Redirects to the login page
+  const redirectToLoginPage = () => {
+    router.push(`/${lng}/login`);
+  };
+
   return (
     <section>
       <header className={classes["public-page-header"]}>
@@ -105,7 +116,7 @@ const Wishes = ({ lng }) => {
           <div className={classes["wishes-grid-container"]}>
             <div
               className={`${classes["wish-card"]} ${classes["create-new-product-card"]}`}
-              onClick={() => router.push(`/${lng}/products/new`)}
+              onClick={() => isLoggedIn ? redirectToNewProductPage() : redirectToLoginPage()}
             >
               <div className={classes["create-new-product-icon"]}>
                 <AddIcon />

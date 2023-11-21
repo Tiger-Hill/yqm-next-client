@@ -208,6 +208,9 @@ const ERROR_CODES = {
   MARK_ORDER_COMPLETED_ERROR: "An error occured while marking this order as completed.",
   MARK_ORDER_CANCELLED_ERROR: "An error occured while marking this order as cancelled.",
 
+  // ? PRODUCT SLICE
+  CLIENT_CREATE_PRODUCT_ERROR: "An error occured while creating your product.",
+
   // ? PRICES
   UPDATE_PRICE_ERROR: "An error occured while updating your price.",
   DELETE_PRICE_ERROR: "An error occured while deleting your price.",
@@ -238,11 +241,15 @@ const SUCCESS_CODES = {
 
   // ? ADMIN SLICE
   CREATE_PRODUCT_SUCCESS: "Product successfully created.",
+  CREATE_PRODUCT_SUCCESS: "Product successfully created.",
   UPDATE_PRODUCT_SUCCESS: "Product successfully updated.",
   DELETE_PRODUCT_SUCCESS: "Product successfully deleted.",
   CREATE_PRICE_SUCCESS: "Price successfully created. You now have to publish it in order for it to be visible to the public (you included).",
   MARK_ORDER_COMPLETED_SUCCESS: "Order successfully marked as completed.",
   MARK_ORDER_CANCELLED_SUCCESS: "Order successfully marked as cancelled.",
+
+  // ? PRODUCT SLICE
+  CLIENT_CREATE_PRODUCT_SUCCESS: "Product successfully created. An admin will review your request to make it a wishable product for all users!",
 
   // ? PRICES SLICE
   UPDATE_PRICE_SUCCESS: "Price successfully updated.",

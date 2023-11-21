@@ -15,7 +15,35 @@ import classes from "./NewProductForm.module.scss";
 const validate = values => {
   const errors = {};
 
-  // TODO VALIDATIONS
+  if (!values.productName) {
+    errors.productName = "Please provide a product name";
+  } else if (values.productName.length < 3) {
+    errors.productName = "The product name must be at least 3 characters long";
+  }
+
+  if (!values.productDescription) {
+    errors.productDescription = "Please provide a product description";
+  } else if (values.productDescription.length < 3) {
+    errors.productDescription = "The product description must be at least 3 characters long";
+  }
+
+  if (!values.productCreatorPrice) {
+    errors.productCreatorPrice = "Please provide a wished price";
+  } else if (values.productCreatorPrice < 1) {
+    errors.productCreatorPrice = "The wished price must be at least 1";
+  } else if (!/^[0-9]+(\.[0-9]{1,2})?$/g.test(values.productCreatorPrice)) {
+    errors.productCreatorPrice = "The wished price must be a number with a maximum of 2 decimals";
+  }
+
+  if (!values.productCreatorUrl) {
+    errors.productCreatorUrl = "Please provide a product URL";
+  }
+
+  if (!values.comments) {
+    errors.comments = "Please provide some comments";
+  } else if (values.comments.length < 3) {
+    errors.comments = "The comments must be at least 3 characters long";
+  }
 
   return errors;
 };
