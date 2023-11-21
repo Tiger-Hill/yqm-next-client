@@ -33,7 +33,7 @@ const validate = values => {
 
   if (!values.productStatus) {
     errors.productStatus = "Provide the product status";
-  } else if (!["in stock", "out of stock", "hidden"].includes(values.productStatus)) {
+  } else if (!["for wishing" ,"in stock", "out of stock", "hidden"].includes(values.productStatus)) {
     errors.productStatus = "This product status is not valid";
   }
 
@@ -155,10 +155,10 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
           onClick={() => showEditProductModalHandler("close")}
         />
         <Image
-          src="/SVGS/edit.svg"
+          src={`${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`}
           alt="plus icon for 'add a product'"
-          width={200}
-          height={200}
+          width={100}
+          height={100}
         />
         <h4>Edit product: {product.productName}</h4>
 
@@ -224,6 +224,7 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
             emptyValue={false}
             emptyValueText={null}
             menuItems={[
+              { value: "for wishing", label: "Wish product" },
               { value: "in stock", label: "In Stock" },
               { value: "out of stock", label: "Out Of Stock" },
               { value: "hidden", label: "Hidden" },
@@ -267,7 +268,9 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
 
           {/* // ? IF THERE'S A NEW FILE TO UPLOAD (DOESN'T MATTER IF THERE'S AN EXISTING FILE OR NOT)  */}
           {productImageFileToUpload && (
-            <p className="file-message-success">{productImageFileToUpload.name}</p>
+            <p className="file-message-success">
+              {productImageFileToUpload.name}
+            </p>
           )}
 
           {errorProductFile && (
@@ -286,8 +289,10 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
               />
             )}
 
-            {/* // * EXISTING FILE */}
-            {existingProductImage && !productImageFileToUpload && !errorProductFile &&
+          {/* // * EXISTING FILE */}
+          {existingProductImage &&
+            !productImageFileToUpload &&
+            !errorProductFile && (
               <>
                 {/* <p className="file-message-success">{existingProductImage.match(/[^/]+$/)[0]}</p> */}
                 <img
@@ -297,7 +302,7 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
                   // onError={fileErrorHandler}
                 />
               </>
-            }
+            )}
 
           <ButtonMui
             width="100%"

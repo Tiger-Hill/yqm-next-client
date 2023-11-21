@@ -41,6 +41,8 @@ const ProductPricesTable = ({ lng }) => {
     setSelectedPrice(price);
   };
 
+  console.log("selectedPrice", selectedPrice);
+
   // * Redirect to the price edit form
   const redirectToPriceEditFormHandler = (selectedPriceSlug) => {
     router.push(`/${lng}/admin_dashboard/prices/${selectedPriceSlug}`);

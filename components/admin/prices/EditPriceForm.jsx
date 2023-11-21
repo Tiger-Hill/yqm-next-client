@@ -66,7 +66,7 @@ const EditPriceForm = ({ lng, priceSlug }) => {
   );
 };
 
-const EditPriceFormContent = ({ lng, price }) => {
+const EditPriceFormContent = ({ lng, price, priceSlug }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -86,7 +86,7 @@ const EditPriceFormContent = ({ lng, price }) => {
       const priceData = {
         ...values,
         slug: price.slug,
-      }
+      };
 
       console.log(priceData);
       dispatch(updatePrice(priceData));
@@ -95,6 +95,12 @@ const EditPriceFormContent = ({ lng, price }) => {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
+      <h2>
+        Manage price
+        <br />
+        {priceSlug}
+      </h2>
+
       <SelectMui
         required={true}
         id="outlined-required currency"
