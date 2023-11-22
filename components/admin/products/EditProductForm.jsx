@@ -156,11 +156,13 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
           onClick={() => showEditProductModalHandler("close")}
         />
         <Image
+          className={modalClasses["modal-img"]}
           src={`${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`}
-          alt="plus icon for 'add a product'"
-          width={100}
-          height={100}
+          alt="product image"
+          width={200}
+          height={200}
         />
+
         <h4>Edit product: {product.productName}</h4>
 
         <form onSubmit={formik.handleSubmit}>
@@ -310,7 +312,7 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
             disabledColor="white"
             type="button"
             disabled={false}
-            text="Product Images (.JPG, .JPEG and .PNG)"
+            text="Product Images (.JPG, .JPEG, .PNG)"
             onClickHandler={() => {}}
             onChangeHandler={changeFilesHandler}
             isFileButton={true}

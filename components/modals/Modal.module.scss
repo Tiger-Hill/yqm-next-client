@@ -21,7 +21,7 @@
   height: 80%;
   max-width: 500px;
   margin: 1.5rem;
-  padding: 2rem;
+  padding: 2rem 4rem;
   background-color: white !important;
   border-radius: 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
@@ -59,14 +59,14 @@
   left: calc(100%);
 
   font-size: 3rem !important;
-  transform: translateX(30%);
+  transform: translateX(100%);
 
   cursor: pointer;
   transition: all 0.25s ease-in-out;
 
   &:hover {
     transition: all 0.25s ease-in-out;
-    transform: translateX(30%);
+    transform: translateX(100%);
     // transform: scale(1.5);
     color: rgb(var(--primary-yellow));
   }
@@ -76,6 +76,12 @@
   margin: 2rem auto;
 }
 
+.modal-img {
+  width: 200px;
+  height: 200px;
+  min-height: 200px;
+  object-fit: cover;
+}
 
 // ! CONFIRMATION MODAL
 .confirmation-content {

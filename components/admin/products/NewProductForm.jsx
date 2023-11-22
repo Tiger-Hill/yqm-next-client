@@ -256,7 +256,7 @@ const NewProductForm = ({ showNewProductModalHandler }) => {
             disabledColor="white"
             type="button"
             disabled={false}
-            text="Product Image (.JPG, .JPEG and .PNG)"
+            text="Product Image (.JPG, .JPEG, .PNG)"
             onClickHandler={() => {}}
             onChangeHandler={changeProductFileHandler}
             isFileButton={true}

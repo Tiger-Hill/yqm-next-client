@@ -94,11 +94,13 @@ const NewPriceForm = ({ product, showNewPriceModalHandler }) => {
           onClick={() => showNewPriceModalHandler("close")}
         />
         <Image
+          className={modalClasses["modal-img"]}
           src={`${process.env.NEXT_PUBLIC_API_URL}/${product.images[0]}`}
-          alt="plus icon for 'add a product'"
-          width={100}
-          height={100}
+          alt="product image"
+          width={200}
+          height={200}
         />
+
         <h4>
           Add a new price for
           <br />
