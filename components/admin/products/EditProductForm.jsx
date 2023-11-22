@@ -21,9 +21,6 @@ const validate = values => {
   if (!values.productName) {
     errors.productName = "Provide the product name";
   }
-  // else if (values.productName.length > 15) {
-  //   errors.productName = "Must be 15 characters or less";
-  // }
 
   if (!values.productDescription) {
     errors.productDescription = "Provide the product description";

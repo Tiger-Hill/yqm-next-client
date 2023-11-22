@@ -12,7 +12,6 @@ import SelectMui from "@/components/forms/SelectMui";
 import ButtonMui from "@/components/forms/ButtonMui";
 import CloseIcon from "@mui/icons-material/Close";
 
-
 import modalClasses from "@/components/modals/Modal.module.scss";
 
 const validate = values => {

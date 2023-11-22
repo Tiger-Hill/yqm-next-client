@@ -17,6 +17,7 @@ const ConfirmationContent = ({ closeOrderConfirmationModal, order }) => {
   const dispatch = useDispatch();
   const markAsCompletedHandler = () => dispatch(markOrderAsCompleted(order.slug));
 
+  console.log(order);
   return (
     <motion.div
       className={modalClasses.backdrop}
