@@ -12,6 +12,7 @@ import SelectMui from "@/components/forms/SelectMui";
 import ButtonMui from "@/components/forms/ButtonMui";
 import CloseIcon from "@mui/icons-material/Close";
 
+import classes from "@/components/products/new/NewProductForm.module.scss";
 
 import modalClasses from "@/components/modals/Modal.module.scss";
 
@@ -19,23 +20,38 @@ const validate = values => {
   const errors = {};
 
   if (!values.productName) {
-    errors.productName = "Provide the product name";
+    errors.productName = "Please provide a product name";
+  } else if (values.productName.length < 3) {
+    errors.productName = "The product name must be at least 3 characters long";
   }
 
   if (!values.productDescription) {
-    errors.productDescription = "Provide the product description";
-  } else if (values.productDescription.length < 10) {
-    errors.productDescription = "Must be 10 characters or less";
+    errors.productDescription = "Please provide a product description";
+  } else if (values.productDescription.length < 3) {
+    errors.productDescription = "The product description must be at least 3 characters long";
   }
 
-  if (!values.productStatus) {
-    errors.productStatus = "Provide the product status";
-  } else if (!["for wishing" ,"in stock", "out of stock", "hidden"].includes(values.productStatus)) {
-    errors.productStatus = "This product status is not valid";
+  if (!values.productCreatorPrice) {
+    errors.productCreatorPrice = "Please provide a wished price";
+  } else if (values.productCreatorPrice < 1) {
+    errors.productCreatorPrice = "The wished price must be at least 1";
+  } else if (!/^[0-9]+(\.[0-9]{1,2})?$/g.test(values.productCreatorPrice)) {
+    errors.productCreatorPrice = "The wished price must be a number with a maximum of 2 decimals";
   }
 
+  if (!values.productCreatorUrl) {
+    errors.productCreatorUrl = "Please provide a product URL";
+  }
+
+  if (!values.comments) {
+    errors.comments = "Please provide some comments";
+  } else if (values.comments.length < 3) {
+    errors.comments = "The comments must be at least 3 characters long";
+  }
+
+  console.log(errors);
   return errors;
-}
+};
 
 const EditProductForm = ({ showEditProductModalHandler, product }) => {
   const dispatch = useDispatch();
@@ -44,27 +60,31 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
   const formik = useFormik({
     initialValues: {
       productName: product.productName,
-      productDescription: product.productDescription,
       productStatus: product.productStatus,
-      comments: product.comments
-      // productImage: "",
+      productDescription: product.productDescription,
+      productCreatorPrice: product.productCreatorPrice,
+      productCreatorUrl: product.productCreatorUrl,
+      comments: product.comments,
+      // images
     },
     validate,
     onSubmit: values => {
-      // if (!productImageFileToUpload) {
-      //   setErrorProductFile("No file attached");
+      console.log(productFilesToUpload);
+
+      // if (!productFilesToUpload || productFilesToUpload.length === 0) {
+      //   setErrorProductFiles(
+      //     "Please provide at least one image for the product"
+      //   );
       //   return;
       // }
 
-      const productData = { ...values }
-      if (productImageFileToUpload) {
-        productData.image = productImageFileToUpload;
-      }
+      const updatedProduct = {
+        ...values,
+        images: productFilesToUpload,
+      };
 
-      console.log(values);
-
-      dispatch(updateProduct(productData, product.slug));
-      showEditProductModalHandler("close");
+      console.log("updatedProduct", updatedProduct);
+      dispatch(updateProduct(updatedProduct, product.slug));
     },
   });
 
@@ -74,62 +94,46 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
   //   }
   // }, [notification.flash_code])
 
+  // ! PRODUCT IMAGES FILES
+  // const [existingPassportFile, setExistingPassportFile] = useState(passportFileInfo);
+  const [productFilesToUpload, setProductFilesToUpload] = useState(null);
+  // const [passportFileBlobUrl, setPassportFileBlobUrl] = useState(null);
+  const [errorProductFiles, setErrorProductFiles] = useState(null);
 
-  // ! PRODUCT IMAGE FILE SETUP
-  const [existingProductImage, setExistingProductImage] = useState(product.image);
-  const [productImageFileToUpload, setProductImageFileToUpload] = useState(null);
-  const [productImageFileBlobUrl, setProductImageFileBlobUrl] = useState(product.image);
-  const [errorProductFile, setErrorProductFile] = useState(null);
-
-  // ! PRODUCT IMAGE FILE HANDLER
-  const changeProductFileHandler = e => {
-    // console.clear();
-    console.log(e.target.files[0].type);
+  // ! PRODUCT IMAGES FILES HANDLER
+  const changeFilesHandler = e => {
+    console.log(e.target.files);
+    const filesToUpload = [];
 
     if (e.target.files.length > 0) {
-      if (e.target.files[0].size > 10485760) {
-        // ! THE SIZE FILED IS IN BYTES (size ÷ 1024 ÷ 2014 TO GET MB SIZE)
-        // ! 10485760 bytes = 10MB
-        // ? https://www.gbmb.org/bytes-to-mb
-        setErrorProductFile("The file size is too big (max 10MB)");
-        setProductImageFileToUpload(null);
-      } else if (
-        !/(jpg)$|(jpeg)$|(png)$/g.test(e.target.files[0].type)
-      ) {
-        setErrorProductFile(
-          "Invalid format. allowed format are .JPG, .JPEG and .PNG"
-        );
-        setProductImageFileToUpload(null);
-      } else {
-        setErrorProductFile(null);
-        setProductImageFileToUpload(e.target.files[0]);
+      for (let i = 0; i < e.target.files.length; i++) {
+        console.log(e.target.files[i].type);
+
+        if (e.target.files[i].size > 2097152) {
+          // ! THE SIZE FILED IS IN BYTES (size ÷ 1024 ÷ 2014 TO GET MB SIZE)
+          // ! 10485760 bytes = 10MB || 1MB = 1048576 bytes || ! 2MB = 2097152 bytes
+          // ? https://www.gbmb.org/bytes-to-mb
+          setErrorProductFiles("A file is too large. Max size is 2MB");
+          setProductFilesToUpload(null);
+          return;
+        } else if (!/(jpg)$|(jpeg)$|(png)$/g.test(e.target.files[i].type)) {
+          setErrorProductFiles(
+            "One or more files have an invalid format. Allowed format: .JPG, .JPEG, .PNG"
+          );
+          setProductFilesToUpload(null);
+          return;
+        } else {
+          filesToUpload.push(e.target.files[i]);
+        }
       }
+
+      setErrorProductFiles(null);
+      setProductFilesToUpload(filesToUpload);
     } else {
-      setProductImageFileToUpload(null);
-      setErrorProductFile("No file attached");
+      setProductFilesToUpload(null);
+      setErrorProductFiles("No file attached");
     }
   };
-
-  // ! CREATE LINKS FOR THE FILES. WE USE THE LINK TO RENDER THE ATTACHED DOCUMENT FOR THE USER (UX)
-  useEffect(() => {
-    //  * PASSPORT URL SETUP
-    productImageFileToUpload ? setProductImageFileBlobUrl(URL.createObjectURL(productImageFileToUpload)) : setProductImageFileBlobUrl(null);
-
-  }, [productImageFileToUpload]);
-
-  // ! FILE ERROR HANDLER
-  const fileErrorHandler = e => {
-    if (/product/g.test(e.target.alt)) {
-      setErrorProductFile(
-        `"${productImageFileToUpload.name}": This file is corrupted, please select another file.`
-      );
-      setProductImageFileToUpload(null);
-      setProductImageFileBlobUrl(null);
-    }
-  };
-
-    console.log(productImageFileToUpload);
-
 
   return (
     <motion.div
@@ -200,6 +204,55 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
             defaultValue={formik.values.productDescription}
           />
 
+          <InputMui
+            required
+            id="outlined-required productCreatorPrice"
+            name="productCreatorPrice"
+            type="text"
+            // min="1"
+            // max={Infinity}
+            label="Wished price"
+            helperText={
+              formik.errors.productCreatorPrice &&
+              formik.errors.productCreatorPrice
+            }
+            onChangeHandler={formik.handleChange}
+            onBlurHandler={formik.handleBlur}
+            error={
+              !!formik.touched.productCreatorPrice &&
+              !!formik.errors.productCreatorPrice
+            }
+            valid={
+              !!formik.touched.productCreatorPrice &&
+              !formik.errors.productCreatorPrice
+            }
+            disabled={false}
+            defaultValue={formik.values.productCreatorPrice}
+          />
+
+          <InputMui
+            required={true}
+            id="outlined-disabled productCreatorUrl"
+            name="productCreatorUrl"
+            type="url"
+            label="Product/Similar product URL"
+            helperText={
+              formik.errors.productCreatorUrl && formik.errors.productCreatorUrl
+            }
+            onChangeHandler={formik.handleChange}
+            onBlurHandler={formik.handleBlur}
+            error={
+              !!formik.touched.productCreatorUrl &&
+              !!formik.errors.productCreatorUrl
+            }
+            valid={
+              !!formik.touched.productCreatorUrl &&
+              !formik.errors.productCreatorUrl
+            }
+            disabled={false}
+            defaultValue={formik.values.productCreatorUrl}
+          />
+
           <SelectMui
             required={true}
             id="outlined-required productStatus"
@@ -257,49 +310,59 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
             disabledColor="white"
             type="button"
             disabled={false}
-            text="Product Image (.JPG, .JPEG and .PNG)"
+            text="Product Images (.JPG, .JPEG and .PNG)"
             onClickHandler={() => {}}
-            onChangeHandler={changeProductFileHandler}
+            onChangeHandler={changeFilesHandler}
             isFileButton={true}
+            multiple={true}
           />
 
-          {/* // ? IF THERE'S A NEW FILE TO UPLOAD (DOESN'T MATTER IF THERE'S AN EXISTING FILE OR NOT)  */}
-          {productImageFileToUpload && (
-            <p className="file-message-success">
-              {productImageFileToUpload.name}
-            </p>
+          {errorProductFiles && (
+            <p className={classes["error-msg"]}>{errorProductFiles}</p>
           )}
 
-          {errorProductFile && (
-            <p className="file-message-error">{errorProductFile}</p>
+          {productFilesToUpload && productFilesToUpload.length > 0 && (
+            <>
+              <p className={classes["success-msg"]}>
+                {productFilesToUpload.length} file
+                {productFilesToUpload.length > 1 && "s"} ready to be uploaded
+              </p>
+
+              <div className={classes["uploaded-files-container"]}>
+                {productFilesToUpload.map((file, index) => {
+                  return (
+                    <Image
+                      key={index}
+                      alt={file.name}
+                      className={classes["uploaded-file"]}
+                      width={200}
+                      height={200}
+                      src={URL.createObjectURL(file)}
+                    />
+                  );
+                })}
+              </div>
+            </>
           )}
 
-          {/* // ! PRODUCT IMAGE IMG RENDERING */}
-          {/* // * RENDERING NEW FILE */}
-          {productImageFileToUpload &&
-            /\/pdf$/g.test(productImageFileToUpload.type) === false &&
-            !errorProductFile && (
-              <img
-                src={productImageFileBlobUrl}
-                alt="product image"
-                onError={fileErrorHandler}
-              />
-            )}
+          {!productFilesToUpload && (
+            <div className={classes["uploaded-files-container"]}>
+                {product.images.map((file, index) => {
+                  return (
+                    <Image
+                      key={index}
+                      alt={`${file}-${index}`}
+                      className={classes["existing-file"]}
+                      width={200}
+                      height={200}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}${file}`}
+                    />
+                  );
+                })}
+              </div>
+          )}
 
-          {/* // * EXISTING FILE */}
-          {existingProductImage &&
-            !productImageFileToUpload &&
-            !errorProductFile && (
-              <>
-                {/* <p className="file-message-success">{existingProductImage.match(/[^/]+$/)[0]}</p> */}
-                <img
-                  className={modalClasses["existing-img"]}
-                  src={`${process.env.NEXT_PUBLIC_API_URL}/${existingProductImage}`}
-                  alt="existing product image"
-                  // onError={fileErrorHandler}
-                />
-              </>
-            )}
+          <br />
 
           <ButtonMui
             width="100%"
@@ -319,7 +382,6 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
       </motion.div>
     </motion.div>
   );
-
 };
 
 export default EditProductForm;

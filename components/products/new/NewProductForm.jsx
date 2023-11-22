@@ -154,7 +154,10 @@ const NewProductForm = ({ lng }) => {
         animate={{ opacity: 1, height: "auto" }}
         exit={{ opacity: 0, height: "auto" }}
       >
-        <h2>Contribute to the community by making a new product available to everyone!</h2>
+        <h2>
+          Contribute to the community by making a new product available to
+          everyone!
+        </h2>
 
         <p>
           Please provide some details about the product you'd like to wish for.
@@ -277,7 +280,7 @@ const NewProductForm = ({ lng }) => {
           disabledColor="white"
           type="button"
           disabled={false}
-          text="Upload product images (.JPG, .JPEG, .PNG and .PDF)"
+          text="Product Images (.JPG, .JPEG and .PNG)"
           onClickHandler={() => {}}
           onChangeHandler={changeFilesHandler}
           isFileButton={true}
