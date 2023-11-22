@@ -20,7 +20,7 @@ const Wishes = ({ x ,lng }) => {
       <h3>User Wishes</h3>
 
       {clientsWishesProducts && clientsWishesProducts.map((product, i) => (
-        <WishCard product={product} lng={lng} index={i} />
+        <WishCard key={`${product.productName}-${i}`} product={product} lng={lng} index={i} />
       ))}
     </div>
   );

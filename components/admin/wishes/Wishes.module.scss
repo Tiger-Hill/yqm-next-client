@@ -46,7 +46,7 @@
       margin-right: 2rem;
       color: rgb(var(--primary-yellow));
 
-      &.price-missing {
+      &.price-missing, &.product-creator-price {
         animation: redBlink 1s linear infinite;
       }
 
@@ -113,23 +113,23 @@
       }
     }
 
-    .add-price-icon {
-      padding: 0.1rem;
-      width: 3rem;
-      height: 3rem;
-      color: var(--success);
-      border-radius: 50%;
-      transition: all 0.25s ease-out;
+    // .add-price-icon {
+    //   padding: 0.1rem;
+    //   width: 3rem;
+    //   height: 3rem;
+    //   color: var(--success);
+    //   border-radius: 50%;
+    //   transition: all 0.25s ease-out;
 
-      &:hover {
-        cursor: pointer;
-        box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.15);
-      }
+    //   &:hover {
+    //     cursor: pointer;
+    //     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.15);
+    //   }
 
-      &.price-missing {
-      animation: redBlink 1s linear infinite;
-      }
-    }
+    //   &.price-missing {
+    //   animation: redBlink 1s linear infinite;
+    //   }
+    // }
 
     .show-description-icon {
       padding: 0.1rem;
@@ -164,6 +164,20 @@
       width: 3rem;
       height: 3rem;
       color: var(--error);
+      border-radius: 50%;
+      transition: all 0.25s ease-out;
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    .open--creator-url-link {
+      padding: 0.1rem;
+      width: 3rem;
+      height: 3rem;
+      color: var(--success);
       border-radius: 50%;
       transition: all 0.25s ease-out;
 

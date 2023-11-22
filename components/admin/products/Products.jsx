@@ -36,7 +36,7 @@ const Products = () => {
 
       {products &&
         products.map((product, i) => (
-          <ProductCard key={product.productName} product={product} index={i} />
+          <ProductCard key={`${product.productName}-${i}`} product={product} index={i} />
         ))}
 
       <div className={classes["add-product-button"]}>

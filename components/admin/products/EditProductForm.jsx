@@ -85,6 +85,7 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
 
       console.log("updatedProduct", updatedProduct);
       dispatch(updateProduct(updatedProduct, product.slug));
+      showEditProductModalHandler("close");
     },
   });
 
@@ -276,6 +277,7 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
             emptyValue={false}
             emptyValueText={null}
             menuItems={[
+              { value: "client wish", label: "Client Wish" },
               { value: "for wishing", label: "Wish product" },
               { value: "in stock", label: "In Stock" },
               { value: "out of stock", label: "Out Of Stock" },
@@ -349,19 +351,19 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
 
           {!productFilesToUpload && (
             <div className={classes["uploaded-files-container"]}>
-                {product.images.map((file, index) => {
-                  return (
-                    <Image
-                      key={index}
-                      alt={`${file}-${index}`}
-                      className={classes["existing-file"]}
-                      width={200}
-                      height={200}
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${file}`}
-                    />
-                  );
-                })}
-              </div>
+              {product.images.map((file, index) => {
+                return (
+                  <Image
+                    key={index}
+                    alt={`${file}-${index}`}
+                    className={classes["existing-file"]}
+                    width={200}
+                    height={200}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}${file}`}
+                  />
+                );
+              })}
+            </div>
           )}
 
           <br />

@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { deleteProduct } from "@/lib/redux/slices/adminSlice";
 import { motion } from "framer-motion";
 
 import Image from "next/image";
 import classes from "./Wishes.module.scss";
 
+import ProductModal from "../products/ProductModal";
 import EditIcon from "@mui/icons-material/Edit";
 import PriceChangeIcon from "@mui/icons-material/PriceChange";
+import PublicIcon from "@mui/icons-material/Public";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 const WishCard = ({ product, index, lng }) => {
+  const dispatch = useDispatch();
 
   const [showFullDescription, setShowFullDescription] = useState(false);
   const toggleDescriptionVisibilityHandler = () => {
@@ -19,6 +25,19 @@ const WishCard = ({ product, index, lng }) => {
 
   const deleteProductHandler = () => {
     dispatch(deleteProduct(product.slug));
+  };
+
+  const openLinkInNewTab = () => {
+    window.open(product.productCreatorUrl, "_blank", "noopener,noreferrer");
+  }
+
+  const [showEditProductModal, setShowEditProductModal] = useState(false);
+  const showEditProductModalHandler = action => {
+    if (action === "open") {
+      setShowEditProductModal(true);
+    } else if (action === "close") {
+      setShowEditProductModal(false);
+    }
   };
 
   return (
@@ -43,7 +62,7 @@ const WishCard = ({ product, index, lng }) => {
             </p>
 
             <div className={classes["prices-container"]}>
-              <p className={`${classes["product-price"]} ${!product.latestPrice ? classes["price-missing"] : ""}`}>
+              <p className={`${classes["product-price"]} ${classes["product-creator-price"]}`}>
                 Creator price: {product.priceCurrency} {Number(product.productCreatorPrice).toFixed(2)}
               </p>
               {product.latestUnpublishedPrice &&
@@ -76,9 +95,10 @@ const WishCard = ({ product, index, lng }) => {
           className={classes["edit-icon"]}
           onClick={() => showEditProductModalHandler("open")}
         />
-        <PriceChangeIcon
-          className={`${classes["add-price-icon"]} ${!product.latestPrice ? classes["price-missing"] : ""}`}
-          onClick={() => showNewPriceModalHandler("open")}
+
+        <PublicIcon
+          className={classes["open--creator-url-link"]}
+          onClick={() => openLinkInNewTab()}
         />
 
         {showFullDescription ?
@@ -100,6 +120,14 @@ const WishCard = ({ product, index, lng }) => {
           />
         }
       </div>
+
+      {showEditProductModal && (
+        <ProductModal
+          action={"edit"}
+          product={product}
+          showEditProductModalHandler={showEditProductModalHandler}
+        />
+      )}
     </motion.div>
   );
 };
