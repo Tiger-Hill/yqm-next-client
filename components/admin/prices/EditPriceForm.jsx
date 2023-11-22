@@ -15,6 +15,7 @@ import ButtonMui from "@/components/forms/ButtonMui";
 import CloseIcon from "@mui/icons-material/Close";
 
 import modalClasses from "@/components/modals/Modal.module.scss";
+import classes from "./EditPriceForm.module.scss";
 
 const validate = values => {
   const errors = {};
@@ -94,119 +95,121 @@ const EditPriceFormContent = ({ lng, price, priceSlug }) => {
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <h2>
-        Manage price
-        <br />
-        {priceSlug}
-      </h2>
+    <section className={classes["edit-price-section"]}>
+      <form onSubmit={formik.handleSubmit}>
+        <h2>
+          Manage price
+          <br />
+          {priceSlug}
+        </h2>
 
-      <SelectMui
-        required={true}
-        id="outlined-required currency"
-        name="currency"
-        // label="currency"
-        helperText={formik.errors.currency && formik.errors.currency}
-        onChangeHandler={formik.handleChange}
-        onBlurHandler={formik.handleBlur}
-        error={!!formik.touched.currency && !!formik.errors.currency}
-        valid={!!formik.touched.currency && !formik.errors.currency}
-        labelId="currency-label"
-        value={formik.values.currency}
-        emptyValue={false}
-        emptyValueText={null}
-        menuItems={[
-          { value: "SGD", label: "SGD" },
-          // { value: "out of stock", label: "Out Of Stock" },
-          // { value: "hidden", label: "Hidden" },
-        ]}
-        inputLabel={"Currency"}
-        // defaultValue={formik.touched.currency}
-      />
+        <SelectMui
+          required={true}
+          id="outlined-required currency"
+          name="currency"
+          // label="currency"
+          helperText={formik.errors.currency && formik.errors.currency}
+          onChangeHandler={formik.handleChange}
+          onBlurHandler={formik.handleBlur}
+          error={!!formik.touched.currency && !!formik.errors.currency}
+          valid={!!formik.touched.currency && !formik.errors.currency}
+          labelId="currency-label"
+          value={formik.values.currency}
+          emptyValue={false}
+          emptyValueText={null}
+          menuItems={[
+            { value: "SGD", label: "SGD" },
+            // { value: "out of stock", label: "Out Of Stock" },
+            // { value: "hidden", label: "Hidden" },
+          ]}
+          inputLabel={"Currency"}
+          // defaultValue={formik.touched.currency}
+        />
 
-      <InputMui
-        required={true}
-        id="outlined-disabled basePrice"
-        name="basePrice"
-        type="text"
-        label="Base price"
-        // min={"1"}
+        <InputMui
+          required={true}
+          id="outlined-disabled basePrice"
+          name="basePrice"
+          type="text"
+          label="Base price"
+          // min={"1"}
 
-        helperText={formik.errors.basePrice && formik.errors.basePrice}
-        onChangeHandler={formik.handleChange}
-        onBlurHandler={formik.handleBlur}
-        error={!!formik.touched.basePrice && !!formik.errors.basePrice}
-        valid={!!formik.touched.basePrice && !formik.errors.basePrice}
-        disabled={false}
-        defaultValue={formik.values.basePrice}
-      />
+          helperText={formik.errors.basePrice && formik.errors.basePrice}
+          onChangeHandler={formik.handleChange}
+          onBlurHandler={formik.handleBlur}
+          error={!!formik.touched.basePrice && !!formik.errors.basePrice}
+          valid={!!formik.touched.basePrice && !formik.errors.basePrice}
+          disabled={false}
+          defaultValue={formik.values.basePrice}
+        />
 
-      <DatePickerMui
-        inputName="pricingDate" // For DatePicker component
-        require={true}
-        id="outlined-disabled pricingDate"
-        label={"Pricing date*"}
-        onChangeHandler={formik.handleChange}
-        onBlurHandler={formik.handleBlur}
-        value={formik.values.pricingDate}
-        defaultValue={formik.values.pricingDate}
-        formik={formik}
-        disablePast={false}
-        helperText={formik.errors.pricingDate && formik.errors.pricingDate}
-      />
+        <DatePickerMui
+          inputName="pricingDate" // For DatePicker component
+          require={true}
+          id="outlined-disabled pricingDate"
+          label={"Pricing date*"}
+          onChangeHandler={formik.handleChange}
+          onBlurHandler={formik.handleBlur}
+          value={formik.values.pricingDate}
+          defaultValue={formik.values.pricingDate}
+          formik={formik}
+          disablePast={false}
+          helperText={formik.errors.pricingDate && formik.errors.pricingDate}
+        />
 
-      <SelectMui
-        required={true}
-        id="outlined-required published"
-        name="published"
-        // label="published"
-        helperText={formik.errors.published && formik.errors.published}
-        onChangeHandler={formik.handleChange}
-        onBlurHandler={formik.handleBlur}
-        error={!!formik.touched.published && !!formik.errors.published}
-        valid={!!formik.touched.published && !formik.errors.published}
-        labelId="published-label"
-        value={formik.values.published}
-        emptyValue={false}
-        emptyValueText={null}
-        menuItems={[
-          { value: "true", label: "Yes" },
-          { value: "false", label: "No" },
-        ]}
-        inputLabel={"Published"}
-        // defaultValue={formik.touched.published}
-      />
+        <SelectMui
+          required={true}
+          id="outlined-required published"
+          name="published"
+          // label="published"
+          helperText={formik.errors.published && formik.errors.published}
+          onChangeHandler={formik.handleChange}
+          onBlurHandler={formik.handleBlur}
+          error={!!formik.touched.published && !!formik.errors.published}
+          valid={!!formik.touched.published && !formik.errors.published}
+          labelId="published-label"
+          value={formik.values.published}
+          emptyValue={false}
+          emptyValueText={null}
+          menuItems={[
+            { value: "true", label: "Yes" },
+            { value: "false", label: "No" },
+          ]}
+          inputLabel={"Published"}
+          // defaultValue={formik.touched.published}
+        />
 
-      <ButtonMui
-        width="100%"
-        height="5rem"
-        marginTop="2rem"
-        fontSize="1.7rem"
-        backgroundColor="#f8ae01"
-        color="white"
-        disabledBakcgroundColor="#DCDCDC"
-        disabledColor="white"
-        type="submit"
-        disabled={false}
-        text="Confirm changes"
-        onClickHandler={() => {}}
-      />
+        <ButtonMui
+          width="100%"
+          height="5rem"
+          marginTop="2rem"
+          fontSize="1.7rem"
+          backgroundColor="#f8ae01"
+          color="white"
+          disabledBakcgroundColor="#DCDCDC"
+          disabledColor="white"
+          type="submit"
+          disabled={false}
+          text="Confirm changes"
+          onClickHandler={() => {}}
+        />
 
-      <ButtonMui
-        width="100%"
-        height="5rem"
-        marginTop="2rem"
-        fontSize="1.7rem"
-        backgroundColor="#FF302E"
-        color="white"
-        disabledBakcgroundColor="#DCDCDC"
-        disabledColor="white"
-        type="button"
-        disabled={false}
-        text="Delete this price"
-        onClickHandler={() => deletePriceHandler()}
-      />
-    </form>
+        <ButtonMui
+          width="100%"
+          height="5rem"
+          marginTop="2rem"
+          fontSize="1.7rem"
+          backgroundColor="#FF302E"
+          color="white"
+          disabledBakcgroundColor="#DCDCDC"
+          disabledColor="white"
+          type="button"
+          disabled={false}
+          text="Delete this price"
+          onClickHandler={() => deletePriceHandler()}
+        />
+      </form>
+    </section>
   );
 };
 
