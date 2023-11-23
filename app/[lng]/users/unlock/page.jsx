@@ -1,24 +1,7 @@
-import Unlock from "@/components/users/unlock/Unlock";
-
-// const page = () => {
-//   return <Unlock />;
-// }
-
-// export default page
-
-// ! IMCOMPLETE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-import PageTemplate from "@/components/UI/PageTemplate"
-import Confirmation from "@/components/users/confirmation/Confirmation";
-import success from "@/public/SVGS/success.svg";
+import Unlock from "@/components/auth/users/unlock/Unlock";
 
 const UnlockAccount = ({ params: { lng } }) => {
-  return (
-    <PageTemplate pageImg={success} pageImgAlt={"A certificate for confirmation success"} >
-
-    <Unlock lng={lng} />
-
-    </PageTemplate>
-  );
+  return <Unlock lng={lng} />
 }
 
 export default UnlockAccount
