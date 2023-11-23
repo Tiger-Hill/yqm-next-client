@@ -46,24 +46,6 @@ const Products = () => {
         />
 
         {showNewProductModal && <ProductModal action={"new"} showNewProductModalHandler={showNewProductModalHandler} />}
-        {/* <ButtonMui
-          width="100%"
-          height="5rem"
-          marginTop="2rem"
-          fontSize="1.7rem"
-          backgroundColor="#3CA94E"
-          color="white"
-          disabledBakcgroundColor="#DCDCDC"
-          disabledColor="white"
-          type="submit"
-          disabled={false}
-          text={
-            <span className="flex justify-center align-center">
-              <AddIcon style={{ width: "3rem", height: "3rem" }} /> Add A New Product
-            </span>
-          }
-          onClickHandler={() => {}}
-        /> */}
       </div>
     </div>
   );
