@@ -16,10 +16,9 @@ const WishCard = ({ product, index, lng }) => {
       onClick={() => showProductDetailsHandler(product.slug)}
       className={classes["wish-card"]}
       key={product.slug}
-
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{ opacity: 0, y: -25 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -25 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
     >
       <Image
