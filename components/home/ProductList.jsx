@@ -46,7 +46,7 @@ const ProductList = ({ type, lng }) => {
           ))}
 
           <div className={classes["links"]}>
-            <Link href={`/${lng}/orders`}>See all products available to order...</Link>
+            <Link href={`/${lng}/products`}>See all products available to order...</Link>
           </div>
         </div>
       )}
