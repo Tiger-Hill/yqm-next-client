@@ -56,10 +56,20 @@
 }
 
 .uploaded-files-container {
+  margin-top: 2rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 2rem;
+
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
 
   img {
     width: 200px;

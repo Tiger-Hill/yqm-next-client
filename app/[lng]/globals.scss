@@ -146,6 +146,10 @@ p.MuiFormHelperText-root.MuiFormHelperText-sizeMedium.MuiFormHelperText-containe
   margin-left: 14px;
 }
 
+// * Date picker modal
+.MuiPopper-root.MuiPickersPopper-root.css-1anqmj6-MuiPopper-root-MuiPickersPopper-root {
+  z-index: 9999 !important;
+}
 
 .file-message-error {
   color: var(--error) !important;

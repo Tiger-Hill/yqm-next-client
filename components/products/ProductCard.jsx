@@ -11,7 +11,6 @@ const ProductCard = ({ product, index, lng }) => {
     router.push(`/${lng}/products/${productSlug}`);
   };
 
-
   return (
     <motion.div
       onClick={() => showProductDetailsHandler(product.slug)}

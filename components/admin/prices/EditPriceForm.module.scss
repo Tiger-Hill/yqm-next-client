@@ -1,0 +1,11 @@
+.edit-price-section {
+  margin: 0 auto;
+  margin-top: calc(2rem + var(--navbar-height));
+  max-width: 700px;
+  padding: 1rem;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
