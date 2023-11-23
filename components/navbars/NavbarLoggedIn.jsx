@@ -49,9 +49,6 @@ const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNav
   const navbarClasses =
   `${classes["navbar-content"]} ${scrolled ? classes["with-background"] : ""}`;
 
-  // const [navbarHeight, setNavbarHeight] = useState(document && document.querySelector("nav")?.offsetHeight);
-  // const [navbarHeight, setNavbarHeight] = useState(0);
-
   // * We set a navbar-height variable in CSS to the height of the navbar o we can set dynamic 100vh by subtracting the navbar height from the viewport height
   useLayoutEffect(() => {
     const navbarHeight = document.querySelector("nav").offsetHeight;
@@ -99,10 +96,6 @@ const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNav
           <Link href={`/${lng}/products`}>{t("loggedIn.allProducts")}</Link>
           <Link href={`/${lng}/user-wish-list`}>{t("loggedIn.wishList")}</Link>
           <Link href={`/${lng}/orders`}>{t("loggedIn.orders")}</Link>
-          {/* <Link href={`/${lng}/transactions`}>
-            {t("loggedIn.transactions")}
-          </Link> */}
-          {/* <Link href={`/${lng}/vault`}>{t("loggedIn.vault")}</Link> */}
           <Link href={`/${lng}/account`}>{t("loggedIn.account")}</Link>
           {userType === "Admin" && (
             <Link href={`/${lng}/admin_dashboard`}>
@@ -113,14 +106,10 @@ const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNav
           <ButtonMui
             width="fit-content"
             height="3rem"
-            // marginTop="2rem"
             fontSize="1.7rem"
             backgroundColor="#FF302E"
             color="white"
-            // disabledBakcgroundColor="#DCDCDC"
-            // disabledColor="white"
             type="button"
-            // disabled={formik.errors.email || formik.errors.password}
             text="Log out"
             onClickHandler={logOutHandler}
           />
