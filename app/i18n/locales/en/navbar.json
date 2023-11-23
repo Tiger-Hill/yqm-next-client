@@ -1,19 +1,17 @@
 {
   "loggedIn": {
-    "transactions": "Transactions",
-    "orders": "Orders",
     "allProducts": "All Products",
     "allWishes": "All Wishes",
-    "wishList": "Wish list",
+    "userWishList": "Wish list",
+    "orders": "Orders",
     "account": "Account",
     "adminDashboard": "Admin"
   },
 
   "loggedOut": {
-    "ourService": "Our Services",
-    "wishes": "Wishes",
-    "products": "Products",
-    "aboutUs": "About Us",
+    "allWishes": "All Wishes",
+    "allProducts": "All Products",
+    "aboutUs": "About",
     "login": "Login"
   }
 }

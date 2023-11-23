@@ -94,7 +94,7 @@ const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNav
         <div className={classes["link-containers"]}>
           <Link href={`/${lng}/wishes`}>{t("loggedIn.allWishes")}</Link>
           <Link href={`/${lng}/products`}>{t("loggedIn.allProducts")}</Link>
-          <Link href={`/${lng}/user-wish-list`}>{t("loggedIn.wishList")}</Link>
+          <Link href={`/${lng}/user-wish-list`}>{t("loggedIn.userWishList")}</Link>
           <Link href={`/${lng}/orders`}>{t("loggedIn.orders")}</Link>
           <Link href={`/${lng}/account`}>{t("loggedIn.account")}</Link>
           {userType === "Admin" && (
