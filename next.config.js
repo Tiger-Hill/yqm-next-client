@@ -12,10 +12,9 @@ const nextConfig = {
     domains: [
       "",
       "localhost",
-      "www.3bgsupply.com",
-      // "sesame-nextjs-client-9ef12e543138.herokuapp.com",
-      // "sesame-rails-api-e1c881a0dd6f.herokuapp.com",
-      // "sesame.sg",
+      "yqm.app,",
+      "yqm-rails-api-265c263d3c2d.herokuapp.com",
+      "yqm-nextjs-client-d429d4b9b618.herokuapp.com",
     ],
   },
 
