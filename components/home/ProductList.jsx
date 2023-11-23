@@ -7,9 +7,6 @@ import { getForWishingProducts, getForOrderingProducts } from "@/lib/redux/slice
 import Link from "next/link";
 import ProductToWish from "./ProductToWish";
 import ProductToOrder from "./ProductToOrder";
-import ButtonMui from "@/components/forms/ButtonMui";
-
-import AddIcon from "@mui/icons-material/Add";
 
 import classes from "./Products.module.scss";
 
@@ -29,7 +26,6 @@ const ProductList = ({ type, lng }) => {
       {/* // ! PRODUCTS TO WISH */}
       {type === "productToWish" && productsToWish && (
         <div className={classes["products-to-wish"]}>
-          {/* <h2>You want</h2> */}
           <h2 className={classes["product-section-title"]}>Trending user wishes</h2>
           {productsToWish.slice(0, 4).map((product, index) => (
             <ProductToWish key={index} product={product} lng={lng} />
@@ -37,20 +33,6 @@ const ProductList = ({ type, lng }) => {
 
           <div className={classes["links"]}>
             <Link href={`/${lng}/wishes`}>See all wishes...</Link>
-            {/* <ButtonMui
-              width="fit-content"
-              height="2.5rem"
-              marginTop="0rem"
-              fontSize="1.5rem"
-              backgroundColor="#7b00ff"
-              color="white"
-              disabledBakcgroundColor="#DCDCDC"
-              disabledColor="white"
-              type="button"
-              disabled={false}
-              text={<><AddIcon />   New Wish</>}
-              onClickHandler={() => alert("OPEN ADD WISH MODAL")}
-            /> */}
           </div>
         </div>
       )}
@@ -65,20 +47,6 @@ const ProductList = ({ type, lng }) => {
 
           <div className={classes["links"]}>
             <Link href={`/${lng}/orders`}>See all products available to order...</Link>
-            {/* <ButtonMui
-              width="fit-content"
-              height="2.5rem"
-              marginTop="0rem"
-              fontSize="1.5rem"
-              backgroundColor="#7b00ff"
-              color="white"
-              disabledBakcgroundColor="#DCDCDC"
-              disabledColor="white"
-              type="button"
-              disabled={false}
-              text={<><SwitchAccessShortcutAddIcon />   New Wish</>}
-              onClickHandler={() => alert("OPEN ADD WISH MODAL")}
-            /> */}
           </div>
         </div>
       )}

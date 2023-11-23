@@ -35,6 +35,17 @@
   // ? APP HEIGHT FOR SMARTPHONE VIEW
   // TODO: FIX BELOW ONCE THE NAVBAR IS SETUP
   // --app-height: 100%; // * SETUP IN Navbar TO MAKE SURE THE HEIGHT IS CORRECT ON EVERY KINDS OF DEVICES
+
+  // ! MEDIA QUERIES
+  @media (max-width: 480px) {
+    --font-size-xxl: 6rem;
+    --font-size-xl: 5rem;
+    --font-size-lg: 4rem;
+    --font-size-md: 2.5rem;
+    --font-size-sm: 2rem;
+    --font-size-xs: 1.75rem;
+    --font-size-xxs: 1.5rem;
+  }
 }
 
 // ! ============================== GENERAL RULES ============================== */

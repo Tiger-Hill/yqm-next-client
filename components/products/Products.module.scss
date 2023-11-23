@@ -34,10 +34,11 @@
       font-weight: bold;
       width: fit-content;
       color: rgb(var(--primary-yellow));
-      // background-image: linear-gradient(to right, rgb(var(--primary-yellow)), rgb(var(--primary-yellow)));
-      // -webkit-background-clip: text; /* For webkit-based browsers */
-      // color: transparent;
-      text-shadow: 0 3px 3px rgba(255, 255, 255, 0.5)
+      text-shadow: 0 0px 5px rgba(255, 255, 255, 1);
+
+      @media (max-width: 480px) {
+        font-size: var(--font-size-lg);
+      }
     }
 
   }

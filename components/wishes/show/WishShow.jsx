@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { getProduct } from "@/lib/redux/slices/productSlice";
 import { getAllUserWishes } from "@/lib/redux/slices/wishSlice";
+import useScreenWidth from "@/hooks/useScreenWidth";
 import { motion } from "framer-motion";
 
 import NewWishModal from "@/components/wishes/new/NewWishModal";
@@ -20,6 +21,7 @@ import classes from "./WishShow.module.scss";
 
 const WishShow = ({ lng, wishSlug }) => {
   const dispatch = useDispatch();
+  const screenWidth = useScreenWidth();
   const router = useRouter();
   const { productToShow } = useSelector(state => state.rootReducer.product);
   const { isLoggedIn } = useSelector(state => state.rootReducer.auth);

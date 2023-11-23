@@ -102,8 +102,9 @@ const Wishes = ({ lng }) => {
 
           <InputMui
             id="outlined-required searchInput"
-            width={"150%"}
+            width={"30rem"}
             name="searchInput"
+            marginTop={"0rem"}
             type="searchInput"
             label="Search for wishes"
             onChangeHandler={e => searchInputHandler(e)}

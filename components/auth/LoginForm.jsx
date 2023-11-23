@@ -129,12 +129,12 @@ const LoginForm = ({ lng }) => {
         animate={{ opacity: 1, height: "auto" }}
         exit={{ opacity: 0, height: "auto" }}
       >
-        <Image
+        {/* <Image
           src="/LOGOS/YQM-logo.svg"
           alt="YQM colored logo"
           width={150}
           height={105}
-        />
+        /> */}
 
         <h1>Login</h1>
       </motion.div>

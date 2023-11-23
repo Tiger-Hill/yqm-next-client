@@ -90,7 +90,7 @@ const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNav
         </div>
       </div>
 
-      {screenWidth >= 1100 && (
+      {screenWidth >= 1300 && (
         <div className={classes["link-containers"]}>
           <Link href={`/${lng}/wishes`}>{t("loggedIn.allWishes")}</Link>
           <Link href={`/${lng}/products`}>{t("loggedIn.allProducts")}</Link>
@@ -116,7 +116,7 @@ const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNav
         </div>
       )}
 
-      {screenWidth < 1100 && (
+      {screenWidth < 1300 && (
         <div
           className={classes["navbar-toggle"]}
           data-testid="side-nav-toggler"
