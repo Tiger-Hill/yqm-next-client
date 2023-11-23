@@ -52,7 +52,7 @@ export function middleware(req) {
       console.log(req);
 
       return NextResponse.redirect(
-        `https://${req.headers.get("host")}${req.nextUrl.pathname}`
+        `https://${req.headers.get("host")}ffff${req.nextUrl.pathname}`
       );
     }
   }
