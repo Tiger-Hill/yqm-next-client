@@ -34,7 +34,7 @@ const UserWishList = ({ lng }) => {
       <section className={classes["user-wish-list-section"]}>
         {userWishes && userWishes.map((userWish, i) => {
           return(
-            <UserWishCard key={`${userWish.slug}${i}`} userWish={userWish} lng={lng} />
+            <UserWishCard key={`${userWish.slug}${i}`} userWish={userWish} index={i} lng={lng} />
         )})}
       </section>
     </div>

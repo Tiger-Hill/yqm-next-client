@@ -14,10 +14,7 @@ import classes from "./Account.module.scss";
 
 const Account = ({ lng }) => {
   const dispatch = useDispatch();
-  const { userDetails, passportFileInfo } = useSelector(
-    state => state.rootReducer.userDetail
-  );
-  // const  = useSelector(state => state.rootReducer.userDetail.passportFileInfo);
+  const { userDetails, passportFileInfo } = useSelector(state => state.rootReducer.userDetail);
   const router = useRouter();
 
   useEffect(() => {
@@ -27,11 +24,6 @@ const Account = ({ lng }) => {
   const changePasswordHandler = () => {
     router.push(`/${lng}/change-password`);
   };
-
-  // console.log(passportFileInfo);
-  // console.log(
-  //   `${process.env.NEXT_PUBLIC_API_URL}${passportFileInfo?.originalFile}`
-  // );
 
   return (
     <div className={classes["account-container"]}>

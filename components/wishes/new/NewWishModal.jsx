@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { createWish } from "@/lib/redux/slices/wishSlice";
+import { getProduct } from "@/lib/redux/slices/productSlice";
 import { motion } from "framer-motion";
 
 import Image from "next/image";

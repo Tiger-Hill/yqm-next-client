@@ -25,7 +25,7 @@ const WishShow = ({ lng, wishSlug }) => {
   const router = useRouter();
   const { productToShow } = useSelector(state => state.rootReducer.product);
   const { isLoggedIn } = useSelector(state => state.rootReducer.auth);
-  const { userWishes } = useSelector(state => state.rootReducer.wish);
+  const { userWishes, notification } = useSelector(state => state.rootReducer.wish);
 
   // ! We get all the data
   useEffect(() => {
@@ -43,6 +43,15 @@ const WishShow = ({ lng, wishSlug }) => {
     ));
 
   }, [productToShow, userWishes])
+
+  useEffect(() => {
+    if (!notification.flash_code) return;
+
+    if (notification.flash_code === "CREATE_WISH_SUCCESS") {
+      dispatch(getProduct(productToShow.slug));
+    }
+
+  }, [notification.flash_code])
 
   // ! SET BIG IMAGE HANDLER
   const [selectedImage, setSelectedImage] = useState(0);

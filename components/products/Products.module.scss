@@ -80,6 +80,12 @@
       white-space: nowrap;
       font-weight: bold;
     }
+
+    .price {
+      font-size: 1.7rem;
+      color: var(--success);
+      font-weight: bolder;
+    }
   }
 
   nav ul {

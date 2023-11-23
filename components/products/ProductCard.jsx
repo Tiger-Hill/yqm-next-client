@@ -16,10 +16,9 @@ const ProductCard = ({ product, index, lng }) => {
       onClick={() => showProductDetailsHandler(product.slug)}
       className={classes["product-card"]}
       key={product.slug}
-
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{ opacity: 0, y: -25 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -25 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
     >
       <Image
@@ -28,7 +27,11 @@ const ProductCard = ({ product, index, lng }) => {
         width={200}
         height={200}
       />
-      <h4>{product.productName}</h4>
+      <h4>
+        <span className={classes.price}>${product.latestPrice}</span>
+        <br />
+        {product.productName}
+      </h4>
       <p>{product.description}</p>
     </motion.div>
   );

@@ -55,7 +55,6 @@ const validate = values => {
 
 const EditProductForm = ({ showEditProductModalHandler, product }) => {
   const dispatch = useDispatch();
-  // const { notification } = useSelector(state => state.rootReducer.admin);
 
   const formik = useFormik({
     initialValues: {
@@ -71,12 +70,12 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
     onSubmit: values => {
       console.log(productFilesToUpload);
 
-      // if (!productFilesToUpload || productFilesToUpload.length === 0) {
-      //   setErrorProductFiles(
-      //     "Please provide at least one image for the product"
-      //   );
-      //   return;
-      // }
+      // // if (!productFilesToUpload || productFilesToUpload.length === 0) {
+      // //   setErrorProductFiles(
+      // //     "Please provide at least one image for the product"
+      // //   );
+      // //   return;
+      // // }
 
       const updatedProduct = {
         ...values,
@@ -88,12 +87,6 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
       showEditProductModalHandler("close");
     },
   });
-
-  // useEffect(() => {
-  //   if (notification.flash_code) {
-  //     notification.flash_code === "UPDATE_PRODUCT_SUCCESS" && showEditProductModalHandler("close");
-  //   }
-  // }, [notification.flash_code])
 
   // ! PRODUCT IMAGES FILES
   // const [existingPassportFile, setExistingPassportFile] = useState(passportFileInfo);
