@@ -115,7 +115,7 @@ const Basket = ({ lng }) => {
                     disabledColor="white"
                     type="button"
                     disabled={parseFloat(basketTotal) > maxBasketTotal}
-                    text={"CHEKOUT NOW"}
+                    text={"CHECKOUT NOW"}
                     onClickHandler={openStripeModal}
                     // size="large"
                   />
