@@ -141,7 +141,11 @@ const SideNavContent = ({
                 transition={{ delay: (privateLinks.length + 1) * 0.1 }} //? We delay the animation by links array length + 1
               >
                 <Link
-                  className={ currentPath === `/${lng}/admin_dashboard` ? classes.active : "" }
+                  className={
+                    currentPath === `/${lng}/admin_dashboard`
+                      ? classes.active
+                      : ""
+                  }
                   href={`/${lng}/admin_dashboard`}
                   onClick={closeSideNav}
                 >
@@ -160,14 +164,10 @@ const SideNavContent = ({
             <ButtonMui
               width="fit-content"
               height="3rem"
-              // marginTop="1rem !important"
               fontSize="1.7rem"
-              backgroundColor="#ACACAC"
+              backgroundColor="#FF302E"
               color="white"
-              // disabledBakcgroundColor="#DCDCDC"
-              // disabledColor="white"
               type="button"
-              // disabled={formik.errors.email || formik.errors.password}
               text="Log out"
               onClickHandler={logOutHandler}
             />
