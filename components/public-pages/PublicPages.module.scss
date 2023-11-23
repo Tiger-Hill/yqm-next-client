@@ -1,6 +1,6 @@
 .public-page-header {
   width: 100%;
-  height: 40vh;
+  height: 35vh;
   position: relative;
 
   -ms-overflow-style: none;  /* IE and Edge */
@@ -27,11 +27,11 @@
       font-size: var(--font-size-xxl);
       font-weight: bold;
       width: fit-content;
-      color: rgb(var(--primary-yellow));
+      color: white;
       // background-image: linear-gradient(to right, rgb(var(--primary-yellow)), rgb(var(--primary-yellow)));
       // -webkit-background-clip: text; /* For webkit-based browsers */
       // color: transparent;
-      text-shadow: 0 5px 10px rgba(255, 255, 255, 0.5)
+      text-shadow: 0 0px 2px rgba(255, 255, 255, 1);
     }
   }
 }
@@ -61,7 +61,7 @@
     height: calc(var(--app-height) - 40vh);
     width: 70%;
     margin: 0 auto;
-    // padding-top: 5rem;
+    padding-top: 2rem;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -99,11 +99,11 @@
       }
     }
 
-    @media (max-width: 550px) {
+    @media (max-width: 430px) {
       width: 90%;
       h2 {
         font-size: var(--font-size-sm);
-        line-height: 3.3rem;
+        line-height: 2.5rem;
       }
       p {
         font-size: var(--font-size-xxs);

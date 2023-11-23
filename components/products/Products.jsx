@@ -82,12 +82,13 @@ const Products = ({ lng }) => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: "auto" }}
           >
-            Available Products
+            Products
           </motion.h1>
 
           <InputMui
             id="outlined-required searchInput"
-            width={"150%"}
+            width={"30rem"}
+            marginTop={"0rem"}
             name="searchInput"
             type="searchInput"
             label="Search for products"

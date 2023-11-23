@@ -45,19 +45,30 @@ const SideNavContent = ({
 
   // * =============================== PUBLIC LINKS ==============================
   const publicLinks = [
-    { name: t("loggedOut.ourService"), path: `/${lng}/services`, isActive: false },
-    { name: t("loggedOut.products"), path: `/${lng}/products`, isActive: false },
+    { name: t("loggedIn.allWishes"), path: `/${lng}/wishes`, isActive: false },
+    { name: t("loggedIn.allProducts"), path: `/${lng}/products`, isActive: false },
     { name: t("loggedOut.aboutUs"), path: `/${lng}/about`, isActive: false },
     { name: t("loggedOut.login"), path: `/${lng}/login`, isActive: false },
   ];
 
+        // <Link href={`/${lng}/wishes`}>{t("loggedIn.allWishes")}</Link>
+        //   <Link href={`/${lng}/products`}>{t("loggedIn.allProducts")}</Link>
+        //   <Link href={`/${lng}/user-wish-list`}>{t("loggedIn.wishList")}</Link>
+        //   <Link href={`/${lng}/orders`}>{t("loggedIn.orders")}</Link>
+        //   <Link href={`/${lng}/account`}>{t("loggedIn.account")}</Link>
+        //   {userType === "Admin" && (
+        //     <Link href={`/${lng}/admin_dashboard`}>
+        //       {t("loggedIn.adminDashboard")}
+        //     </Link>
+        //   )}
+
   // * =============================== PRIVATE LINKS ==============================
-  // ! IF THIS CHANGES, UPDATE THE VALUD OF THE MOTION DIV FOR THE LOGOUT BUTTON (currently "5")
+  // ! IF THIS CHANGES, UPDATE THE VALUE OF THE MOTION DIV FOR THE LOGOUT BUTTON (currently "5")
   const privateLinks = [
+    { name: t("loggedIn.allWishes"), path: `/${lng}/wishes`, isActive: false },
+    { name: t("loggedIn.allProducts"), path: `/${lng}/products`, isActive: false },
+    { name: t("loggedIn.userWishList"), path: `/${lng}/user-wish-list`, isActive: false },
     { name: t("loggedIn.orders"), path: `/${lng}/orders`, isActive: false },
-    { name: t("loggedIn.products"), path: `/${lng}/products`, isActive: false },
-    { name: t("loggedIn.transactions"), path: `/${lng}/transactions`, isActive: false },
-    { name: t("loggedIn.vault"), path: `/${lng}/vault`, isActive: false },
     { name: t("loggedIn.account"), path: `/${lng}/account`, isActive: false },
   ];
 
@@ -130,7 +141,11 @@ const SideNavContent = ({
                 transition={{ delay: (privateLinks.length + 1) * 0.1 }} //? We delay the animation by links array length + 1
               >
                 <Link
-                  className={ currentPath === `/${lng}/admin_dashboard` ? classes.active : "" }
+                  className={
+                    currentPath === `/${lng}/admin_dashboard`
+                      ? classes.active
+                      : ""
+                  }
                   href={`/${lng}/admin_dashboard`}
                   onClick={closeSideNav}
                 >
@@ -149,14 +164,10 @@ const SideNavContent = ({
             <ButtonMui
               width="fit-content"
               height="3rem"
-              // marginTop="1rem !important"
               fontSize="1.7rem"
-              backgroundColor="#ACACAC"
+              backgroundColor="#FF302E"
               color="white"
-              // disabledBakcgroundColor="#DCDCDC"
-              // disabledColor="white"
               type="button"
-              // disabled={formik.errors.email || formik.errors.password}
               text="Log out"
               onClickHandler={logOutHandler}
             />

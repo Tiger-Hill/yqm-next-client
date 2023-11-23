@@ -1,19 +1,16 @@
 {
   "loggedIn": {
-    "transactions": "交易",
-    "orders": "命令",
+    "allWishes": "所有愿望",
     "allProducts": "所有产品",
-    "allWishes": "一切愿望",
-    "wishList": "愿望清单",
+    "userWishList": "愿望清单",
+    "orders": "命令",
     "account": "帐户",
-    "vault": "拱顶",
     "adminDashboard": "行政"
   },
 
   "loggedOut": {
-    "ourService": "我们的服务",
-    "wishes": "愿望",
-    "products": "产品",
+    "allWishes": "所有愿望",
+    "allProducts": "所有产品",
     "aboutUs": "关于我们",
     "login": "登录"
   }

@@ -8,6 +8,7 @@ import { sendForgotPasswordInstructions } from "@/lib/redux/slices/passwordSlice
 import { AnimatePresence, motion } from "framer-motion";
 import classes from "./ForgotPasswordForm.module.scss";
 
+import Link from "next/link";
 import Image from "next/image";
 import InputMui from "@/components/forms/InputMui";
 import ButtonMui from "@/components/forms/ButtonMui";
@@ -25,7 +26,7 @@ const validate = (values) => {
   return errors;
 };
 
-const ForgotPasswordForm = () => {
+const ForgotPasswordForm = ({ lng }) => {
   const dispatch = useDispatch();
   const notification = useSelector(state => state.rootReducer.password.notification);
   const router = useRouter();
@@ -49,12 +50,12 @@ const ForgotPasswordForm = () => {
         animate={{ opacity: 1, height: "auto" }}
         exit={{ opacity: 0, height: "auto" }}
       >
-        <Image
+        {/* <Image
           src="/LOGOS/YQM-logo.svg"
           alt="YQM colored logo"
           width={150}
           height={105}
-        />
+        /> */}
 
         <h1>Forgot password?</h1>
       </motion.div>
@@ -97,6 +98,12 @@ const ForgotPasswordForm = () => {
           text="Send instructions"
           onClickHandler={() => {}}
         />
+
+        <div className={classes["alternative-auth-links-container"]}>
+          <p className={classes["alternative-auth-link"]}>
+            Back to <Link href={`/${lng}/login`}>Login</Link>
+          </p>
+        </div>
       </motion.form>
     </section>
   );

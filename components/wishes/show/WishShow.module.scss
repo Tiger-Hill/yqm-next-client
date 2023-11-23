@@ -1,6 +1,7 @@
 .wish-show-container {
   min-height: 66rem; // ? (height of the Image bigger component)
   margin-top: calc(var(--navbar-height) + 4rem);
+  margin-bottom: calc(var(--navbar-height));
   padding: 2rem;
 
   display: flex;
@@ -9,11 +10,19 @@
   flex-wrap: wrap;
   gap: 10rem;
 
+  @media (max-width: 480px) {
+    gap: 2rem;
+  }
+
   .product-images {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     gap: 2rem;
+
+    @media (max-width: 480px) {
+      flex-direction: column-reverse;
+    }
 
     .secondary-images-container{
       display: flex;
@@ -22,11 +31,21 @@
       flex-direction: column;
       gap: 2rem;
 
+      @media (max-width: 480px) {
+        flex-direction: row;
+        gap: 1rem;
+      }
+
       img {
         transition: all 0.3s ease;
-        width: 150px;
-        height: 150px;
+        width: 15rem;
+        height: 15rem !important;
         object-fit: cover;
+
+        @media (max-width: 480px) {
+          width: 7.5rem;
+          height: 7.5rem !important;
+        }
 
         &.selected {
           box-shadow: 0 0 10px 1px rgb(var(--primary-purple), 0.75);
@@ -41,14 +60,18 @@
   }
 
   .main-image {
-    width: 660px;
-    height: 660px;
+    width: 66rem;
+    height: 66rem !important;
     object-fit: cover;
+
+    @media (max-width: 480px) {
+      margin: 0 auto;
+      width: 33rem;
+      height: 33rem !important;
+    }
   }
 
   .product-details {
-    // height: 46rem;
-    // height: 100%;
     width: 42rem;
 
     display: flex;
@@ -71,6 +94,10 @@
         font-weight: 400;
         line-height: 1.5;
         margin-bottom: 6rem !important;
+
+        @media (max-width: 480px) {
+          margin-bottom: 2rem !important;
+        }
       }
 
       .icon-details-set {
@@ -88,7 +115,6 @@
         p {
           font-size: var(--font-size-xs);
         }
-
       }
 
       p.is-user-wish-msg {
