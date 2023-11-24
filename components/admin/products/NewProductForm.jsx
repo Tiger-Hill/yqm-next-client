@@ -67,6 +67,7 @@ const NewProductForm = ({ showNewProductModalHandler }) => {
     },
     validate,
     onSubmit: values => {
+      // ! If there is no file attached, we don't update the product
       if (!productFilesToUpload || productFilesToUpload.length === 0) {
         setErrorProductFiles(
           "Please provide at least one image for the product"
@@ -78,8 +79,6 @@ const NewProductForm = ({ showNewProductModalHandler }) => {
         ...values,
         images: productFilesToUpload,
       };
-
-      console.log(values);
 
       dispatch(createProduct(product));
       showNewProductModalHandler("close");
@@ -286,10 +285,15 @@ const NewProductForm = ({ showNewProductModalHandler }) => {
             defaultValue={formik.values.comments}
           />
 
+
+          <p className={classes["not-optional-images-msg"]}>
+            ⚠️ As an admin, you need to upload at least one picture of the product
+          </p>
+
           <ButtonMui
             width="fit-content"
             height="5rem"
-            marginTop="2rem"
+            marginTop="0.5rem"
             fontSize="1.7rem"
             backgroundColor="#f8ae01"
             color="white"

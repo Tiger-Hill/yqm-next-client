@@ -70,19 +70,17 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
     onSubmit: values => {
       console.log(productFilesToUpload);
 
-      // // if (!productFilesToUpload || productFilesToUpload.length === 0) {
-      // //   setErrorProductFiles(
-      // //     "Please provide at least one image for the product"
-      // //   );
-      // //   return;
-      // // }
+      // ! If there is no file attached and no existing files, we don't update the product
+      if (product.images.length === 0 && !productFilesToUpload) {
+        setErrorProductFiles("Please provide at least one image for the product");
+        return;
+      }
 
       const updatedProduct = {
         ...values,
         images: productFilesToUpload,
       };
 
-      console.log("updatedProduct", updatedProduct);
       dispatch(updateProduct(updatedProduct, product.slug));
       showEditProductModalHandler("close");
     },
@@ -129,6 +127,39 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
     }
   };
 
+  // const setMenuItems = () => {
+  //   let menuItems = [];
+
+  //   if (!product.productStatus === "client wish") {
+  //     // * If the product is a client wish, we can only change the  status to "for wishing"
+  //     menuItems = [
+  //       { value: "client wish", label: "Client Wish" },
+  //       { value: "for wishing", label: "Wish product" },
+  //     ];
+  //   } else if (product.productStatus === "for wishing") {
+  //     // * If the product is "for wishing", we have to check if it has a latest price attached
+  //     if (product.latestPrice) {
+  //       // * If the product has a latest price attached, we can pick any product status
+  //       menuItems = [
+  //         { value: "client wish", label: "Client Wish" },
+  //         { value: "for wishing", label: "Wish product" },
+  //         { value: "in stock", label: "In Stock" },
+  //         { value: "out of stock", label: "Out Of Stock" },
+  //         { value: "hidden", label: "Hidden" },
+  //       ];
+  //     } else {
+  //       // * If the product doesn't have a latest price attached,
+  //       // * we can only change the status to "client wish" or "for wishing" until a price is attached
+  //       menuItems = [
+  //         { value: "client wish", label: "Client Wish" },
+  //         { value: "for wishing", label: "Wish product" },
+  //       ];
+  //     }
+  //   }
+
+  //   return menuItems;
+  // };
+
   return (
     <motion.div
       className={modalClasses.backdrop}
@@ -151,7 +182,11 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
         />
         <Image
           className={modalClasses["modal-img"]}
-          src={`${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`}
+          src={
+            product.images.length > 0
+              ? `${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`
+              : "/IMGS/no-image.png"
+          }
           alt="product image"
           width={200}
           height={200}
@@ -296,10 +331,15 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
             defaultValue={formik.values.comments}
           />
 
+          <p className={classes["not-optional-images-msg"]}>
+            ⚠️ As an admin, you need to upload at least one picture of the
+            product
+          </p>
+
           <ButtonMui
             width="fit-content"
             height="5rem"
-            marginTop="2rem"
+            marginTop="0.5rem"
             fontSize="1.7rem"
             backgroundColor="#f8ae01"
             color="white"
@@ -342,7 +382,7 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
             </>
           )}
 
-          {!productFilesToUpload && (
+          {!productFilesToUpload && product.images.length > 0 && (
             <div className={classes["uploaded-files-container"]}>
               {product.images.map((file, index) => {
                 return (
@@ -358,8 +398,6 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
               })}
             </div>
           )}
-
-          <br />
 
           <ButtonMui
             width="100%"

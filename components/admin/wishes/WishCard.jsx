@@ -15,6 +15,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
+
 const WishCard = ({ product, index, lng }) => {
   const dispatch = useDispatch();
 
@@ -48,7 +49,11 @@ const WishCard = ({ product, index, lng }) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <Image
-        src={`${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`}
+        src={
+          product.images.length > 0
+            ? `${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`
+            : "/IMGS/no-image.png"
+        }
         alt={product.productName}
         width={50}
         height={50}
@@ -57,31 +62,41 @@ const WishCard = ({ product, index, lng }) => {
       <div className={classes["product-details"]}>
         <section className={classes["container-top"]}>
           <div>
-            <p className={classes["product-name"]}>
-              {product.productName}
-            </p>
+            <p className={classes["product-name"]}>{product.productName}</p>
 
             <div className={classes["prices-container"]}>
-              <p className={`${classes["product-price"]} ${classes["product-creator-price"]}`}>
-                Creator price: {product.priceCurrency} {Number(product.productCreatorPrice).toFixed(2)}
+              <p
+                className={`${classes["product-price"]} ${classes["product-creator-price"]}`}
+              >
+                Creator price: {product.priceCurrency}{" "}
+                {Number(product.productCreatorPrice).toFixed(2)}
               </p>
-              {product.latestUnpublishedPrice &&
-                <p className={`${classes["product-price"]} ${classes["unpublished-price"]}`}>
-                  U. {product.priceCurrency} {Number(product.latestUnpublishedPrice).toFixed(2)}
+              {product.latestUnpublishedPrice && (
+                <p
+                  className={`${classes["product-price"]} ${classes["unpublished-price"]}`}
+                >
+                  U. {product.priceCurrency}{" "}
+                  {Number(product.latestUnpublishedPrice).toFixed(2)}
                 </p>
-              }
+              )}
             </div>
           </div>
 
-          <span className={`${classes["product-status"]} ${classes["client-wish"]}`}>
+          <span
+            className={`${classes["product-status"]} ${classes["client-wish"]}`}
+          >
             {product.productStatus}
           </span>
         </section>
 
         <motion.div
           className={classes["description-action-container"]}
-          initial={ showFullDescription ? {height: "5rem"} : {height: "auto"} }
-          animate={ showFullDescription ? {height: "auto"} : {height: "5rem"} }
+          initial={
+            showFullDescription ? { height: "5rem" } : { height: "auto" }
+          }
+          animate={
+            showFullDescription ? { height: "auto" } : { height: "5rem" }
+          }
           transition={{ duration: 0.5 }}
         >
           <motion.p className={classes["product-description"]}>
@@ -101,24 +116,24 @@ const WishCard = ({ product, index, lng }) => {
           onClick={() => openLinkInNewTab()}
         />
 
-        {showFullDescription ?
+        {showFullDescription ? (
           <VisibilityOffIcon
             className={classes["hide-description-icon"]}
             onClick={toggleDescriptionVisibilityHandler}
           />
-          :
+        ) : (
           <RemoveRedEyeIcon
             className={classes["show-description-icon"]}
             onClick={toggleDescriptionVisibilityHandler}
           />
-        }
+        )}
 
-        {!product.latestPrice &&
+        {!product.latestPrice && (
           <DeleteForeverIcon
             className={classes["delete-icon"]}
             onClick={deleteProductHandler}
           />
-        }
+        )}
       </div>
 
       {showEditProductModal && (

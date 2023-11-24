@@ -24,7 +24,6 @@ const Orders = ({ lng}) => {
   const sessionId = searchParams.get("session_id");
   console.log(sessionId);
 
-
   const { basket } = useSelector(state => state.rootReducer.basket);
   const hasEffectRun = useRef(false);
   useEffect(() => {
@@ -44,12 +43,12 @@ const Orders = ({ lng}) => {
           if (orderData.status === "complete") {
             const orderProducts = {
               productId: [],
-              changeInNumberOfUnits: [],
+              orderQuantity: [],
             }
 
             basket.map(product => {
               orderProducts.productId.push(product.product.slug);
-              orderProducts.changeInNumberOfUnits.push(product.quantity);
+              orderProducts.orderQuantity.push(product.quantity);
             });
 
             const paymentId = `stripe-date-timestamp-${Date.now()}`;
