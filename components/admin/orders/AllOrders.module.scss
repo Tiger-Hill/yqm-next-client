@@ -1,15 +1,23 @@
-.all-orders-table * {
-  font-size: 2rem;
+.all-orders-table {
+  margin: 0 auto;
+  margin-top: calc(2rem + var(--navbar-height));
+  padding: 1rem;
 
-  // tr {
-  //   width: max-content;
-  // }
+  * {
+    font-size: 2rem;
+  }
+
+  thead {
+    border-bottom: 3px solid black;
+  }
+
+  tr {
+    border-bottom: 3px solid black;
+  }
 
   th, td {
     text-align: center;
     padding: 0 2rem !important;
-
-    // width: 25%;
   }
 
   .actions {
