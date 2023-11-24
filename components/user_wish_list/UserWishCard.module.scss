@@ -4,8 +4,15 @@
   align-items: flex-start;
   gap: 2rem;
   width: 440px;
+  cursor: pointer;
 
-  // box-shadow: 0 0 10px 1px rgb(var(--primary-purple), 0.75);
+  // &.wish {
+  //   box-shadow: 0 0 10px rgb(var(--primary-purple));
+  // }
+
+  // &.available-for-order {
+  //   box-shadow: 0 0 10px rgb(var(--primary-yellow));
+  // }
 
   &___image {
     object-fit: cover;
@@ -14,6 +21,16 @@
   &__content {
     width: 337px;
     padding: 0.5rem;
+
+    .available-flag {
+      font-size: var(--font-size-xxs);
+      font-weight: bold;
+      background-color: rgb(var(--primary-yellow));
+      color: white;
+      padding: 0rem 1rem;
+      display: inline;
+      border-radius: 50rem;
+    }
 
     h2 {
       font-size: var(--font-size-sm);

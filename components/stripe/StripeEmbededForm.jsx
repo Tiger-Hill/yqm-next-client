@@ -42,10 +42,6 @@ const StripeEmbededForm = ({ lng, basketData }) => {
 
   console.log(clientSecret);
 
-  // const handleComplete = (checkoutSession) => {
-  //   console.log("NIQUE TA MERE LA GROSSE PUTE FILS DE CHIEN DE TES GRANDS MORTS");
-  // }
-
   return (
     <div id="checkout">
       {clientSecret && (
