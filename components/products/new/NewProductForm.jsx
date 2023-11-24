@@ -62,16 +62,22 @@ const NewProductForm = ({ lng }) => {
     },
     validate,
     onSubmit: values => {
-      console.log(productFilesToUpload);
 
-      if (!productFilesToUpload || productFilesToUpload.length === 0) {
-        setErrorProductFiles("Please provide at least one image for the product");
-        return;
-      }
+      // ! If images become mantatory, uncomment this
+      // if (!productFilesToUpload || productFilesToUpload.length === 0) {
+      //   setErrorProductFiles("Please provide at least one image for the product");
+      //   return;
+      // }
 
       const newProduct = {
         ...values,
-        images: productFilesToUpload,
+        // ! If the user attached images to the product, add them to the newProduct object
+        // images: productFilesToUpload,
+      }
+
+      // * If the user attached images to the product, add them to the newProduct object
+      if (productFilesToUpload && productFilesToUpload.length > 0) {
+        newProduct.images = productFilesToUpload;
       }
 
       console.log("newProduct", newProduct);
@@ -268,11 +274,15 @@ const NewProductForm = ({ lng }) => {
           defaultValue={formik.values.comments}
         />
 
+        <p className={classes["optional-images-msg"]}>
+          Add optional images of the product
+        </p>
+
         <ButtonMui
           width="fit-content"
           display="block"
           height="5rem"
-          marginTop="2rem"
+          marginTop="0.5rem"
           fontSize="1.8rem"
           backgroundColor="#f8ae01"
           color="white"

@@ -70,12 +70,13 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
     onSubmit: values => {
       console.log(productFilesToUpload);
 
-      // // if (!productFilesToUpload || productFilesToUpload.length === 0) {
-      // //   setErrorProductFiles(
-      // //     "Please provide at least one image for the product"
-      // //   );
-      // //   return;
-      // // }
+      // ! If there is no file attached, we don't update the product
+      if (!productFilesToUpload || productFilesToUpload.length === 0) {
+        setErrorProductFiles(
+          "Please provide at least one image for the product"
+        );
+        return;
+      }
 
       const updatedProduct = {
         ...values,
@@ -151,7 +152,11 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
         />
         <Image
           className={modalClasses["modal-img"]}
-          src={`${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`}
+          src={product.images.length > 0 ?
+            `${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`
+            :
+            "/IMGS/no-image.png"
+          }
           alt="product image"
           width={200}
           height={200}
