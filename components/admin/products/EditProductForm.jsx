@@ -70,11 +70,9 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
     onSubmit: values => {
       console.log(productFilesToUpload);
 
-      // ! If there is no file attached, we don't update the product
-      if (!productFilesToUpload || productFilesToUpload.length === 0) {
-        setErrorProductFiles(
-          "Please provide at least one image for the product"
-        );
+      // ! If there is no file attached and no existing files, we don't update the product
+      if (product.images.length === 0 && !productFilesToUpload) {
+        setErrorProductFiles("Please provide at least one image for the product");
         return;
       }
 
@@ -128,6 +126,39 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
       setErrorProductFiles("No file attached");
     }
   };
+
+  // const setMenuItems = () => {
+  //   let menuItems = [];
+
+  //   if (!product.productStatus === "client wish") {
+  //     // * If the product is a client wish, we can only change the  status to "for wishing"
+  //     menuItems = [
+  //       { value: "client wish", label: "Client Wish" },
+  //       { value: "for wishing", label: "Wish product" },
+  //     ];
+  //   } else if (product.productStatus === "for wishing") {
+  //     // * If the product is "for wishing", we have to check if it has a latest price attached
+  //     if (product.latestPrice) {
+  //       // * If the product has a latest price attached, we can pick any product status
+  //       menuItems = [
+  //         { value: "client wish", label: "Client Wish" },
+  //         { value: "for wishing", label: "Wish product" },
+  //         { value: "in stock", label: "In Stock" },
+  //         { value: "out of stock", label: "Out Of Stock" },
+  //         { value: "hidden", label: "Hidden" },
+  //       ];
+  //     } else {
+  //       // * If the product doesn't have a latest price attached,
+  //       // * we can only change the status to "client wish" or "for wishing" until a price is attached
+  //       menuItems = [
+  //         { value: "client wish", label: "Client Wish" },
+  //         { value: "for wishing", label: "Wish product" },
+  //       ];
+  //     }
+  //   }
+
+  //   return menuItems;
+  // };
 
   return (
     <motion.div
@@ -301,7 +332,8 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
           />
 
           <p className={classes["not-optional-images-msg"]}>
-            ⚠️ As an admin, you need to upload at least one picture of the product
+            ⚠️ As an admin, you need to upload at least one picture of the
+            product
           </p>
 
           <ButtonMui
