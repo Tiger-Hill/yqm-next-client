@@ -83,7 +83,6 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
         images: productFilesToUpload,
       };
 
-      console.log("updatedProduct", updatedProduct);
       dispatch(updateProduct(updatedProduct, product.slug));
       showEditProductModalHandler("close");
     },
@@ -152,10 +151,10 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
         />
         <Image
           className={modalClasses["modal-img"]}
-          src={product.images.length > 0 ?
-            `${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`
-            :
-            "/IMGS/no-image.png"
+          src={
+            product.images.length > 0
+              ? `${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`
+              : "/IMGS/no-image.png"
           }
           alt="product image"
           width={200}
@@ -301,10 +300,14 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
             defaultValue={formik.values.comments}
           />
 
+          <p className={classes["not-optional-images-msg"]}>
+            ⚠️ As an admin, you need to upload at least one picture of the product
+          </p>
+
           <ButtonMui
             width="fit-content"
             height="5rem"
-            marginTop="2rem"
+            marginTop="0.5rem"
             fontSize="1.7rem"
             backgroundColor="#f8ae01"
             color="white"
@@ -347,7 +350,7 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
             </>
           )}
 
-          {!productFilesToUpload && (
+          {!productFilesToUpload && product.images.length > 0 && (
             <div className={classes["uploaded-files-container"]}>
               {product.images.map((file, index) => {
                 return (
@@ -363,8 +366,6 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
               })}
             </div>
           )}
-
-          <br />
 
           <ButtonMui
             width="100%"

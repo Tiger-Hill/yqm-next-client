@@ -63,8 +63,13 @@
 .optional-images-msg {
   margin-top: 2rem;
   font-size: var(--font-size-xs);
-  // color: rgb(var(--primary-purple));
-  // font-weight: bold;
+}
+
+.not-optional-images-msg {
+  margin-top: 2rem;
+  font-size: var(--font-size-xs);
+  color: rgb(var(--primary-yellow));
+  font-weight: bold;
 }
 
 .uploaded-files-container {
