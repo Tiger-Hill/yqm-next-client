@@ -139,7 +139,7 @@ const NewProductForm = ({ lng }) => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: "auto" }}
           >
-            Make a new wishable product!
+            Wish!
           </motion.h1>
         </div>
       </header>
@@ -280,7 +280,7 @@ const NewProductForm = ({ lng }) => {
           disabledColor="white"
           type="button"
           disabled={false}
-          text="Product Images (.JPG, .JPEG and .PNG)"
+          text="Product Images (.JPG, .JPEG, .PNG)"
           onClickHandler={() => {}}
           onChangeHandler={changeFilesHandler}
           isFileButton={true}

@@ -45,13 +45,18 @@
 }
 
 .formik-form {
-  margin: 2rem auto 4rem;
+  padding: 2rem;
+  margin: 0 auto 4rem;
   max-width: 800px;
   width: 100%;
 
   h2 {
     font-size: 3rem;
-    margin: 5rem 0 0;
+    margin: 5rem 0 2rem;
+
+    @media (max-width: 480px) {
+      line-height: 1.2;
+    }
   }
 }
 
