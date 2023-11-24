@@ -45,7 +45,7 @@ const AllOrders = ({ lng }) => {
                       const { orderProduct, product } = obj;
                       return (
                         <li key={`${obj.product.slug}${i}`}>
-                          {product.productName} - {order.orderCurrency} {orderProduct.orderPrice} - x{Number(orderProduct.changeInNumberOfUnits).toFixed()}
+                          {product.productName} - {order.orderCurrency} {orderProduct.orderPrice} - x{Number(orderProduct.orderQuantity).toFixed()}
                         </li>
                       )
                     })}
@@ -55,7 +55,7 @@ const AllOrders = ({ lng }) => {
                 <td>
                   {order.orderProducts.reduce((acc, obj) => {
                     const { orderProduct } = obj;
-                    return acc + orderProduct.orderPrice * orderProduct.changeInNumberOfUnits;
+                    return acc + orderProduct.orderPrice * orderProduct.orderQuantity;
                   }, 0).toFixed(2)}
                 </td>
 
