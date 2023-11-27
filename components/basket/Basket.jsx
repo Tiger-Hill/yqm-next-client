@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 // import PaypalButtons from "@/components/paypal/Paypal";
 import StripeModal from "@/components/stripe/StripeModal";
-import { getBasketProduct } from "@/lib/redux/slices/basketSlice";
+import { getBasketProduct, clearBasket } from "@/lib/redux/slices/basketSlice";
 
 import Image from "next/image";
 import BasketItemCard from "@/components/basket/BasketItemCard";
@@ -16,7 +16,7 @@ import classes from "./Basket.module.scss";
 const Basket = ({ lng }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { basket } = useSelector(state => state.rootReducer.basket);
+  const { localBasket, basket } = useSelector(state => state.rootReducer.basket);
   const { isLoggedIn } = useSelector(state => state.rootReducer.auth);
   const { userDetails } = useSelector(state => state.rootReducer.userDetail);
   const [basketTotal, setBasketTotal] = useState(0);
@@ -35,14 +35,15 @@ const Basket = ({ lng }) => {
   // }, [basket]);
 
   useEffect(() => {
-    const basketItems = JSON.parse(localStorage.getItem("YQM-basket"));
-    if (!basketItems) return;
+    if (!localBasket || !isLoggedIn || !userDetails) return;
 
-    basketItems.forEach(item => dispatch(getBasketProduct({
-      quantity: item.quantity, productSlug: item.productSlug
-    })));
+    console.log("CLEARING BASKET");
 
-  }, [])
+    dispatch(clearBasket());
+    localBasket.forEach(item => dispatch(getBasketProduct(item.productSlug, item.quantity)));
+    setTimeout(() => {}, 1000);
+  }, [!localBasket, !isLoggedIn, !userDetails]);
+
 
   const goToCheckout = () => {
     alert(
@@ -83,7 +84,7 @@ const Basket = ({ lng }) => {
     setShowStripeModal(false);
   };
 
-  console.error("basket", basket);
+  // console.error("basket", basket);
 
   return (
     <div className={classes["basket-container"]}>

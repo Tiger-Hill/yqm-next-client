@@ -10,7 +10,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 const BasketItemCard = ({ item }) => {
   const dispatch = useDispatch();
 
-  // console.log("item", item);
+  console.log("item", item);
 
   const deleteHandler = () => {
     dispatch(removeFromLocalBasket({ product: item.product }));
