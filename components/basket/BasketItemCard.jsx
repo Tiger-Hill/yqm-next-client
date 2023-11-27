@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch } from "react-redux";
-import { removeFromBasket } from "@/lib/redux/slices/basketSlice";
+import { removeFromLocalBasket } from "@/lib/redux/slices/basketSlice";
 import Image from "next/image";
 import classes from "./BasketItemCard.module.scss";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -13,7 +13,7 @@ const BasketItemCard = ({ item }) => {
   // console.log("item", item);
 
   const deleteHandler = () => {
-    dispatch(removeFromBasket({ product: item.product }));
+    dispatch(removeFromLocalBasket({ product: item.product }));
   };
 
   return (

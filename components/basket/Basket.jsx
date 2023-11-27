@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 // import PaypalButtons from "@/components/paypal/Paypal";
 import StripeModal from "@/components/stripe/StripeModal";
+import { getBasketProduct } from "@/lib/redux/slices/basketSlice";
 
 import Image from "next/image";
 import BasketItemCard from "@/components/basket/BasketItemCard";
@@ -21,17 +22,27 @@ const Basket = ({ lng }) => {
   const [basketTotal, setBasketTotal] = useState(0);
   const maxBasketTotal = useMemo(() => 20_000.0);
 
+  // useEffect(() => {
+  //   if (basket) {
+  //     setBasketTotal(
+  //       basket
+  //         .reduce((acc, product) => {
+  //           return acc + product.product.latestPrice * product.quantity;
+  //         }, 0)
+  //         .toFixed(2)
+  //     );
+  //   }
+  // }, [basket]);
+
   useEffect(() => {
-    if (basket) {
-      setBasketTotal(
-        basket
-          .reduce((acc, product) => {
-            return acc + product.product.latestPrice * product.quantity;
-          }, 0)
-          .toFixed(2)
-      );
-    }
-  }, [basket]);
+    const basketItems = JSON.parse(localStorage.getItem("YQM-basket"));
+    if (!basketItems) return;
+
+    basketItems.forEach(item => dispatch(getBasketProduct({
+      quantity: item.quantity, productSlug: item.productSlug
+    })));
+
+  }, [])
 
   const goToCheckout = () => {
     alert(

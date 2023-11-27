@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrders, createOrder , flashOrderCreateStripeSuccessNotification} from "@/lib/redux/slices/orderSlice";
-import { clearBasket } from "@/lib/redux/slices/basketSlice";
+import { clearFromLocalBasket } from "@/lib/redux/slices/basketSlice";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import TableCollapsibleMUI from "@/components/UI/TableCollapsibleMUI";
@@ -56,7 +56,7 @@ const Orders = ({ lng}) => {
             const orderType = "Buy";
 
             dispatch(createOrder({ orderProducts, orderDetails: { orderCurrency, orderType, paymentId }})) // * Add payment id);
-            dispatch(clearBasket());
+            dispatch(clearFromLocalBasket());
           } else {
             // * FLASH ERROR
             console.log("Order not complete");
