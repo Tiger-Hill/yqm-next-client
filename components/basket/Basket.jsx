@@ -41,7 +41,6 @@ const Basket = ({ lng }) => {
 
     dispatch(clearBasket());
     localBasket.forEach(item => dispatch(getBasketProduct(item.productSlug, item.quantity)));
-    setTimeout(() => {}, 1000);
   }, [!localBasket, !isLoggedIn, !userDetails]);
 
 
