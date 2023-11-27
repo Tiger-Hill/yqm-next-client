@@ -37,8 +37,6 @@ const Basket = ({ lng }) => {
   useEffect(() => {
     if (!localBasket || !isLoggedIn || !userDetails) return;
 
-    console.log("CLEARING BASKET");
-
     dispatch(clearBasket());
     localBasket.forEach(item => dispatch(getBasketProduct(item.productSlug, item.quantity)));
   }, [!localBasket, !isLoggedIn, !userDetails]);
