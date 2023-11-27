@@ -123,11 +123,19 @@ const Basket = ({ lng }) => {
                     disabledBakcgroundColor="#DCDCDC"
                     disabledColor="white"
                     type="button"
-                    disabled={parseFloat(basketTotal) > maxBasketTotal}
+                    disabled={parseFloat(basketTotal) > maxBasketTotal || basket.some(product => product.product.productStatus !== "in stock")}
                     text={"CHECKOUT NOW"}
                     onClickHandler={openStripeModal}
                     // size="large"
                   />
+
+                  {basket.some(product => product.product.productStatus !== "in stock") && (
+                    <p className={classes["product-unavailable-message"]}>
+                      Some of the products in your basket are not in stock.
+                      <br />
+                      Adjust your basket to proceed to checkout.
+                    </p>
+                  )}
 
                   {parseFloat(basketTotal) > maxBasketTotal ? (
                     <p className={classes["total-exceeds-limit-message"]}>

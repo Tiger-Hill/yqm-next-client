@@ -23,6 +23,12 @@ const BasketItemCard = ({ item }) => {
 
         <div>
           <h4>{item.product.productName}</h4>
+
+          <span
+            className={`${classes["item-status"]} ${item.product.productStatus === "in stock" ? classes["available"] : classes["unavailable"]}`}
+          >
+            {item.product.productStatus}
+          </span>
           <p>{item.product.productDescription}</p>
 
           <div className={classes["card-bottom"]}>

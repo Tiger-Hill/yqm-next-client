@@ -239,7 +239,7 @@ const ProductShow = ({ lng, productSlug }) => {
               disabledBakcgroundColor="#DCDCDC"
               disabledColor="white"
               type="submit"
-              disabled={false}
+              disabled={productToShow.productStatus !== "in stock"}
               text="Add to basket"
               onClickHandler={addToLocalBasketHandler}
             />
