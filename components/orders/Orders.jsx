@@ -24,7 +24,7 @@ const Orders = ({ lng}) => {
   const sessionId = searchParams.get("session_id");
   console.log(sessionId);
 
-  const { basket } = useSelector(state => state.rootReducer.basket);
+  const { localBasket } = useSelector(state => state.rootReducer.basket);
   const hasEffectRun = useRef(false);
   useEffect(() => {
     if (!hasEffectRun.current && sessionId) {
@@ -41,21 +41,22 @@ const Orders = ({ lng}) => {
           console.log(orderData);
 
           if (orderData.status === "complete") {
-            const orderProducts = {
-              productId: [],
-              orderQuantity: [],
+            const order = {
+              productIds: [],
+              orderQuantities: [],
             }
 
-            basket.map(product => {
-              orderProducts.productId.push(product.product.slug);
-              orderProducts.orderQuantity.push(product.quantity);
+            localBasket.forEach(item => {
+              order.productIds.push(item.productSlug);
+              order.orderQuantities.push(item.quantity);
             });
 
-            const paymentId = `stripe-date-timestamp-${Date.now()}`;
-            const orderCurrency = "SGD";
-            const orderType = "Buy";
+            order.paymentId = `stripe-date-timestamp-${Date.now()}`;
+            // order.orderCurrency = "SGD";
+            order.orderType = "Buy";
 
-            dispatch(createOrder({ orderProducts, orderDetails: { orderCurrency, orderType, paymentId }})) // * Add payment id);
+            // dispatch(createOrder({ orderProducts, orderDetails: { orderCurrency, orderType, paymentId }})) // * Add payment id);
+            dispatch(createOrder(order)); // * Add payment id);
             dispatch(clearFromLocalBasket());
           } else {
             // * FLASH ERROR
