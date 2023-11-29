@@ -12,6 +12,23 @@
     font-size: 1.7rem;
     font-weight: 500;
   }
+
+  .download-csv-icon {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    margin: 0 1rem;
+    padding: 0.25rem;
+    border-radius: 50rem;
+    color: white;
+    cursor: pointer;
+    background: rgb(var(--primary-yellow));
+    transition: 200ms ease;
+
+    &:hover {
+      scale: 1.1;
+    }
+  }
 }
 
 .mid-container {
@@ -22,39 +39,60 @@
   // margin-top: 1rem;
   padding: 1rem;
 
+  .order-product {}
+
   .order-product {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 1rem;
+    gap: 2rem;
     font-size: 1.7rem;
-  }
+    margin-bottom: 1rem;
 
-  .actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 1rem;
+    .order-product-details {
+      * {
+        font-size: var(--font-size-xxs);
+      }
 
-    .accept-icon, .deny-icon {
-      width: 3rem;
-      height: 3rem;
-      cursor: pointer;
-      border-radius: 100%;
-      box-shadow: 3px 3px 3px -1px rgba(10, 99, 169, 0.32), -3px -3px 3px -1px rgba(255, 255, 255, 0.70);
-      transition: all 0.25s ease;
-
-      &:hover {
-        box-shadow: 2px 2px 2px -1px rgba(10, 99, 169, 0.32), -2px -2px 2px -1px rgba(255, 255, 255, 0.70);
+      .order-status {
+        display: inline-block;
+        font-size: 1.5rem;
+        font-weight: 400;
+        background-color: var(--error);
+        color: white;
+        padding: 0 1rem;
+        vertical-align: middle;
+        border-radius: 5rem;
       }
     }
 
-    .accept-icon {
-      color: var(--success);
-    }
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-left: auto;
 
-    .deny-icon {
-      color: var(--error);
+      .accept-icon, .deny-icon {
+        width: 3rem;
+        height: 3rem;
+        cursor: pointer;
+        border-radius: 100%;
+        box-shadow: 3px 3px 3px -1px rgba(10, 99, 169, 0.32), -3px -3px 3px -1px rgba(255, 255, 255, 0.70);
+        transition: all 0.25s ease;
+
+        &:hover {
+          box-shadow: 2px 2px 2px -1px rgba(10, 99, 169, 0.32), -2px -2px 2px -1px rgba(255, 255, 255, 0.70);
+        }
+      }
+
+      .accept-icon {
+        color: var(--success);
+      }
+
+      .deny-icon {
+        color: var(--error);
+      }
     }
   }
 }

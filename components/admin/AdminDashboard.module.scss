@@ -100,9 +100,27 @@
     display: none;
   }
 
-  button {
+  .actions-container {
+    svg, img {
+      display: inline-block;
+      width: 5rem;
+      height: 5rem;
+      margin: 0 1rem;
+      padding: 1rem;
+      border-radius: 50rem;
+      color: white;
+      cursor: pointer;
+      background: rgb(var(--primary-yellow));
+      transition: 200ms ease;
+
+      &:hover {
+        scale: 1.1;
+      }
+    }
+
     position: sticky;
     bottom: 0rem;
+    text-align: center;
   }
 }
 
