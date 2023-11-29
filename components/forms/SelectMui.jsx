@@ -28,6 +28,8 @@ const SelectMui = ({
   disabled
 }) => {
 
+  const emptyFunction = () => {};
+
   return (
     <FormControl
       sx={{
