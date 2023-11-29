@@ -207,6 +207,7 @@ const ERROR_CODES = {
   CREATE_PRICE_ERROR: "An error occured while creating your price.",
   MARK_ORDER_COMPLETED_ERROR: "An error occured while marking this order as completed.",
   MARK_ORDER_CANCELLED_ERROR: "An error occured while marking this order as cancelled.",
+  PERSIST_CSV_FILE_CONTENT_TO_UPDATE_ORDERS_ERROR: "An error occured while persisting the CSV file content to update the orders.",
 
   // ? PRODUCT SLICE
   CLIENT_CREATE_PRODUCT_ERROR: "An error occured while creating your product.",
@@ -247,6 +248,7 @@ const SUCCESS_CODES = {
   CREATE_PRICE_SUCCESS: "Price successfully created. You now have to publish it in order for it to be visible to the public (you included).",
   MARK_ORDER_COMPLETED_SUCCESS: "Order successfully marked as completed.",
   MARK_ORDER_CANCELLED_SUCCESS: "Order successfully marked as cancelled.",
+  PERSIST_CSV_FILE_CONTENT_TO_UPDATE_ORDERS_SUCCESS: "Successfully persisted the CSV file content to update the orders.",
 
   // ? PRODUCT SLICE
   CLIENT_CREATE_PRODUCT_SUCCESS: "Product successfully created. An admin will review your request to make it a wishable product for all users!",

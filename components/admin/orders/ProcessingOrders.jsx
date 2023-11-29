@@ -31,7 +31,7 @@ const ProcessingOrders = ({ lng }) => {
   }
 
   const redirectToUpdateOrdersWithCsvPage = () => {
-    router.push(`/${lng}/admin_dashboard/orders/upload`);
+    router.push(`/${lng}/admin_dashboard/update_bulk_orders`);
   }
 
   // * We get all orders
