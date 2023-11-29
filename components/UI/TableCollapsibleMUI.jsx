@@ -124,7 +124,8 @@ function Row(props) {
 
 export default function TableCollapsibleMUI({ orders }) {
   const rows = [];
-  orders.map(order => rows.push(createData(order.orderDate, order.orderType, order.orderCurrency, order.orderStatus,
+
+  Object.keys(orders).map(order => rows.push(createData(order.orderDate, order.orderType, order.orderCurrency, order.orderStatus,
     order.orderProducts.map(orderProduct => {
       return {
         productName: orderProduct.product.productName,

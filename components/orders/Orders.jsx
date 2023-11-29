@@ -6,6 +6,7 @@ import { getAllOrders, createOrder , flashOrderCreateStripeSuccessNotification} 
 import { clearFromLocalBasket } from "@/lib/redux/slices/basketSlice";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import OrderGroup from "@/components/orders/OrderGroup";
 import TableCollapsibleMUI from "@/components/UI/TableCollapsibleMUI";
 import classes from "./Orders.module.scss";
 
@@ -77,7 +78,10 @@ const Orders = ({ lng}) => {
     <section className={classes["orders-section"]}>
       <h2>Orders</h2>
 
-      {orders && <TableCollapsibleMUI orders={orders} />}
+      {/* {orders && <TableCollapsibleMUI orders={orders} />} */}
+      {orders && orders.map(orderGroup => {
+        return <OrderGroup orderGroup={orderGroup} />
+      })}
     </section>
   );
 }
