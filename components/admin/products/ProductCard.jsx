@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { deleteProduct } from "@/lib/redux/slices/adminSlice";
+import { deleteProduct, getAllOrdersCsvForProduct } from "@/lib/redux/slices/adminSlice";
 import { motion } from "framer-motion";
 
 import Image from "next/image";
@@ -61,6 +61,10 @@ const ProductCard = ({ product, index }) => {
   const deleteProductHandler = () => {
     dispatch(deleteProduct(product.slug));
   };
+
+  const downloadOrdersSvgHandler = () => {
+    dispatch(getAllOrdersCsvForProduct(product.slug));
+  }
 
 
   return (
@@ -158,6 +162,17 @@ const ProductCard = ({ product, index }) => {
             onClick={deleteProductHandler}
           />
         )}
+
+        {!["client wish", "for wishing"].includes(product.productStatus) &&
+          <Image
+          className={classes["download-csv-icon"]}
+          src="/SVGS/csv-icon.png"
+          alt="CSV icon"
+          width={3000}
+          height={3000}
+          onClick={() => downloadOrdersSvgHandler()}
+          />
+        }
       </div>
 
       {showEditProductModal && (

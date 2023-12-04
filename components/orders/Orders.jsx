@@ -3,9 +3,10 @@
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrders, createOrder , flashOrderCreateStripeSuccessNotification} from "@/lib/redux/slices/orderSlice";
-import { clearBasket } from "@/lib/redux/slices/basketSlice";
+import { clearFromLocalBasket } from "@/lib/redux/slices/basketSlice";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import OrderGroup from "@/components/orders/OrderGroup";
 import TableCollapsibleMUI from "@/components/UI/TableCollapsibleMUI";
 import classes from "./Orders.module.scss";
 
@@ -24,7 +25,7 @@ const Orders = ({ lng}) => {
   const sessionId = searchParams.get("session_id");
   console.log(sessionId);
 
-  const { basket } = useSelector(state => state.rootReducer.basket);
+  const { localBasket } = useSelector(state => state.rootReducer.basket);
   const hasEffectRun = useRef(false);
   useEffect(() => {
     if (!hasEffectRun.current && sessionId) {
@@ -41,22 +42,23 @@ const Orders = ({ lng}) => {
           console.log(orderData);
 
           if (orderData.status === "complete") {
-            const orderProducts = {
-              productId: [],
-              orderQuantity: [],
+            const order = {
+              productIds: [],
+              orderQuantities: [],
             }
 
-            basket.map(product => {
-              orderProducts.productId.push(product.product.slug);
-              orderProducts.orderQuantity.push(product.quantity);
+            localBasket.forEach(item => {
+              order.productIds.push(item.productSlug);
+              order.orderQuantities.push(item.quantity);
             });
 
-            const paymentId = `stripe-date-timestamp-${Date.now()}`;
-            const orderCurrency = "SGD";
-            const orderType = "Buy";
+            order.paymentId = `stripe-date-timestamp-${Date.now()}`;
+            // order.orderCurrency = "SGD";
+            order.orderType = "Buy";
 
-            dispatch(createOrder({ orderProducts, orderDetails: { orderCurrency, orderType, paymentId }})) // * Add payment id);
-            dispatch(clearBasket());
+            // dispatch(createOrder({ orderProducts, orderDetails: { orderCurrency, orderType, paymentId }})) // * Add payment id);
+            dispatch(createOrder(order)); // * Add payment id);
+            dispatch(clearFromLocalBasket());
           } else {
             // * FLASH ERROR
             console.log("Order not complete");
@@ -76,7 +78,10 @@ const Orders = ({ lng}) => {
     <section className={classes["orders-section"]}>
       <h2>Orders</h2>
 
-      {orders && <TableCollapsibleMUI orders={orders} />}
+      {/* {orders && <TableCollapsibleMUI orders={orders} />} */}
+      {orders && orders.map(orderGroup => {
+        return <OrderGroup orderGroup={orderGroup} />
+      })}
     </section>
   );
 }

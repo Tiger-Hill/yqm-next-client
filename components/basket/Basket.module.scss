@@ -57,15 +57,13 @@
     }
   }
 
-  .total-exceeds-limit-message {
+  .total-exceeds-limit-message, .product-unavailable-message {
     font-size: 2rem;
     font-weight: 600;
     color: var(--error);
     text-align: center;
   }
 }
-
-
 
 // ! STRIPE BUTTON
 .stripe-button {

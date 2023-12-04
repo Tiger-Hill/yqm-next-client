@@ -108,3 +108,23 @@
     border-radius: 15px;
   }
 }
+
+.item-status {
+  // margin-left: 1rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  padding: 0.1rem 1rem;
+  border-radius: 5rem;
+  white-space: nowrap;
+
+  &.available {
+    background-color: var(--success);
+  }
+
+  &.unavailable {
+    background-color: var(--error);
+  }
+}

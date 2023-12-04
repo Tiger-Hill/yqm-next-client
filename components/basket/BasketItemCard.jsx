@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch } from "react-redux";
-import { removeFromBasket } from "@/lib/redux/slices/basketSlice";
+import { removeFromLocalBasket } from "@/lib/redux/slices/basketSlice";
 import Image from "next/image";
 import classes from "./BasketItemCard.module.scss";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -10,10 +10,10 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 const BasketItemCard = ({ item }) => {
   const dispatch = useDispatch();
 
-  // console.log("item", item);
+  console.log("item", item);
 
   const deleteHandler = () => {
-    dispatch(removeFromBasket({ product: item.product }));
+    dispatch(removeFromLocalBasket({ product: item.product }));
   };
 
   return (
@@ -23,6 +23,12 @@ const BasketItemCard = ({ item }) => {
 
         <div>
           <h4>{item.product.productName}</h4>
+
+          <span
+            className={`${classes["item-status"]} ${item.product.productStatus === "in stock" ? classes["available"] : classes["unavailable"]}`}
+          >
+            {item.product.productStatus}
+          </span>
           <p>{item.product.productDescription}</p>
 
           <div className={classes["card-bottom"]}>

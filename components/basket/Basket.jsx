@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 // import PaypalButtons from "@/components/paypal/Paypal";
 import StripeModal from "@/components/stripe/StripeModal";
+import { getBasketProduct, clearBasket } from "@/lib/redux/slices/basketSlice";
 
 import Image from "next/image";
 import BasketItemCard from "@/components/basket/BasketItemCard";
@@ -15,23 +16,31 @@ import classes from "./Basket.module.scss";
 const Basket = ({ lng }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { basket } = useSelector(state => state.rootReducer.basket);
+  const { localBasket, basket } = useSelector(state => state.rootReducer.basket);
   const { isLoggedIn } = useSelector(state => state.rootReducer.auth);
   const { userDetails } = useSelector(state => state.rootReducer.userDetail);
   const [basketTotal, setBasketTotal] = useState(0);
   const maxBasketTotal = useMemo(() => 20_000.0);
 
+  // useEffect(() => {
+  //   if (basket) {
+  //     setBasketTotal(
+  //       basket
+  //         .reduce((acc, product) => {
+  //           return acc + product.product.latestPrice * product.quantity;
+  //         }, 0)
+  //         .toFixed(2)
+  //     );
+  //   }
+  // }, [basket]);
+
   useEffect(() => {
-    if (basket) {
-      setBasketTotal(
-        basket
-          .reduce((acc, product) => {
-            return acc + product.product.latestPrice * product.quantity;
-          }, 0)
-          .toFixed(2)
-      );
-    }
-  }, [basket]);
+    if (!localBasket || !isLoggedIn || !userDetails) return;
+
+    dispatch(clearBasket());
+    localBasket.forEach(item => dispatch(getBasketProduct(item.productSlug, item.quantity)));
+  }, [!localBasket, !isLoggedIn, !userDetails]);
+
 
   const goToCheckout = () => {
     alert(
@@ -72,7 +81,7 @@ const Basket = ({ lng }) => {
     setShowStripeModal(false);
   };
 
-  console.error("basket", basket);
+  // console.error("basket", basket);
 
   return (
     <div className={classes["basket-container"]}>
@@ -114,11 +123,19 @@ const Basket = ({ lng }) => {
                     disabledBakcgroundColor="#DCDCDC"
                     disabledColor="white"
                     type="button"
-                    disabled={parseFloat(basketTotal) > maxBasketTotal}
+                    disabled={parseFloat(basketTotal) > maxBasketTotal || basket.some(product => product.product.productStatus !== "in stock")}
                     text={"CHECKOUT NOW"}
                     onClickHandler={openStripeModal}
                     // size="large"
                   />
+
+                  {basket.some(product => product.product.productStatus !== "in stock") && (
+                    <p className={classes["product-unavailable-message"]}>
+                      Some of the products in your basket are not in stock.
+                      <br />
+                      Adjust your basket to proceed to checkout.
+                    </p>
+                  )}
 
                   {parseFloat(basketTotal) > maxBasketTotal ? (
                     <p className={classes["total-exceeds-limit-message"]}>

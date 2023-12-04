@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUserWishes } from "@/lib/redux/slices/wishSlice";
-import { addToBasket } from "@/lib/redux/slices/basketSlice";
+import { addToLocalBasket } from "@/lib/redux/slices/basketSlice";
 import { getProduct } from "@/lib/redux/slices/productSlice";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -55,8 +55,8 @@ const ProductShow = ({ lng, productSlug }) => {
   console.log(typeof(quantity))
 
   // ! Add to basket handler
-  const addToBasketHandler = () => {
-    dispatch(addToBasket({ product: productToShow, quantity: Number(quantity) }));
+  const addToLocalBasketHandler = () => {
+    dispatch(addToLocalBasket({ product: productToShow, quantity: Number(quantity) }));
   };
 
   return (
@@ -239,9 +239,9 @@ const ProductShow = ({ lng, productSlug }) => {
               disabledBakcgroundColor="#DCDCDC"
               disabledColor="white"
               type="submit"
-              disabled={false}
+              disabled={productToShow.productStatus !== "in stock"}
               text="Add to basket"
-              onClickHandler={addToBasketHandler}
+              onClickHandler={addToLocalBasketHandler}
             />
             {/* </div> */}
           </motion.div>

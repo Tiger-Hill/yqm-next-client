@@ -19,7 +19,7 @@ import { getUserDetails } from "@/lib/redux/slices/userDetailSlice";
 const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNavOpen }) => {
   const dispatch = useDispatch();
   const { userDetails } = useSelector((state) => state.rootReducer.userDetail);
-  const { basket } = useSelector((state) => state.rootReducer.basket);
+  const { basket, localBasket } = useSelector((state) => state.rootReducer.basket);
   const { userType } = useSelector((state) => state.rootReducer.auth.user);
   const router = useRouter()
   const { t } = useTranslation(lng, "navbar");
@@ -131,7 +131,7 @@ const NavbarLoggedIn = ({ lng, screenWidth, openSideNav, closeSideNav, isSideNav
       )}
 
       <Badge
-        badgeContent={basket.reduce((acc, product) => {
+        badgeContent={localBasket.reduce((acc, product) => {
           return acc + product.quantity;
         }, 0)}
         color="primary"
