@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkUpdateOrdersCsv, resetOrderRowsToUpdate, persistUpdateOrdersCsv } from "@/lib/redux/slices/adminSlice";
 
+import Table from "@/components/UI/Table";
 import SelectMui from "@/components/forms/SelectMui";
 import ButtonMui from "@/components/forms/ButtonMui";
 import classes from  "./UpdateBulkOrders.module.scss";
@@ -85,10 +86,19 @@ const UpdateBulkOrders = ({ lng }) => {
 
   return (
     <div className={classes["update-bulk-orders-container"]}>
-      <h3>Update Bulk Orders</h3>
+      <h2>Update Bulk Orders</h2>
+
 
       {!isUploaded && (
         <>
+
+          <p>Please upload a CSV with each line representing an order you want to update. Select the target status for all orders present in the CSV file.</p>
+          <p>Make sure the CSV orders respect these conditions:</p>
+          <ul>
+            <li>You're not updating orders that have already been delivered or cancelled.</li>
+            <li>You're not updating orders for different products.</li>
+          </ul>
+
           <SelectMui
             required={true}
             id="outlined-required currency"
@@ -171,6 +181,11 @@ const UpdateBulkOrders = ({ lng }) => {
                 the CSV file?
               </p>
 
+              <Table
+                headers={["order", "user", "product", "type", "date", "price", "quantity", "status"]}
+                rows={ordersRowsToUpdate.data}
+              />
+
               <ButtonMui
                 width="100%"
                 height="5rem"
@@ -205,15 +220,12 @@ const UpdateBulkOrders = ({ lng }) => {
 
           {!orderRowsAreValid && (
             <>
-              <p>
-                The data your provided is invalid. Please check the content of
-                your CSV file and try again.
-              </p>
+              <p>The data your provided is invalid. <strong>{ordersRowsToUpdate.meta.message}</strong></p>
 
-              <p>
-                (I'll add a table here soon to make it easier for you to see
-                what cells are invalid)
-              </p>
+              <Table
+                headers={["order", "user", "product", "type", "date", "price", "quantity", "status"]}
+                rows={ordersRowsToUpdate.data}
+              />
 
               <ButtonMui
                 width="100%"

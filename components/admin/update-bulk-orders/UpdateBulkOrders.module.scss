@@ -2,4 +2,47 @@
   margin: 0 auto;
   margin-top: calc(2rem + var(--navbar-height));
   padding: 1rem;
+
+  max-width: 1200px;
+  width: 100%;
+
+  h2 {
+    margin-bottom: 5rem;
+  }
+
+  p {
+    font-size: var(--font-size-xs);
+    margin-top: 2rem;
+
+  }
+
+  ul {
+    font-size: var(--font-size-xs);
+    list-style: disc;
+    margin-left: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  table {
+    margin-top: 5rem;
+    font-size: var(--font-size-xs);
+    width: 100%;
+
+    tr {
+      border-bottom: 2px solid black;
+    }
+
+    th {
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      font-size: var(--font-size-xs);
+      text-align: center;
+    }
+
+    td {
+      padding: 0.5rem 1rem;
+      font-size: var(--font-size-xxs);
+      text-align: center;
+    }
+  }
 }
