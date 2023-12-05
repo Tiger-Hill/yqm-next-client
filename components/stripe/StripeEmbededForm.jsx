@@ -43,7 +43,7 @@ const StripeEmbededForm = ({ lng, basketData }) => {
   console.log(clientSecret);
 
   return (
-    <div id="checkout">
+    <div id="checkout" style={{ width: "100%"}}>
       {clientSecret && (
         <EmbeddedCheckoutProvider
           stripe={stripePromise}

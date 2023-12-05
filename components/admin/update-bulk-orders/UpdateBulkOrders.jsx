@@ -20,6 +20,7 @@ const UpdateBulkOrders = ({ lng }) => {
   const [targetedStatus, setTargetedStatus] = useState("Awaiting other orders");
 
   const searchInputHandler = e => {
+    console.log(e.target.value);
     if (!e.target.value) {
       setTargetedStatus("");
     } else {
@@ -106,7 +107,7 @@ const UpdateBulkOrders = ({ lng }) => {
             label="target-status"
             onChangeHandler={e => searchInputHandler(e)}
             labelId="target-status"
-            value={"Awaiting other orders"}
+            value={targetedStatus}
             emptyValue={false}
             emptyValueText={null}
             menuItems={[
