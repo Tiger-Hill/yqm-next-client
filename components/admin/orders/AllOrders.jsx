@@ -18,7 +18,7 @@ const AllOrders = ({ lng }) => {
 
   return (
     <>
-      {orders &&
+      {orders && (
         <table className={classes["all-orders-table"]}>
           <thead>
             <tr>
@@ -36,42 +36,67 @@ const AllOrders = ({ lng }) => {
           <tbody>
             {orders.map((order, i) => (
               <tr key={`${order.slug}${i}`}>
-                <td>{order.orderType}</td>
-                <td>{order.orderDate}</td>
+                <td>{order.orders[0].orderType}</td>
+                <td>{order.orders[0].orderDate}</td>
 
                 <td>
                   <ul>
-                    {order.orderProducts.map((obj, i) => {
-                      const { orderProduct, product } = obj;
+                    {order.orders.map((order, i) => {
+                      // const { order, product } = obj;
                       return (
-                        <li key={`${obj.product.slug}${i}`}>
-                          {product.productName} - {order.orderCurrency} {orderProduct.orderPrice} - x{Number(orderProduct.orderQuantity).toFixed()}
+                        <li key={`${order.product.slug}${i}`}>
+                          {order.product.productName} - {order.orderCurrency} 
+                          {order.orderPrice} - x
+                          {Number(order.orderQuantity).toFixed()}
+                           - {order.slug}
                         </li>
-                      )
+                      );
                     })}
                   </ul>
                 </td>
 
                 <td>
-                  {order.orderProducts.reduce((acc, obj) => {
-                    const { orderProduct } = obj;
-                    return acc + orderProduct.orderPrice * orderProduct.orderQuantity;
-                  }, 0).toFixed(2)}
+                  {order.orders
+                    .reduce((acc, order) => {
+                      // const { orderProduct } = order;
+                      return acc + order.orderPrice * order.orderQuantity;
+                    }, 0)
+                    .toFixed(2)}
                 </td>
 
-                <td>{order.slug}</td>
-                <td>{order.orderStatus}</td>
+                <td>{order.paymentId}</td>
+                <td>
+                  <ul>
+                    {order.orders.map((order, i) => {
+                      // const { order, product } = obj;
+                      return (
+                        <li key={`${i}${order.product.slug}`}>
+                          {order.orderStatus} 
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </td>
 
-                {order.orderStatus === "Processing" &&
-                  <OrderActions order={order} />
-                }
+                {/* {order.orderStatus === "Processing" && ( */}
+
+                <ul>
+                  {order.orders.map((order, i) => {
+                    // const { order, product } = obj;
+                    return (
+                      <li key={`${i}${order.product.slug}`}>
+                        <OrderActions order={order} />
+                      </li>
+                    );
+                  })}
+                </ul>
               </tr>
             ))}
           </tbody>
         </table>
-      }
+      )}
     </>
-  )
+  );
 }
 
 export default AllOrders
