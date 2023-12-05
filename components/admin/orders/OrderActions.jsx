@@ -8,13 +8,13 @@ import classes from "./AllOrders.module.scss";
 
 const OrderActions = ({ order }) => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const showOrderConfirmationModal = () => setShowConfirmationModal([true, "confirmation"]);
+  // const showOrderConfirmationModal = () => setShowConfirmationModal([true, "confirmation"]);
   const showOrderCancellationModal = () => setShowConfirmationModal([true, "cancellation"]);
   const closeOrderConfirmationModal = () => setShowConfirmationModal(false);
 
   return (
     <td className={classes["actions"]}>
-      <DoneIcon className={classes["accept-icon"]} onClick={() => showOrderConfirmationModal()} />
+      {/* <DoneIcon className={classes["accept-icon"]} onClick={() => showOrderConfirmationModal()} /> */}
       <CancelIcon className={classes["deny-icon"]} onClick={() => showOrderCancellationModal()} />
 
       { showConfirmationModal &&
