@@ -61,6 +61,7 @@ const NewProductForm = ({ showNewProductModalHandler }) => {
       productStatus: "hidden",
       productDescription: "",
       productCreatorPrice: 1,
+      minimumOrderQuantity: 1,
       productCreatorUrl: "",
       comments: "",
       // images
@@ -213,6 +214,33 @@ const NewProductForm = ({ showNewProductModalHandler }) => {
             }
             disabled={false}
             defaultValue={formik.values.productCreatorPrice}
+          />
+
+          <InputMui
+            // ! Note that this needs Amin's attention
+            required
+            id="outlined-required productMinimumOrderQuantity"
+            name="productMinimumOrderQuantity"
+            type="text"
+            // min="1"
+            // max={Infinity}
+            label="Wished price"
+            helperText={
+              formik.errors.productMinimumOrderQuantity &&
+              formik.errors.productMinimumOrderQuantity
+            }
+            onChangeHandler={formik.handleChange}
+            onBlurHandler={formik.handleBlur}
+            error={
+              !!formik.touched.productMinimumOrderQuantity &&
+              !!formik.errors.productMinimumOrderQuantity
+            }
+            valid={
+              !!formik.touched.productMinimumOrderQuantity &&
+              !formik.errors.productMinimumOrderQuantity
+            }
+            disabled={false}
+            defaultValue={formik.values.productMinimumOrderQuantity}
           />
 
           <InputMui
