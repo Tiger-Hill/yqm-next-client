@@ -217,7 +217,7 @@ const NewProductForm = ({ showNewProductModalHandler }) => {
           />
 
           <InputMui
-            // ! Note that this needs Amin's attention
+            // ! Note that this needs @Amin's attention
             required
             id="outlined-required minimumOrderQuantity"
             name="minimumOrderQuantity"
