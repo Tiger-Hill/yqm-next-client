@@ -270,7 +270,7 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
             type="text"
             // min="1"
             // max={Infinity}
-            label="Wished price"
+            label="Minimum Order Quantity"
             helperText={
               formik.errors.minimumOrderQuantity &&
               formik.errors.minimumOrderQuantity
