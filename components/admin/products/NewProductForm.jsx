@@ -219,28 +219,28 @@ const NewProductForm = ({ showNewProductModalHandler }) => {
           <InputMui
             // ! Note that this needs Amin's attention
             required
-            id="outlined-required productMinimumOrderQuantity"
-            name="productMinimumOrderQuantity"
+            id="outlined-required minimumOrderQuantity"
+            name="minimumOrderQuantity"
             type="text"
             // min="1"
             // max={Infinity}
-            label="Wished price"
+            label="Minimum Order Quantity"
             helperText={
-              formik.errors.productMinimumOrderQuantity &&
-              formik.errors.productMinimumOrderQuantity
+              formik.errors.minimumOrderQuantity &&
+              formik.errors.minimumOrderQuantity
             }
             onChangeHandler={formik.handleChange}
             onBlurHandler={formik.handleBlur}
             error={
-              !!formik.touched.productMinimumOrderQuantity &&
-              !!formik.errors.productMinimumOrderQuantity
+              !!formik.touched.minimumOrderQuantity &&
+              !!formik.errors.minimumOrderQuantity
             }
             valid={
-              !!formik.touched.productMinimumOrderQuantity &&
-              !formik.errors.productMinimumOrderQuantity
+              !!formik.touched.minimumOrderQuantity &&
+              !formik.errors.minimumOrderQuantity
             }
             disabled={false}
-            defaultValue={formik.values.productMinimumOrderQuantity}
+            defaultValue={formik.values.minimumOrderQuantity}
           />
 
           <InputMui

@@ -62,7 +62,7 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
       productStatus: product.productStatus,
       productDescription: product.productDescription,
       productCreatorPrice: product.productCreatorPrice,
-      productMinimumOrderQuantity: product.productMinimumOrderQuantity,
+      minimumOrderQuantity: product.minimumOrderQuantity,
       productCreatorUrl: product.productCreatorUrl,
       comments: product.comments,
       // images
@@ -265,28 +265,28 @@ const EditProductForm = ({ showEditProductModalHandler, product }) => {
           <InputMui
             // ! Note that this needs Amin's attention
             required
-            id="outlined-required productMinimumOrderQuantity"
-            name="productMinimumOrderQuantity"
+            id="outlined-required minimumOrderQuantity"
+            name="minimumOrderQuantity"
             type="text"
             // min="1"
             // max={Infinity}
             label="Wished price"
             helperText={
-              formik.errors.productMinimumOrderQuantity &&
-              formik.errors.productMinimumOrderQuantity
+              formik.errors.minimumOrderQuantity &&
+              formik.errors.minimumOrderQuantity
             }
             onChangeHandler={formik.handleChange}
             onBlurHandler={formik.handleBlur}
             error={
-              !!formik.touched.productMinimumOrderQuantity &&
-              !!formik.errors.productMinimumOrderQuantity
+              !!formik.touched.minimumOrderQuantity &&
+              !!formik.errors.minimumOrderQuantity
             }
             valid={
-              !!formik.touched.productMinimumOrderQuantity &&
-              !formik.errors.productMinimumOrderQuantity
+              !!formik.touched.minimumOrderQuantity &&
+              !formik.errors.minimumOrderQuantity
             }
             disabled={false}
-            defaultValue={formik.values.productMinimumOrderQuantity}
+            defaultValue={formik.values.minimumOrderQuantity}
           />
 
           <InputMui
