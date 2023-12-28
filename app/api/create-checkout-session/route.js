@@ -28,6 +28,7 @@ export async function POST (req, res) {
         quantity: item.quantity,
       }));
 
+      // ? See line items
       // console.log(lineItems);
       // console.log(lineItems[0]);
 
